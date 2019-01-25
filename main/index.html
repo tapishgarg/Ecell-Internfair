@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>practice</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+	<blog-post title="Envento" id="blog-component"></blog-post>
+	<blog-post title="Job Hunt" id="blog-component"></blog-post>
+	<blog-post title="Envento" id="blog-component"></blog-post>
+</body>
+</html>
+
+
+
+
+<script>
+	Vue.component('blog-post', {
+		props:['title'],
+		template: '<h3>{{title}}</h3>'
+	})
+
+	new Vue({el:'#blog-component'})
+</script>
