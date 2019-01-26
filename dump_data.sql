@@ -230,50 +230,6 @@ $$;
 ALTER FUNCTION hdb_catalog.inject_table_defaults(view_schema text, view_name text, tab_schema text, tab_name text) OWNER TO postgres;
 
 --
--- Name: anonymous__insert__public__device_data(); Type: FUNCTION; Schema: hdb_views; Owner: postgres
---
-
-CREATE FUNCTION hdb_views.anonymous__insert__public__device_data() RETURNS trigger
-    LANGUAGE plpgsql
-    AS $_$
-  DECLARE r "public"."device_data"%ROWTYPE;
-  DECLARE conflict_clause jsonb;
-  DECLARE action text;
-  DECLARE constraint_name text;
-  DECLARE set_expression text;
-  BEGIN
-    conflict_clause = current_setting('hasura.conflict_clause')::jsonb;
-    IF ('true') THEN
-      CASE
-        WHEN conflict_clause = 'null'::jsonb THEN INSERT INTO "public"."device_data" VALUES (NEW.*) RETURNING * INTO r;
-        ELSE
-          action = conflict_clause ->> 'action';
-          constraint_name = quote_ident(conflict_clause ->> 'constraint');
-          set_expression = conflict_clause ->> 'set_expression';
-          IF action is NOT NULL THEN
-            CASE
-              WHEN action = 'ignore'::text AND constraint_name IS NULL THEN
-                INSERT INTO "public"."device_data" VALUES (NEW.*) ON CONFLICT DO NOTHING RETURNING * INTO r;
-              WHEN action = 'ignore'::text AND constraint_name is NOT NULL THEN
-                EXECUTE 'INSERT INTO "public"."device_data" VALUES ($1.*) ON CONFLICT ON CONSTRAINT ' || constraint_name ||
-                           ' DO NOTHING RETURNING *' INTO r USING NEW;
-              ELSE
-                EXECUTE 'INSERT INTO "public"."device_data" VALUES ($1.*) ON CONFLICT ON CONSTRAINT ' || constraint_name ||
-                           ' DO UPDATE ' || set_expression || ' RETURNING *' INTO r USING NEW;
-            END CASE;
-            ELSE
-              RAISE internal_error using message = 'action is not found'; RETURN NULL;
-          END IF;
-      END CASE;
-      IF r IS NULL THEN RETURN null; ELSE RETURN r; END IF;
-     ELSE RAISE check_violation using message = 'insert check constraint failed'; RETURN NULL;
-     END IF;
-  END $_$;
-
-
-ALTER FUNCTION hdb_views.anonymous__insert__public__device_data() OWNER TO postgres;
-
---
 -- Name: google__insert__public__joey_user(); Type: FUNCTION; Schema: hdb_views; Owner: postgres
 --
 
@@ -669,46 +625,6 @@ ALTER SEQUENCE hdb_catalog.remote_schemas_id_seq OWNED BY hdb_catalog.remote_sch
 
 
 --
--- Name: device_data; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.device_data (
-    id integer NOT NULL,
-    device_id text NOT NULL,
-    "timestamp" text NOT NULL,
-    speed text NOT NULL,
-    bearing text NOT NULL,
-    altitude text NOT NULL,
-    accuracy text NOT NULL,
-    batt text NOT NULL,
-    lng text NOT NULL,
-    lat text NOT NULL
-);
-
-
-ALTER TABLE public.device_data OWNER TO postgres;
-
---
--- Name: anonymous__insert__public__device_data; Type: VIEW; Schema: hdb_views; Owner: postgres
---
-
-CREATE VIEW hdb_views.anonymous__insert__public__device_data AS
- SELECT device_data.id,
-    device_data.device_id,
-    device_data."timestamp",
-    device_data.speed,
-    device_data.bearing,
-    device_data.altitude,
-    device_data.accuracy,
-    device_data.batt,
-    device_data.lng,
-    device_data.lat
-   FROM public.device_data;
-
-
-ALTER TABLE hdb_views.anonymous__insert__public__device_data OWNER TO postgres;
-
---
 -- Name: joey_user; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -774,28 +690,6 @@ CREATE VIEW hdb_views.user__insert__public__user_detail AS
 ALTER TABLE hdb_views.user__insert__public__user_detail OWNER TO postgres;
 
 --
--- Name: device_data_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE public.device_data_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.device_data_id_seq OWNER TO postgres;
-
---
--- Name: device_data_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE public.device_data_id_seq OWNED BY public.device_data.id;
-
-
---
 -- Name: joey_user_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -847,13 +741,6 @@ ALTER TABLE ONLY hdb_catalog.remote_schemas ALTER COLUMN id SET DEFAULT nextval(
 
 
 --
--- Name: anonymous__insert__public__device_data id; Type: DEFAULT; Schema: hdb_views; Owner: postgres
---
-
-ALTER TABLE ONLY hdb_views.anonymous__insert__public__device_data ALTER COLUMN id SET DEFAULT nextval('public.device_data_id_seq'::regclass);
-
-
---
 -- Name: google__insert__public__joey_user id; Type: DEFAULT; Schema: hdb_views; Owner: postgres
 --
 
@@ -872,13 +759,6 @@ ALTER TABLE ONLY hdb_views.google__insert__public__joey_user ALTER COLUMN role S
 --
 
 ALTER TABLE ONLY hdb_views.user__insert__public__user_detail ALTER COLUMN id SET DEFAULT nextval('public.user_detail_id_seq'::regclass);
-
-
---
--- Name: device_data id; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.device_data ALTER COLUMN id SET DEFAULT nextval('public.device_data_id_seq'::regclass);
 
 
 --
@@ -924,15 +804,13 @@ COPY hdb_catalog.event_triggers (id, name, type, schema_name, table_name, config
 --
 
 COPY hdb_catalog.hdb_permission (table_schema, table_name, role_name, perm_type, perm_def, comment, is_system_defined) FROM stdin;
-public	device_data	anonymous	insert	{"set": {}, "check": {}, "columns": ["accuracy", "altitude", "batt", "bearing", "device_id", "lat", "lng", "speed", "timestamp"]}	\N	f
-public	device_data	anonymous	select	{"filter": {}, "columns": ["id", "device_id", "timestamp", "speed", "bearing", "altitude", "accuracy", "batt", "lng", "lat"], "allow_aggregations": false}	\N	f
+public	user_detail	user	insert	{"set": {}, "check": {"joeyUserByuserHId": {"auth_token": {"_eq": "X-HASURA-USER-AUTH-TOKEN"}}}, "columns": ["email", "image_url", "name", "user_h_id"]}	\N	f
+public	user_detail	user	select	{"filter": {"joeyUserByuserHId": {"auth_token": {"_eq": "X-HASURA-USER-AUTH-TOKEN"}}}, "columns": ["email", "id", "image_url", "name", "user_h_id"], "allow_aggregations": false}	\N	f
+public	user_detail	user	update	{"filter": {"joeyUserByuserHId": {"auth_token": {"_eq": "X-HASURA-USER-AUTH-TOKEN"}}}, "columns": ["email", "id", "image_url", "name", "user_h_id"]}	\N	f
 public	joey_user	google	insert	{"set": {}, "check": {}, "columns": ["auth_token", "h_id", "role"]}	\N	f
 public	joey_user	google	select	{"filter": {"h_id": {"_eq": "X-HASURA-USER-H-ID"}}, "columns": ["auth_token", "h_id", "id", "role"], "allow_aggregations": false}	\N	f
-public	joey_user	google	update	{"filter": {"h_id": {"_eq": "X-HASURA-USER-H-ID"}}, "columns": ["id", "h_id", "auth_token", "role"]}	\N	f
 public	joey_user	user	select	{"filter": {"auth_token": {"_eq": "X-HASURA-USER-AUTH-TOKEN"}}, "columns": ["auth_token", "h_id", "id", "role"], "allow_aggregations": false}	\N	f
-public	user_detail	user	insert	{"set": {}, "check": {"joeyUserByuserHId": {"auth_token": {"_eq": "X-HASURA-USER-AUTH-TOKEN"}}}, "columns": ["email", "image_url", "name", "user_h_id"]}	\N	f
-public	user_detail	user	update	{"filter": {"joeyUserByuserHId": {"auth_token": {"_eq": "X-HASURA-USER-AUTH-TOKEN"}}}, "columns": ["email", "id", "image_url", "name", "user_h_id"]}	\N	f
-public	user_detail	user	select	{"filter": {"joeyUserByuserHId": {"auth_token": {"_eq": "X-HASURA-USER-AUTH-TOKEN"}}}, "columns": ["email", "id", "image_url", "name", "user_h_id"], "allow_aggregations": false}	\N	f
+public	joey_user	google	update	{"filter": {"h_id": {"_eq": "X-HASURA-USER-H-ID"}}, "columns": ["id", "h_id", "auth_token", "role"]}	\N	f
 \.
 
 
@@ -961,8 +839,8 @@ hdb_catalog	event_log	trigger	object	{"manual_configuration": {"remote_table": {
 hdb_catalog	event_triggers	events	array	{"manual_configuration": {"remote_table": {"name": "event_log", "schema": "hdb_catalog"}, "column_mapping": {"id": "trigger_id"}}}	\N	t
 hdb_catalog	event_invocation_logs	event	object	{"foreign_key_constraint_on": "event_id"}	\N	t
 hdb_catalog	event_log	logs	array	{"foreign_key_constraint_on": {"table": {"name": "event_invocation_logs", "schema": "hdb_catalog"}, "column": "event_id"}}	\N	t
-public	joey_user	userDetailsByuserHId	array	{"foreign_key_constraint_on": {"table": "user_detail", "column": "user_h_id"}}	\N	f
 public	user_detail	joeyUserByuserHId	object	{"foreign_key_constraint_on": "user_h_id"}	\N	f
+public	joey_user	userDetailsByuserHId	array	{"foreign_key_constraint_on": {"table": "user_detail", "column": "user_h_id"}}	\N	f
 \.
 
 
@@ -987,9 +865,8 @@ hdb_catalog	event_triggers	t
 hdb_catalog	event_log	t
 hdb_catalog	event_invocation_logs	t
 hdb_catalog	remote_schemas	t
-public	device_data	f
-public	joey_user	f
 public	user_detail	f
+public	joey_user	f
 \.
 
 
@@ -998,7 +875,7 @@ public	user_detail	f
 --
 
 COPY hdb_catalog.hdb_version (version, upgraded_on) FROM stdin;
-7	2019-01-18 12:41:06.498669+00
+7	2019-01-26 05:39:38.64681+00
 \.
 
 
@@ -1011,20 +888,10 @@ COPY hdb_catalog.remote_schemas (id, name, definition, comment) FROM stdin;
 
 
 --
--- Data for Name: device_data; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.device_data (id, device_id, "timestamp", speed, bearing, altitude, accuracy, batt, lng, lat) FROM stdin;
-12	867959033000980	1544592314	3.000000	0.0	0.000000	0.0	94.0	80.242838	12.991173
-\.
-
-
---
 -- Data for Name: joey_user; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.joey_user (id, h_id, auth_token, role) FROM stdin;
-1	118208723166374240159	a17c0336f27205b0710b634979c273e0c1a2ea16	user
 \.
 
 
@@ -1033,7 +900,6 @@ COPY public.joey_user (id, h_id, auth_token, role) FROM stdin;
 --
 
 COPY public.user_detail (id, name, email, image_url, user_h_id) FROM stdin;
-1	Joey Dash	joydassudipta@gmail.com	https://lh3.googleusercontent.com/-hjMQ9VBKHIw/AAAAAAAAAAI/AAAAAAAAFDk/ePiRR90JHaM/s96-c/photo.jpg	118208723166374240159
 \.
 
 
@@ -1042,13 +908,6 @@ COPY public.user_detail (id, name, email, image_url, user_h_id) FROM stdin;
 --
 
 SELECT pg_catalog.setval('hdb_catalog.remote_schemas_id_seq', 1, false);
-
-
---
--- Name: device_data_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.device_data_id_seq', 12, true);
 
 
 --
@@ -1146,14 +1005,6 @@ ALTER TABLE ONLY hdb_catalog.remote_schemas
 
 
 --
--- Name: device_data device_data_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.device_data
-    ADD CONSTRAINT device_data_pkey PRIMARY KEY (id);
-
-
---
 -- Name: joey_user joey_user_auth_token_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1227,13 +1078,6 @@ CREATE UNIQUE INDEX hdb_version_one_row ON hdb_catalog.hdb_version USING btree (
 --
 
 CREATE TRIGGER hdb_table_oid_check BEFORE INSERT OR UPDATE ON hdb_catalog.hdb_table FOR EACH ROW EXECUTE PROCEDURE hdb_catalog.hdb_table_oid_check();
-
-
---
--- Name: anonymous__insert__public__device_data anonymous__insert__public__device_data; Type: TRIGGER; Schema: hdb_views; Owner: postgres
---
-
-CREATE TRIGGER anonymous__insert__public__device_data INSTEAD OF INSERT ON hdb_views.anonymous__insert__public__device_data FOR EACH ROW EXECUTE PROCEDURE hdb_views.anonymous__insert__public__device_data();
 
 
 --
