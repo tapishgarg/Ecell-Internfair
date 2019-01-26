@@ -61,7 +61,7 @@
         let reqBody = {
             id_token: googleUser.getAuthResponse().id_token,
         };
-        axios.post('http://internfair.esummitiitm.com/db/sign_in', reqBody)
+        axios.post('/db/sign_in', reqBody)
             .then(function (response) {
                 if (response.data.data !== undefined) {
                     Cookies.set('auth_details', JSON.stringify(response.data.data.insert_joey_user.returning[0]));
@@ -72,7 +72,7 @@
                             '  }\n' +
                             '}'
                     };
-                    axios.post('http://internfair.esummitiitm.com/db/user', reqBody)
+                    axios.post('/db/user', reqBody)
                         .then(function (response) {
                             if (response.data.data !== undefined) {
                             } else {
