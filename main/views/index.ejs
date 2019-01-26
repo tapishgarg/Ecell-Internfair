@@ -2,11 +2,12 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>InterFair</title>
+	<title>InternFair</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="keywords" content="">
 	<meta name="author" content="CreativeLayers">
+	<meta name="google-signin-client_id" content="869757478663-gnlmvb29d5mduo26mrq595svsojrgsus.apps.googleusercontent.com">
 
 	<!-- Styles -->
 	<link rel="stylesheet" type="text/css" href="/jobhunt/css/bootstrap-grid.css" />
@@ -45,8 +46,11 @@
 			<div class="btn-extars">
 				<a href="#" title="" class="post-job-btn"><i class="la la-plus"></i>Post Jobs</a>
 				<ul class="account-btns">
+					<div class="g-signin2" data-onsuccess="onSignIn"></div>
+
+				<!-- 
 					<li class="signup-popup"><a title=""><i class="la la-key"></i> Sign Up</a></li>
-					<li class="signin-popup"><a title=""><i class="la la-external-link-square"></i> Login</a></li>
+					<li class="signin-popup"><a title=""><i class="la la-external-link-square"></i> Login</a></li> -->
 				</ul>
 			</div><!-- Btn Extras -->
 			<form class="res-search">
@@ -162,8 +166,10 @@
 				<div class="btn-extars">
 					<a href="#" title="" class="post-job-btn"><i class="la la-plus"></i>Post Jobs</a>
 					<ul class="account-btns">
+						<div class="g-signin2" data-onsuccess="onSignIn"></div>
+					<!-- 
 						<li class="signup-popup"><a title=""><i class="la la-key"></i> Sign Up</a></li>
-						<li class="signin-popup"><a title=""><i class="la la-external-link-square"></i> Login</a></li>
+						<li class="signin-popup"><a title=""><i class="la la-external-link-square"></i> Login</a></li> -->
 					</ul>
 				</div><!-- Btn Extras -->
 				<nav>
@@ -843,7 +849,7 @@
 		</div>
 	</div>
 </div><!-- SIGNUP POPUP -->
-
+<script src="https://apis.google.com/js/platform.js" async defer></script>
 <script src="/jobhunt/js/jquery.min.js" type="text/javascript"></script>
 <script src="/jobhunt/js/modernizr.js" type="text/javascript"></script>
 <script src="/jobhunt/js/script.js" type="text/javascript"></script>
@@ -852,6 +858,7 @@
 <script src="/jobhunt/js/slick.min.js" type="text/javascript"></script>
 <script src="/jobhunt/js/parallax.js" type="text/javascript"></script>
 <script src="/jobhunt/js/select-chosen.js" type="text/javascript"></script>
+
 
 </body>
 </html>
