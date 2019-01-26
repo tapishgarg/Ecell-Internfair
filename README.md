@@ -2,19 +2,24 @@
 
 ### database commands
 
-`docker exec -t your-db-container pg_dumpall -c -U postgres > dump_data.sql`
+```bash
+docker exec -t $(docker ps | awk -v app="postgres" '$2 ~ app{print $1}') pg_dumpall -c -U postgres > dump_data.sql
 
-`cat dump_data.sql | docker exec -i 748e6ca904d3 psql -U postgres`
+
+cat dump_data.sql | docker exec -i $(docker ps | awk -v app="postgres" '$2 ~ app{print $1}') psql -U postgres
+```
 
 
 ### git commands
 
+```bash
 
-`git clone https://github.com/joeydash/gps_module_logging.git && cd gps_module_logging`
+git clone https://github.com/joeydash/Ecell-Internfair.git && cd Ecell-Internfair
 
+git add *
 
-`git add *`
+git commit -m "added by me"
 
-`git commit -m "added by me"`
-
-`git push origin master`
+git push origin master
+ 
+```
