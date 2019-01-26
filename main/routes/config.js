@@ -1,8 +1,8 @@
 let graphql_host = process.env.GRAPHQL_ENGINE_DATABASE_HOST || "localhost";
 
 let config = {
-    google_clientId: "180078941323-o7658rcf79usd1tu4u4fu1guijgmjfo5.apps.googleusercontent.com",
-    // client secret  vTZrUEF7duYtGpXRKudpbkWp
+    google_clientId: "869757478663-gnlmvb29d5mduo26mrq595svsojrgsus.apps.googleusercontent.com",
+    // client secret    qu1RMMJw4PAxItNoEGO6yDoQ
     cloudinary_api_id: {
         cloud_name: 'joeydash',
         api_key: '571664355428984',
