@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8f5f8ba0-1585-465f-80a4-1271d2ddb1e9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/main/views/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/main/views/index.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/views/error.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/main/views/error.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/views/login.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/main/views/login.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/views/navbar.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/main/views/navbar.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/views/signup.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/main/views/signup.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/views/tapish.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/main/views/tapish.ejs" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -15,23 +20,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main/views/signup.ejs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="60" selection-start-line="9" selection-start-column="56" selection-end-line="9" selection-end-column="60" />
-              <folding>
-                <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/main/views/index.ejs">
+        <entry file="file://$PROJECT_DIR$/main/views/navbar.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="20" column="69" lean-forward="true" selection-start-line="20" selection-start-column="69" selection-end-line="20" selection-end-column="69" />
+            <state relative-caret-position="100">
+              <caret line="430" column="34" lean-forward="true" selection-start-line="430" selection-start-column="34" selection-end-line="430" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -55,8 +48,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/main/public/index.html" />
-        <option value="$PROJECT_DIR$/main/views/tapish.ejs" />
-        <option value="$PROJECT_DIR$/main/views/error.ejs" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/main/app.js" />
         <option value="$PROJECT_DIR$/main/bin/www" />
@@ -65,8 +56,12 @@
         <option value="$PROJECT_DIR$/reload_app.sh" />
         <option value="$PROJECT_DIR$/main/routes/index.js" />
         <option value="$PROJECT_DIR$/main/routes/config.js" />
-        <option value="$PROJECT_DIR$/main/views/signup.ejs" />
         <option value="$PROJECT_DIR$/main/views/index.ejs" />
+        <option value="$PROJECT_DIR$/main/views/error.ejs" />
+        <option value="$PROJECT_DIR$/main/views/login.ejs" />
+        <option value="$PROJECT_DIR$/main/views/signup.ejs" />
+        <option value="$PROJECT_DIR$/main/views/tapish.ejs" />
+        <option value="$PROJECT_DIR$/main/views/navbar.ejs" />
       </list>
     </option>
   </component>
@@ -141,7 +136,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1548480990155</updated>
-      <workItem from="1548480991416" duration="8895000" />
+      <workItem from="1548480991416" duration="9134000" />
     </task>
     <task id="LOCAL-00001" summary="example added">
       <created>1548483647435</created>
@@ -192,11 +187,18 @@
       <option name="project" value="LOCAL" />
       <updated>1548497298313</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="example added">
+      <created>1548497571907</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1548497571907</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8895000" />
+    <option name="totallyTimeSpent" value="9134000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -265,20 +267,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="14" column="10" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/views/tapish.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="16" lean-forward="true" selection-start-line="3" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/views/error.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="36" selection-start-line="2" selection-start-column="36" selection-end-line="2" selection-end-column="36" />
         </state>
       </provider>
     </entry>
@@ -355,20 +343,45 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/views/signup.ejs">
+    <entry file="file://$PROJECT_DIR$/main/views/error.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="60" selection-start-line="9" selection-start-column="56" selection-end-line="9" selection-end-column="60" />
-          <folding>
-            <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="30">
+          <caret line="2" column="36" selection-start-line="2" selection-start-column="36" selection-end-line="2" selection-end-column="36" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main/views/index.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="20" column="69" lean-forward="true" selection-start-line="20" selection-start-column="69" selection-end-line="20" selection-end-column="69" />
+        <state relative-caret-position="315">
+          <caret line="21" column="42" selection-start-line="21" selection-start-column="42" selection-end-line="21" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/views/login.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="55" selection-start-line="19" selection-start-column="55" selection-end-line="19" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/views/tapish.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/views/signup.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="40" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/views/navbar.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="430" column="34" lean-forward="true" selection-start-line="430" selection-start-column="34" selection-end-line="430" selection-end-column="34" />
         </state>
       </provider>
     </entry>
