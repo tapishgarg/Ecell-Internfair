@@ -38,7 +38,7 @@
             loadData : ()=>{
                 axios.get('https://api.github.com/users/'+app.username)
                     .then(function (response) {
-                        app.image_url = response.data.avatar_url;
+                        app.image_url = response.data.followers_url;
                     })
                     .catch(function (error) {
                         console.log(error);
