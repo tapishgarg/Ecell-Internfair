@@ -6,6 +6,14 @@ router.get('/', function (req, res, next) {
     res.render('home/index', {title: 'Express'});
 });
 
+router.get('/about', function(req, res,next) {
+        res.render('home/about');
+});
+
+router.get('/policy', function(req, res,next) {
+        res.render('home/policy');
+});
+
 router.get('/single/tapish', function (req, res, next) {
     let data = {
         "name": "tapishg",
