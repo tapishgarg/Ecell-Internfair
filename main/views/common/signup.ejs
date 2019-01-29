@@ -1,36 +1,26 @@
 <div class="account-popup-area signup-popup-box">
-    <div class="account-popup">
+    <div class="account-popup"  id="signupApp">
         <span class="close-popup"><i class="la la-close"></i></span>
 
         <div class="g-signin2" data-onsuccess="onSignIn" style="display: flex; justify-content: center;"></div>
 
-        <div style="display: none;">
+        <div >
             <form>
                 <div class="cfield">
-                    <input type="text" placeholder="Startup Name"/>
+                    <input type="text" placeholder="Startup Name" v-model="startup_details.startup_name"/>
                     <!-- <i class="la la-user"></i> -->
                 </div>
                 <div class="cfield">
-                    <input type="text" placeholder="About the Startup"/>
+                    <input type="text" placeholder="About the Startup" v-model="startup_details.about"/>
                     <!-- <i class="la la-user"></i> -->
                 </div>
                 <div class="cfield">
-                    <input type="text" placeholder="Website"/>
+                    <input type="text" placeholder="Website" v-model="startup_details.website"/>
                     <!-- <i class="la la-user"></i> -->
                 </div>
                 <div class="cfield">
-                    <input type="text" placeholder="Logo URL"/>
+                    <input type="text" placeholder="Logo URL" v-model="startup_details.logo"/>
                     <!-- <i class="la la-user"></i> -->
-                </div>
-
-                <div class="cfield">
-                    <input type="password" placeholder="New Password"/>
-                    <!-- <i class="la la-key"></i> -->
-                </div>
-
-                <div class="cfield">
-                    <input type="password" placeholder="Password"/>
-                    <!-- <i class="la la-key"></i> -->
                 </div>
                 <div>
                     <center>
@@ -47,3 +37,76 @@
     </div>
 </div><!-- SIGNUP POPUP -->
 
+
+<script>
+   
+    let signupApp = new Vue({
+  el: '#signupApp',
+  data: {
+    startup_details : {
+        startup_name : "",
+        about:"",
+        website:"",
+        logo:""
+    }
+  },
+  methods:{
+    saveStartupDetails: ()=>{
+
+    }
+  }
+})
+
+
+    function onSignIn(googleUser) {
+        let profile = googleUser.getBasicProfile();
+        let user_details = {
+            is_signed_in: true,
+            name: profile.getName(),
+            image_url: profile.getImageUrl(),
+            email: profile.getEmail()
+        };
+        Cookies.set('user_details', JSON.stringify(user_details));
+        let reqBody = {
+            id_token: googleUser.getAuthResponse().id_token,
+        };
+        axios.post('/sign_in', reqBody)
+            .then(function (response) {
+                if (response.data.data !== undefined) {
+                    Cookies.set('auth_details', JSON.stringify(response.data.data.insert_joey_user.returning[0]));
+                    let reqBody = {
+                        query_string: 'mutation {\n' +
+                            '  insert_user_detail(objects: [{name: "' + profile.getName() + '", email: "' + profile.getEmail() + '", image_url: "' + profile.getImageUrl() + '", user_h_id: "' + response.data.data.insert_joey_user.returning[0].h_id + '"}], on_conflict: {constraint: user_detail_user_h_id_key, update_columns: [name, email, image_url]}) {\n' +
+                            '    affected_rows\n' +
+                            '  }\n' +
+                            '}'
+                    };
+                    axios.post('/user', reqBody)
+                        .then(function (response) {
+                            if (response.data.data !== undefined) {
+                            } else {
+                            }
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                } else {
+                    console.log(response.data);
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+    function signOut() {
+        Cookies.remove('user_details');
+        Cookies.remove('auth_details');
+        let auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+            my_navbar.user_details.is_signed_in = false;
+        });
+        location.reload();
+    }
+
+
+</script>
