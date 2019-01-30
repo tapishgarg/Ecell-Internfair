@@ -6,16 +6,16 @@ router.get('/', function (req, res, next) {
     res.render('home/index', {title: 'Express'});
 });
 
-router.get('/about', function(req, res,next) {
-        res.render('home/about');
+router.get('/about', function (req, res, next) {
+    res.render('home/about');
 });
 
-router.get('/policy', function(req, res,next) {
-        res.render('home/policy');
+router.get('/policy', function (req, res, next) {
+    res.render('home/policy');
 });
 
-router.get('/whyintern', function(req, res,next) {
-        res.render('home/whyintern');
+router.get('/whyintern', function (req, res, next) {
+    res.render('home/whyintern');
 });
 
 router.get('/single/tapish', function (req, res, next) {
