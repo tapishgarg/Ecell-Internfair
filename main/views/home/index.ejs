@@ -16,13 +16,14 @@
     <link rel="stylesheet" href="/jobhunt/css/animate.min.css">
     <link rel="stylesheet" type="text/css" href="/jobhunt/css/style.css"/>
     <link rel="stylesheet" type="text/css" href="/jobhunt/css/responsive.css"/>
-    <link rel="stylesheet" type="text/css" href="/jobhunt//chosen.css"/>
+    <link rel="stylesheet" type="text/css" href="/jobhunt/css/chosen.css"/>
     <link rel="stylesheet" type="text/css" href="/jobhunt/css/colors/colors.css"/>
-    <link rel="stylesheet" type="text/css" href="/jobhunt//bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="/jobhunt/css/bootstrap.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
 
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
 
@@ -32,45 +33,44 @@
      --></div>
 
 <div class="theme-layout" id="scrollup">
-<!-- MENU -->
-<% include ../common/navigationbar.ejs %>
-<!-- MENU -->
-<div class="block no-padding">
-            <div class="container fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="main-featured-sec">
-                            <ul class="main-slider-sec text-arrows">
-                                <li class="slideHome"><img src="http://placehold.it/1600x800" alt="" /></li>
-                                <li class="slideHome"><img src="http://placehold.it/1600x800" alt="" /></li>
-                                <li class="slideHome"><img src="http://placehold.it/1600x800" alt="" /></li>
-                            </ul>
-                            <div class="job-search-sec">
-                                <div class="job-search">
-                                    <h3>The Easiest Way to Get Your New Job</h3>
-                                    <span>Find Jobs, Employment & Career Opportunities</span>
+    <!-- MENU -->
+    <% include ../common/navigationbar.ejs %>
+    <!-- MENU -->
+    <div class="block no-padding">
+        <div class="container fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="main-featured-sec">
+                        <ul class="main-slider-sec text-arrows">
+                            <li class="slideHome"><img src="http://placehold.it/1600x800" alt=""/></li>
+                            <li class="slideHome"><img src="http://placehold.it/1600x800" alt=""/></li>
+                            <li class="slideHome"><img src="http://placehold.it/1600x800" alt=""/></li>
+                        </ul>
+                        <div class="job-search-sec">
+                            <div class="job-search">
+                                <h3>The Easiest Way to Get Your New Job</h3>
+                                <span>Find Jobs, Employment & Career Opportunities</span>
 
 
-                                </div>
                             </div>
-
                         </div>
+
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </section>
 
 
-
-
     </section>
-
 
 
     <section>
         <div class="block">
-            <div data-velocity="-.1" style="background: url(http://placehold.it/1920x1000) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible layer color light"></div><!-- PARALLAX BACKGROUND IMAGE -->
+            <div data-velocity="-.1"
+                 style="background: url(http://placehold.it/1920x1000) repeat scroll 50% 422.28px transparent;"
+                 class="parallax scrolly-invisible layer color light"></div><!-- PARALLAX BACKGROUND IMAGE -->
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
@@ -81,30 +81,34 @@
                         <div class="reviews-sec" id="reviews-carousel">
                             <div class="col-lg-6">
                                 <div class="reviews">
-                                    <img src="http://placehold.it/101x101" alt="" />
+                                    <img src="http://placehold.it/101x101" alt=""/>
                                     <h3>Augusta Silva <span>Web designer</span></h3>
-                                    <p>Without JobHunt i’d be homeless, they found me a job and got me sorted out quickly with everything!  Can’t quite believe the service</p>
+                                    <p>Without JobHunt i’d be homeless, they found me a job and got me sorted out
+                                        quickly with everything! Can’t quite believe the service</p>
                                 </div><!-- Reviews -->
                             </div>
                             <div class="col-lg-6">
                                 <div class="reviews">
-                                    <img src="http://placehold.it/101x101" alt="" />
+                                    <img src="http://placehold.it/101x101" alt=""/>
                                     <h3>Ali Tufan <span>Web designer</span></h3>
-                                    <p>Without JobHunt i’d be homeless, they found me a job and got me sorted out quickly with everything!  Can’t quite believe the service</p>
+                                    <p>Without JobHunt i’d be homeless, they found me a job and got me sorted out
+                                        quickly with everything! Can’t quite believe the service</p>
                                 </div><!-- Reviews -->
                             </div>
                             <div class="col-lg-6">
                                 <div class="reviews">
-                                    <img src="http://placehold.it/101x101" alt="" />
+                                    <img src="http://placehold.it/101x101" alt=""/>
                                     <h3>Augusta Silva <span>Web designer</span></h3>
-                                    <p>Without JobHunt i’d be homeless, they found me a job and got me sorted out quickly with everything!  Can’t quite believe the service</p>
+                                    <p>Without JobHunt i’d be homeless, they found me a job and got me sorted out
+                                        quickly with everything! Can’t quite believe the service</p>
                                 </div><!-- Reviews -->
                             </div>
                             <div class="col-lg-6">
                                 <div class="reviews">
-                                    <img src="http://placehold.it/101x101" alt="" />
+                                    <img src="http://placehold.it/101x101" alt=""/>
                                     <h3>Ali Tufan <span>Web designer</span></h3>
-                                    <p>Without JobHunt i’d be homeless, they found me a job and got me sorted out quickly with everything!  Can’t quite believe the service</p>
+                                    <p>Without JobHunt i’d be homeless, they found me a job and got me sorted out
+                                        quickly with everything! Can’t quite believe the service</p>
                                 </div><!-- Reviews -->
                             </div>
                         </div>
@@ -164,19 +168,19 @@
                         </div><!-- Heading -->
                         <div class="comp-sec">
                             <div class="company-img">
-                                <a href="#" title=""><img src="http://placehold.it/180x80" alt="" /></a>
+                                <a href="#" title=""><img src="http://placehold.it/180x80" alt=""/></a>
                             </div><!-- Client  -->
                             <div class="company-img">
-                                <a href="#" title=""><img src="http://placehold.it/180x80" alt="" /></a>
+                                <a href="#" title=""><img src="http://placehold.it/180x80" alt=""/></a>
                             </div><!-- Client  -->
                             <div class="company-img">
-                                <a href="#" title=""><img src="http://placehold.it/180x80" alt="" /></a>
+                                <a href="#" title=""><img src="http://placehold.it/180x80" alt=""/></a>
                             </div><!-- Client  -->
                             <div class="company-img">
-                                <a href="#" title=""><img src="http://placehold.it/180x80" alt="" /></a>
+                                <a href="#" title=""><img src="http://placehold.it/180x80" alt=""/></a>
                             </div><!-- Client  -->
                             <div class="company-img">
-                                <a href="#" title=""><img src="http://placehold.it/180x80" alt="" /></a>
+                                <a href="#" title=""><img src="http://placehold.it/180x80" alt=""/></a>
                             </div><!-- Client  -->
                         </div>
                     </div>
@@ -188,70 +192,70 @@
     <!-- <section>
         <div class="block">
             <div data-velocity="-.1" style="background: url(http://placehold.it/1920x655) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax"></div><!-- PARALLAX BACKGROUND IMAGE -->
-           <!-- <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="heading">
-                            <h2>Quick Career Tips</h2>
-                            <span>Found by employers communicate directly with hiring managers and recruiters.</span>
-                        </div><!-- Heading -->
-                       <!-- <div class="blog-sec">
-                            <div class="row">
-                                <div class="col-lg-4">
-                                    <div class="my-blog">
-                                        <div class="blog-thumb">
-                                            <a href="#" title=""><img src="http://placehold.it/360x200" alt="" /></a>
-                                            <div class="blog-metas">
-                                                <a href="#" title="">March 29, 2017</a>
-                                                <a href="#" title="">0 Comments</a>
-                                            </div>
-                                        </div>
-                                        <div class="blog-details">
-                                            <h3><a href="#" title="">Attract More Attention Sales And Profits</a></h3>
-                                            <p>A job is a regular activity performed in exchange becoming an employee, volunteering, </p>
-                                            <a href="#" title="">Read More <i class="la la-long-arrow-right"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="my-blog">
-                                        <div class="blog-thumb">
-                                            <a href="#" title=""><img src="http://placehold.it/360x200" alt="" /></a>
-                                            <div class="blog-metas">
-                                                <a href="#" title="">March 29, 2017</a>
-                                                <a href="#" title="">0 Comments</a>
-                                            </div>
-                                        </div>
-                                        <div class="blog-details">
-                                            <h3><a href="#" title="">11 Tips to Help You Get New Clients</a></h3>
-                                            <p>A job is a regular activity performed in exchange becoming an employee, volunteering, </p>
-                                            <a href="#" title="">Read More <i class="la la-long-arrow-right"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="my-blog">
-                                        <div class="blog-thumb">
-                                            <a href="#" title=""><img src="http://placehold.it/360x200" alt="" /></a>
-                                            <div class="blog-metas">
-                                                <a href="#" title="">March 29, 2017</a>
-                                                <a href="#" title="">0 Comments</a>
-                                            </div>
-                                        </div>
-                                        <div class="blog-details">
-                                            <h3><a href="#" title="">An Overworked Newspaper Editor</a></h3>
-                                            <p>A job is a regular activity performed in exchange becoming an employee, volunteering, </p>
-                                            <a href="#" title="">Read More <i class="la la-long-arrow-right"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> -->
+    <!-- <div class="container">
+         <div class="row">
+             <div class="col-lg-12">
+                 <div class="heading">
+                     <h2>Quick Career Tips</h2>
+                     <span>Found by employers communicate directly with hiring managers and recruiters.</span>
+                 </div><!-- Heading -->
+    <!-- <div class="blog-sec">
+         <div class="row">
+             <div class="col-lg-4">
+                 <div class="my-blog">
+                     <div class="blog-thumb">
+                         <a href="#" title=""><img src="http://placehold.it/360x200" alt="" /></a>
+                         <div class="blog-metas">
+                             <a href="#" title="">March 29, 2017</a>
+                             <a href="#" title="">0 Comments</a>
+                         </div>
+                     </div>
+                     <div class="blog-details">
+                         <h3><a href="#" title="">Attract More Attention Sales And Profits</a></h3>
+                         <p>A job is a regular activity performed in exchange becoming an employee, volunteering, </p>
+                         <a href="#" title="">Read More <i class="la la-long-arrow-right"></i></a>
+                     </div>
+                 </div>
+             </div>
+             <div class="col-lg-4">
+                 <div class="my-blog">
+                     <div class="blog-thumb">
+                         <a href="#" title=""><img src="http://placehold.it/360x200" alt="" /></a>
+                         <div class="blog-metas">
+                             <a href="#" title="">March 29, 2017</a>
+                             <a href="#" title="">0 Comments</a>
+                         </div>
+                     </div>
+                     <div class="blog-details">
+                         <h3><a href="#" title="">11 Tips to Help You Get New Clients</a></h3>
+                         <p>A job is a regular activity performed in exchange becoming an employee, volunteering, </p>
+                         <a href="#" title="">Read More <i class="la la-long-arrow-right"></i></a>
+                     </div>
+                 </div>
+             </div>
+             <div class="col-lg-4">
+                 <div class="my-blog">
+                     <div class="blog-thumb">
+                         <a href="#" title=""><img src="http://placehold.it/360x200" alt="" /></a>
+                         <div class="blog-metas">
+                             <a href="#" title="">March 29, 2017</a>
+                             <a href="#" title="">0 Comments</a>
+                         </div>
+                     </div>
+                     <div class="blog-details">
+                         <h3><a href="#" title="">An Overworked Newspaper Editor</a></h3>
+                         <p>A job is a regular activity performed in exchange becoming an employee, volunteering, </p>
+                         <a href="#" title="">Read More <i class="la la-long-arrow-right"></i></a>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+ </div>
+</div>
+</div>
+</div>
+</section> -->
 
     <section>
         <div class="block no-padding">
@@ -276,7 +280,7 @@
                         <div class="widget">
                             <div class="about_widget">
                                 <div class="logo">
-                                    <a href="#" title=""><img src="http://placehold.it/178x40" alt="" /></a>
+                                    <a href="#" title=""><img src="http://placehold.it/178x40" alt=""/></a>
                                 </div>
                                 <span>Collin Street West, Victor 8007, Australia.</span>
                                 <span>+1 246-345-0695</span>
@@ -335,8 +339,8 @@
                     <div class="col-lg-3 column">
                         <div class="widget">
                             <div class="download_widget">
-                                <a href="#" title=""><img src="http://placehold.it/230x65" alt="" /></a>
-                                <a href="#" title=""><img src="http://placehold.it/230x65" alt="" /></a>
+                                <a href="#" title=""><img src="http://placehold.it/230x65" alt=""/></a>
+                                <a href="#" title=""><img src="http://placehold.it/230x65" alt=""/></a>
                             </div>
                         </div>
                     </div>
@@ -354,7 +358,6 @@
 <% include ../common/login.ejs %>
 
 <% include ../common/signup.ejs %>
-
 
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <script src="/jobhunt/js/jquery.min.js" type="text/javascript"></script>

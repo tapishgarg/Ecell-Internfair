@@ -1,10 +1,18 @@
-<div class="account-popup-area signup-popup-box">
-    <div class="account-popup"  id="signupApp">
+<style>
+    .hide {
+        display: none;
+    }
+</style>
+
+<div class="account-popup-area signup-popup-box" id="signupApp">
+    <div class="account-popup">
         <span class="close-popup"><i class="la la-close"></i></span>
+        <div v-bind:class="{ hide: user_details.is_signed_in}">
+            <div class="g-signin2" data-onsuccess="onSignIn" style="display: flex; justify-content: center;"></div>
 
-        <div class="g-signin2" data-onsuccess="onSignIn" style="display: flex; justify-content: center;"></div>
+        </div>
 
-        <div >
+        <div v-if="!is_registered" v-bind:class="{ hide: !user_details.is_signed_in}">
             <form>
                 <div class="cfield">
                     <input type="text" placeholder="Startup Name" v-model="startup_details.startup_name"/>
@@ -22,16 +30,14 @@
                     <input type="text" placeholder="Logo URL" v-model="startup_details.logo"/>
                     <!-- <i class="la la-user"></i> -->
                 </div>
-                <div>
-                    <center>
-                        <button type="submit">Register</button>
-                    </center>
-                </div>
-
             </form>
+
+            <button @click="save_startup_details" style="cursor: pointer;background: #0b1b46; color: white;"> Register
+            </button>
         </div>
 
-        <div style="display: none;">
+
+        <div v-if="is_registered">
             <h3 style="color: green">Thank You For Registering</h3>
         </div>
     </div>
@@ -39,38 +45,103 @@
 
 
 <script>
-   
-    let signupApp = new Vue({
-  el: '#signupApp',
-  data: {
-    startup_details : {
-        startup_name : "",
-        about:"",
-        website:"",
-        logo:""
-    }
-  },
-  methods:{
-    saveStartupDetails: ()=>{
 
-    }
-  }
-})
+    let signupApp = new Vue({
+        el: '#signupApp',
+        data: {
+            is_registered: false,
+            user_details: {
+                is_signed_in: false,
+                name: "",
+                image_url: "",
+                email: ""
+            },
+            startup_details: {
+                startup_name: "",
+                about: "",
+                website: "",
+                logo: ""
+            }
+        },
+        methods: {
+            check_is_registered: () => {
+                let reqBody = {
+                    query_string: '{\n' +
+                        '  startup_details_aggregate(where: {user_h_id: {_eq: "' + JSON.parse(Cookies.get('auth_details')).h_id + '"}}) {\n' +
+                        '    aggregate {\n' +
+                        '      count\n' +
+                        '    }\n' +
+                        '  }\n' +
+                        '}'
+                };
+                axios.post('/db/user', reqBody)
+                    .then(function (response) {
+                        console.log(JSON.stringify(response.data));
+                        if (response.data.data !== undefined) {
+                            if (response.data.data.startup_details_aggregate.aggregate.count > 0) {
+                                signupApp.is_registered = true;
+                            }
+                        } else {
+
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            },
+            save_startup_details: () => {
+                if (signupApp.startup_details.startup_name === "" || signupApp.startup_details.startup_name === undefined) {
+                    alert("fill startup name!");
+                } else if (signupApp.startup_details.about === "" || signupApp.startup_details.about === undefined) {
+                    alert("fill startup details!");
+                } else {
+                    let reqBody = {
+                        query_string: 'mutation {\n' +
+                            '  insert_startup_details(objects: [{startup_name: "' + signupApp.startup_details.startup_name + '", about: "' + signupApp.startup_details.about + '", website: "' + signupApp.startup_details.website + '", logo_url: "' + signupApp.startup_details.logo + '", user_h_id: "' + JSON.parse(Cookies.get('auth_details')).h_id + '"}]) {\n' +
+                            '    returning {\n' +
+                            '      id\n' +
+                            '    }\n' +
+                            '  }\n' +
+                            '}\n'
+                    };
+                    axios.post('/db/user', reqBody)
+                        .then(function (response) {
+                            if (response.data.data !== undefined) {
+                                console.log("success!");
+                                signupApp.is_registered = true;
+                            } else {
+
+                            }
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                }
+            }
+        }
+        , mounted: function () {
+            this.$nextTick(function () {
+                this.check_is_registered();
+
+            })
+        }
+    });
 
 
     function onSignIn(googleUser) {
         let profile = googleUser.getBasicProfile();
-        let user_details = {
+        signupApp.user_details = {
             is_signed_in: true,
             name: profile.getName(),
             image_url: profile.getImageUrl(),
             email: profile.getEmail()
         };
+        let user_details = signupApp.user_details;
         Cookies.set('user_details', JSON.stringify(user_details));
         let reqBody = {
             id_token: googleUser.getAuthResponse().id_token,
         };
-        axios.post('/sign_in', reqBody)
+        axios.post('/db/sign_in', reqBody)
             .then(function (response) {
                 if (response.data.data !== undefined) {
                     Cookies.set('auth_details', JSON.stringify(response.data.data.insert_joey_user.returning[0]));
@@ -81,7 +152,7 @@
                             '  }\n' +
                             '}'
                     };
-                    axios.post('/user', reqBody)
+                    axios.post('/db/user', reqBody)
                         .then(function (response) {
                             if (response.data.data !== undefined) {
                             } else {
@@ -98,12 +169,13 @@
                 console.log(error);
             });
     }
+
     function signOut() {
         Cookies.remove('user_details');
         Cookies.remove('auth_details');
         let auth2 = gapi.auth2.getAuthInstance();
         auth2.signOut().then(function () {
-            my_navbar.user_details.is_signed_in = false;
+            signupApp.user_details.is_signed_in = false;
         });
         location.reload();
     }
