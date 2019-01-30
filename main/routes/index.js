@@ -14,6 +14,10 @@ router.get('/policy', function(req, res,next) {
         res.render('home/policy');
 });
 
+router.get('/whyintern', function(req, res,next) {
+        res.render('home/whyintern');
+});
+
 router.get('/single/tapish', function (req, res, next) {
     let data = {
         "name": "tapishg",
