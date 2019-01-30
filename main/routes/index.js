@@ -18,6 +18,18 @@ router.get('/whyintern', function (req, res, next) {
     res.render('home/whyintern');
 });
 
+router.get('/employer_manage', function (req, res, next) {
+    res.render('home/employer_manage');
+});
+
+router.get('/employer_resume', function (req, res, next) {
+    res.render('home/employer_resume');
+});
+
+router.get('/employer_post', function (req, res, next) {
+    res.render('home/employer_post');
+});
+
 router.get('/single/tapish', function (req, res, next) {
     let data = {
         "name": "tapishg",
