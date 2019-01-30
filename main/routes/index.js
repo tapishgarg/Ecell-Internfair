@@ -30,6 +30,14 @@ router.get('/employer_post', function (req, res, next) {
     res.render('home/employer_post');
 });
 
+router.get('/job_list', function (req, res, next) {
+    res.render('home/job_list');
+});
+
+router.get('/job_single', function (req, res, next) {
+    res.render('home/job_single');
+});
+
 router.get('/single/tapish', function (req, res, next) {
     let data = {
         "name": "tapishg",
