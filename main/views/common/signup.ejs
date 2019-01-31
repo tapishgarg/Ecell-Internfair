@@ -40,6 +40,9 @@
 
         <div v-if="is_registered">
             <h3 style="color: green">Thank You For Registering</h3>
+            <p>
+                you will be given access shortly and notified
+            </p>
         </div>
     </div>
 </div><!-- SIGNUP POPUP -->
@@ -95,9 +98,12 @@
                     alert("fill startup name!");
                 } else if (signupApp.startup_details.about === "" || signupApp.startup_details.about === undefined) {
                     alert("fill startup details!");
+                } else if (Cookies.get('auth_details') === undefined || Cookies.get('auth_details') === null) {
+
                 } else {
+
                     let reqBody = {
-                        query_string: 'mutation {\n' +
+                        query_string: 'mutation save_startup_details {\n' +
                             '  insert_startup_details(objects: [{startup_name: "' + signupApp.startup_details.startup_name + '", about: "' + signupApp.startup_details.about + '", website: "' + signupApp.startup_details.website + '", logo_url: "' + signupApp.startup_details.logo + '", user_h_id: "' + JSON.parse(Cookies.get('auth_details')).h_id + '"}]) {\n' +
                             '    returning {\n' +
                             '      id\n' +
@@ -105,8 +111,29 @@
                             '  }\n' +
                             '}\n'
                     };
+                    let reqBody2 = {
+                        query_string: 'mutation save_startup_name {\n' +
+                            '  update_user_detail(where: {user_h_id: {_eq: "' + JSON.parse(Cookies.get('auth_details')).h_id + '"}}, _set: {startup_name: "' + signupApp.startup_details.startup_name + '"}) {\n' +
+                            '    affected_rows\n' +
+                            '  }\n' +
+                            '}\n'
+                    };
                     axios.post('/db/user', reqBody)
                         .then(function (response) {
+                            console.log(JSON.stringify(response.data));
+                            if (response.data.data !== undefined) {
+                                console.log("success!");
+                                signupApp.is_registered = true;
+                            } else {
+
+                            }
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                    axios.post('/db/user', reqBody2)
+                        .then(function (response) {
+                            console.log(JSON.stringify(response.data));
                             if (response.data.data !== undefined) {
                                 console.log("success!");
                                 signupApp.is_registered = true;
