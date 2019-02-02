@@ -38,6 +38,26 @@ router.get('/job_single', function (req, res, next) {
     res.render('home/job_single');
 });
 
+router.get('/candidates_applied_jobs', function (req, res, next) {
+    res.render('home/candidates_applied_jobs');
+});
+
+router.get('/candidates_bookmarks', function (req, res, next) {
+    res.render('home/candidates_bookmarks');
+});
+
+router.get('/candidates_profile', function (req, res, next) {
+    res.render('home/candidates_profile');
+});
+
+router.get('/candidates_shortlist', function (req, res, next) {
+    res.render('home/candidates_shortlist');
+});
+
+router.get('/schedule', function (req, res, next) {
+    res.render('home/schedule');
+});
+
 router.get('/single/tapish', function (req, res, next) {
     let data = {
         "name": "tapishg",
