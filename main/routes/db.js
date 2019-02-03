@@ -53,6 +53,7 @@ router.post('/sign_in', function (req, res, next) {
 });
 
 router.post('/anonymous', function (req, res, next) {
+    console.log(req.body.query_string);
     joeygql.requestDBAnonymous(req.body.query_string).then(data => res.json(data)).catch(e => res.json(e));
 });
 

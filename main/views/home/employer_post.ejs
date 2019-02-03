@@ -128,7 +128,7 @@
                                 </div> -->
                             </div>
                             <div class="profile-form-edit">
-                                <form>
+                                <form id="theForm">
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <span class="pf-title">Internship Title</span>
@@ -147,9 +147,12 @@
                                         </div>
                                         <div class="col-lg-12"><span
                                                     style="font-size: 12px;">Add Attachment</span><br><br>
-                                            <form action="/action_page.php">
-                                                <input type="file" name="pic" accept="image/*">
-                                            </form>
+                                            <!--<form action="/action_page.php">-->
+                                            <!--<input type="file" name="pic" accept="image/*">-->
+                                            <!--</form>-->
+                                            <div @click="open_widget" style="cursor: pointer">
+                                                upload_widget_opener
+                                            </div>
                                         </div>
                                         <!-- <div class="col-lg-6">
                                             <span class="pf-title">Email</span>
@@ -169,15 +172,15 @@
                                                 <input type="text" placeholder="Designer"
                                                        v-model="startup_post.internship_profile" required/>
                                             </div>
-                                           <!--  <div class="pf-field">
-                                                <select data-placeholder="Please Select Specialism" class="chosen" v-model="startup_post.internship_profile" required>
-                                                    <option>Web Development</option>
-                                                    <option>Web Designing</option>
-                                                    <option>Art & Culture</option>
-                                                    <option>Reading & Writing</option>
+                                            <!--  <div class="pf-field">
+                                                 <select data-placeholder="Please Select Specialism" class="chosen" v-model="startup_post.internship_profile" required>
+                                                     <option>Web Development</option>
+                                                     <option>Web Designing</option>
+                                                     <option>Art & Culture</option>
+                                                     <option>Reading & Writing</option>
 
-                                                </select>
-                                            </div> -->
+                                                 </select>
+                                             </div> -->
                                         </div>
                                         <div class="col-lg-6">
                                             <span class="pf-title">Duration</span>
@@ -229,7 +232,8 @@
                                         <div class="col-lg-6">
                                             <span class="pf-title">IITM Research Park Startup</span>
                                             <div class="pf-field">
-                                                <input type="text" name="" placeholder="yes or no" v-model="startup_post.research_park_startup" required> 
+                                                <input type="text" name="" placeholder="yes or no"
+                                                       v-model="startup_post.research_park_startup" required>
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
@@ -280,14 +284,10 @@
                                         </div>
 
                                     </div>
-                                </form>
-                            </div>
-                            <div class="contact-edit">
-                                <form>
                                     <div class="row">
 
                                         <div class="col-lg-12">
-                                            <button type="submit" @click="submit_startup_post">Submit</button>
+                                            <button @click="submit_startup_post">Submit</button>
                                         </div>
                                     </div>
                                 </form>
@@ -334,7 +334,6 @@
 </script>
 
 <script>
-
     let startup_post_app = new Vue({
         el: "#startup_post_app",
         data: {
@@ -357,10 +356,35 @@
             }
         },
         methods: {
+            open_widget: () => {
+                let myUploadWidget = cloudinary.openUploadWidget({
+                        cloudName: "saarang2017",
+                        uploadPreset: "ecell_iitm",
+                        //Step 3:  Add list of sources that should be added as tabs in the widget.
+                        sources: [
+                            "local",
+                            "url",
+                            "camera"
+                        ],
+                    },
+                    function (error, result) {
+                        if (result.event === "success") {
+                            startup_post_app.startup_post.attachement_url = result.info.secure_url;
+                            console.log(result.info.secure_url);
+                            myUploadWidget.close();
+                        }
+                    });
+            },
             submit_startup_post: () => {
+                let form = document.getElementById('theForm');
+                for (let i = 0; i < form.elements.length; i++) {
+                    if (form.elements[i].value === '' && form.elements[i].hasAttribute('required')) {
+                        return false;
+                    }
+                }
                 let reqBody = {
                     query_string: 'mutation {\n' +
-                        '  insert_startup_post(objects: {internship_title: "'+startup_post_app.startup_post.internship_title+'", description: "'+startup_post_app.startup_post.description+'", attachement_url: "'+startup_post_app.startup_post.attachement_url+'", internship_profile: "'+startup_post_app.startup_post.internship_profile+'", duration: "'+startup_post_app.startup_post.duration+'", stipend: "'+startup_post_app.startup_post.stipend+'", interns_number: "'+startup_post_app.startup_post.interns_number+'", location: "'+startup_post_app.startup_post.location+'", research_park_startup: "'+startup_post_app.startup_post.research_park_startup+'", skill_requirement: "'+startup_post_app.startup_post.skill_requirement+'", specific_requirement: "'+startup_post_app.startup_post.specific_requirement+'", accomodation: "'+startup_post_app.startup_post.accomodation+'", travel_allowance: "'+startup_post_app.startup_post.travel_allowance+'", other_incentives: "'+startup_post_app.startup_post.other_incentives+'", address: "'+startup_post_app.startup_post.address+'"}) {\n' +
+                        '  insert_startup_post(objects: {internship_title: "' + startup_post_app.startup_post.internship_title + '", description: "' + startup_post_app.startup_post.description + '", attachement_url: "' + startup_post_app.startup_post.attachement_url + '", internship_profile: "' + startup_post_app.startup_post.internship_profile + '", duration: "' + startup_post_app.startup_post.duration + '", stipend: "' + startup_post_app.startup_post.stipend + '", interns_number: "' + startup_post_app.startup_post.interns_number + '", location: "' + startup_post_app.startup_post.location + '", research_park_startup: "' + startup_post_app.startup_post.research_park_startup + '", skill_requirement: "' + startup_post_app.startup_post.skill_requirement + '", specific_requirement: "' + startup_post_app.startup_post.specific_requirement + '", accomodation: "' + startup_post_app.startup_post.accomodation + '", travel_allowance: "' + startup_post_app.startup_post.travel_allowance + '", other_incentives: "' + startup_post_app.startup_post.other_incentives + '", address: "' + startup_post_app.startup_post.address + '", user_hid: "' + JSON.parse(Cookies.get('auth_details')).h_id + '"}) {\n' +
                         '    affected_rows\n' +
                         '  }\n' +
                         '}'
@@ -369,7 +393,7 @@
                     .then(function (response) {
                         console.log(JSON.stringify(response.data));
                         if (response.data.data !== undefined) {
-                            if (response.data.data.startup_details_aggregate.aggregate.count > 0) {
+                            if (response.data.data.insert_startup_post.affected_rows > 0) {
                                 signupApp.is_registered = true;
                             }
                         } else {
@@ -379,7 +403,6 @@
                     .catch(function (error) {
                         console.log(error);
                     });
-
             }
 
         }
