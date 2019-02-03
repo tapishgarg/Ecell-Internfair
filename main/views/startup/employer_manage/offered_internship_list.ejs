@@ -1,0 +1,89 @@
+<div class="col-lg-12 column" id="startup_manage_app">
+
+
+    <div style="display: inline-flex; justify-content: left">
+        <div class="manage-jobs-sec">
+            <h3>Manage Internships</h3>
+            <div class="btn-extars" style="margin-top: -60px">
+                <a href="/employer_post" title="" class="post-job-btn"><i class="la la-plus"></i>Post Jobs</a>
+
+            </div>
+            <div class="extra-job-info">
+                <span><i class="la la-users"></i><strong>{{offered_internship_list.length}}</strong> Internships Posted</span>
+                <span><i class="la la-users"></i><strong>20</strong> Application</span>
+            </div>
+            <table>
+                <thead>
+                <tr>
+                    <td>Title</td>
+                    <td>Applications</td>
+                    <td>Action</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="offered_internship in offered_internship_list">
+                    <td>
+                        <div class="table-list-title">
+                            <h3><a href="#" title="">{{offered_internship.internship_profile}}</a></h3>
+                            <span><i class="la la-map-marker"></i>{{offered_internship.location}}</span>
+                        </div>
+                    </td>
+                    <td>
+                        <span class="applied-field">0 Applied</span>
+                    </td>
+
+
+                    <td>
+                        <ul class="action_job">
+                            <li><span>View Job</span><a href="#" title="" onclick="alert('This is temporarily locked')"><i
+                                            class="la la-eye"></i></a></li>
+                            <li><span>Edit</span><a href="#" title="" onclick="alert('This is temporarily locked')"><i
+                                            class="la la-pencil"></i></a></li>
+                            <li><span>Delete</span><a href="#" title="" onclick="alert('This is temporarily locked')"><i
+                                            class="la la-trash-o"></i></a></li>
+                        </ul>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    let startup_manage_app = new Vue({
+        el: "#startup_manage_app",
+        data: {
+            offered_internship_list: []
+        },
+        methods: {
+            load_offered_internship_list: () => {
+                let reqBody = {
+                    query_string: '{startup_post( where :{startup_details_id : {_eq : ' + JSON.parse(Cookies.get('startup_details')).id + '}}){\n' +
+                        '  internship_profile\n' +
+                        '  location\n' +
+                        '}}'
+                };
+                axios.post('/db/user', reqBody)
+                    .then(function (response) {
+                        if (response.data.data !== undefined) {
+                            console.log(JSON.stringify(response.data));
+                            startup_manage_app.offered_internship_list = response.data.data.startup_post;
+                        } else {
+
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            }
+        }, mounted: function () {
+            this.$nextTick(function () {
+
+                this.load_offered_internship_list();
+
+            })
+        }
+    });
+</script>

@@ -71,10 +71,10 @@
             check_is_registered: () => {
                 let reqBody = {
                     query_string: '{\n' +
-                        '  startup_details_aggregate(where: {user_h_id: {_eq: "' + JSON.parse(Cookies.get('auth_details')).h_id + '"}}) {\n' +
-                        '    aggregate {\n' +
-                        '      count\n' +
-                        '    }\n' +
+                        '  startup_details(where: {user_h_id: {_eq: "' + JSON.parse(Cookies.get('auth_details')).h_id + '"}}) {\n' +
+                        '    id\n' +
+                        '    startup_name\n' +
+                        '    is_verified\n' +
                         '  }\n' +
                         '}'
                 };
@@ -82,8 +82,9 @@
                     .then(function (response) {
                         console.log(JSON.stringify(response.data));
                         if (response.data.data !== undefined) {
-                            if (response.data.data.startup_details_aggregate.aggregate.count > 0) {
+                            if (response.data.data.startup_details.length > 0) {
                                 signupApp.is_registered = true;
+                                Cookies.set('startup_details', JSON.stringify(response.data.data.startup_details[0]));
                             }
                         } else {
 
@@ -146,8 +147,7 @@
                         });
                 }
             }
-        }
-        , mounted: function () {
+        }, mounted: function () {
             this.$nextTick(function () {
                 this.check_is_registered();
 

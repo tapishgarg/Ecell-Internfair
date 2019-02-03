@@ -1,13 +1,15 @@
-
+<div id="navigation_app">
     <div class="responsive-header">
         <div class="responsive-menubar">
-            <div class="res-logo"><a href="https://esummitiitm.com/" title=""><img src="/jobhunt/images/ecell2.png" alt="" height="40" width="170" /></a></div>
+            <div class="res-logo"><a href="https://esummitiitm.com/" title=""><img src="/jobhunt/images/ecell2.png"
+                                                                                   alt=""
+                                                                                   height="40" width="170"/></a></div>
             <div class="menu-resaction">
                 <div class="res-openmenu">
-                    <img src="/jobhunt/images/icon.png" alt="" /> Menu
+                    <img src="/jobhunt/images/icon.png" alt=""/> Menu
                 </div>
                 <div class="res-closemenu">
-                    <img src="/jobhunt/images/icon2.png" alt="" /> Close
+                    <img src="/jobhunt/images/icon2.png" alt=""/> Close
                 </div>
             </div>
         </div>
@@ -16,9 +18,10 @@
                 <!-- <a href="#" title="" class="post-job-btn"><i class="la la-plus"></i>Post Jobs</a> -->
                 <ul class="account-btns">
                     <!-- <div class="g-signin2" data-onsuccess="onSignIn"></div> -->
-
-
-                    <li class="signup-popup"><a title=""><i class="la la-key"></i> Startups</a></li>
+                    <li v-if="is_verified"><a title="" href="/employer_manage"><i class="la la-key"></i>
+                            Startups</a>
+                    <li v-if="!is_verified" class="signup-popup"><a title="" ><i
+                                    class="la la-key"></i> Startups</a></li>
                     <li class="signin-popup"><a title=""><i class="la la-external-link-square"></i> Student</a></li>
                 </ul>
             </div><!-- Btn Extras -->
@@ -28,28 +31,28 @@
             </form> -->
             <div class="responsivemenu">
                 <ul>
-                        <li class="menu-item">
-                            <a href="/" title="Home">Home</a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="/about" title="About Us">About Us</a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="/whyintern" title="Why Intern at Startup">Why Intern at Startup</a>
-                        </li>
-                        <!-- <li class="menu-item">
-                            <a href="#" title="Testimonies">FAQs</a>
-                        </li> -->
-                        <li class="menu-item">
-                            <a href="/policy" title="Top Recruiters Statistics">Policy</a>
-                        </li>
-                        <!-- <li class="menu-item">
-                            <a href="#" title="Message from Advisor">Message from Advisor</a>
-                        </li> -->
-                        <li class="menu-item">
-                            <a href="#" title="Contact Us">Contact Us</a>
-                        </li>
-                    </ul>
+                    <li class="menu-item">
+                        <a href="/" title="Home">Home</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="/about" title="About Us">About Us</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="/whyintern" title="Why Intern at Startup">Why Intern at Startup</a>
+                    </li>
+                    <!-- <li class="menu-item">
+                        <a href="#" title="Testimonies">FAQs</a>
+                    </li> -->
+                    <li class="menu-item">
+                        <a href="/policy" title="Top Recruiters Statistics">Policy</a>
+                    </li>
+                    <!-- <li class="menu-item">
+                        <a href="#" title="Message from Advisor">Message from Advisor</a>
+                    </li> -->
+                    <li class="menu-item">
+                        <a href="#" title="Contact Us">Contact Us</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
@@ -58,14 +61,22 @@
         <div class="menu-sec">
             <div class="container">
                 <div class="logo">
-                    <a href="https://esummitiitm.com/" title=""><img class="hidesticky" src="/jobhunt/images/ecell2.png" alt="" height="40" width="170" /><img class="showsticky" src="/jobhunt/images/ecell1.png" alt="" height="40" width="170"/></a>
+                    <a href="https://esummitiitm.com/" title=""><img class="hidesticky" src="/jobhunt/images/ecell2.png"
+                                                                     alt="" height="40" width="170"/><img
+                                class="showsticky"
+                                src="/jobhunt/images/ecell1.png"
+                                alt="" height="40"
+                                width="170"/></a>
                 </div><!-- Logo -->
                 <div class="btn-extars">
                     <!-- <a href="#" title="" class="post-job-btn"><i class="la la-plus"></i>Post Jobs</a> -->
                     <ul class="account-btns">
                         <!-- <div class="g-signin2" data-onsuccess="onSignIn"></div> -->
+                        <li v-if="is_verified"><a title="" href="/employer_manage"><i class="la la-key"></i>
+                                Startups</a>
+                        <li v-if="!is_verified" class="signup-popup"><a title="" ><i
+                                        class="la la-key"></i> Startups</a></li>
 
-                        <li class="signup-popup"><a title=""><i class="la la-key"></i> Startups</a></li>
                         <li class="signin-popup"><a title=""><i class="la la-external-link-square"></i> Student</a></li>
                     </ul>
                 </div><!-- Btn Extras -->
@@ -80,9 +91,9 @@
                         <li class="menu-item">
                             <a href="/whyintern" title="Why Intern at Startup">Why Intern at Startup</a>
                         </li>
-                       <!--  <li class="menu-item">
-                            <a href="#" title="Testimonies">FAQs</a>
-                        </li> -->
+                        <!--  <li class="menu-item">
+                             <a href="#" title="Testimonies">FAQs</a>
+                         </li> -->
                         <li class="menu-item">
                             <a href="/policy" title="Policy">Policy</a>
                         </li>
@@ -97,4 +108,30 @@
             </div>
         </div>
     </header>
-    
+</div>
+
+
+<script>
+
+    let navigation_app = new Vue({
+        el: "#navigation_app",
+        data: {
+            is_verified: false
+        },
+        methods: {
+            check_is_verified: () => {
+                if (Cookies.get('startup_details') !== undefined) {
+                    navigation_app.is_verified = JSON.parse(Cookies.get('startup_details')).is_verified;
+                    console.log("done!");
+                }
+            }
+        }, mounted: function () {
+            this.$nextTick(function () {
+
+                navigation_app.check_is_verified();
+
+            })
+        }
+    });
+
+</script>
