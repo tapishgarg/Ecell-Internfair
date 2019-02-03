@@ -141,7 +141,7 @@
                                             <span class="pf-title">Description</span>
                                             <div class="pf-field">
                                                 <textarea
-                                                        placeholder="Spent several years working on sheep on Wall Street. Had moderate success investing in Yugos on Wall Street. Managed a small team buying and selling pogo sticks for farmers. Spent several years licensing licorice in West Palm Beach, FL. Developed severalnew methods for working with banjos in the aftermarket. Spent a weekend importing banjos in West Palm Beach, FL.In this position, the Software Engineer ollaborates with Evention's Development team to continuously enhance our current software solutions as well as create new solutions to eliminate the back-office operations and management challenges present"
+                                                        placeholder="Spent several years working on sheep on Wall Street. Had moderate success investing in Yugos on Wall Street. Managed a small team buying and selling pogo sticks for farmers. Spent several years licensing licorice in West Palm Beach, FL. Developed severalnew methods for working with banjos in the aftermarket. Spent a weekend importing banjos in West Palm Beach, FL.In startup_post_app position, the Software Engineer ollaborates with Evention's Development team to continuously enhance our current software solutions as well as create new solutions to eliminate the back-office operations and management challenges present"
                                                         v-model="startup_post.description" required> </textarea>
                                             </div>
                                         </div>
@@ -222,11 +222,7 @@
                                         <div class="col-lg-6">
                                             <span class="pf-title">IITM Research Park Startup</span>
                                             <div class="pf-field">
-                                                <select data-placeholder="No" class="chosen"
-                                                        v-model="startup_post.research_park_startup" required>
-                                                    <option>No</option>
-                                                    <option>Yes</option>
-                                                </select>
+                                                <input type="text" name="" placeholder="yes or no" v-model="startup_post.research_park_startup" required> 
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
@@ -284,7 +280,7 @@
                                     <div class="row">
 
                                         <div class="col-lg-12">
-                                            <button type="submit">Submit</button>
+                                            <button type="submit" @click="submit_startup_post">Submit</button>
                                         </div>
                                     </div>
                                 </form>
@@ -357,7 +353,7 @@
             submit_startup_post: () => {
                 let reqBody = {
                     query_string: 'mutation {\n' +
-                        '  insert_startup_post(objects: {internship_title: "", description: "", attachement_url: "", internship_profile: "", duration: "", stipend: "", interns_number: "", location: "", research_park_startup: "", skill_requirement: "", specific_requirement: "", accomodation: "", travel_allowance: "", other_incentives: "", address: ""}) {\n' +
+                        '  insert_startup_post(objects: {internship_title: "'+startup_post_app.startup_post.internship_title+'", description: "'+startup_post_app.startup_post.description+'", attachement_url: "'+startup_post_app.startup_post.attachement_url+'", internship_profile: "'+startup_post_app.startup_post.internship_profile+'", duration: "'+startup_post_app.startup_post.duration+'", stipend: "'+startup_post_app.startup_post.stipend+'", interns_number: "'+startup_post_app.startup_post.interns_number+'", location: "'+startup_post_app.startup_post.location+'", research_park_startup: "'+startup_post_app.startup_post.research_park_startup+'", skill_requirement: "'+startup_post_app.startup_post.skill_requirement+'", specific_requirement: "'+startup_post_app.startup_post.specific_requirement+'", accomodation: "'+startup_post_app.startup_post.accomodation+'", travel_allowance: "'+startup_post_app.startup_post.travel_allowance+'", other_incentives: "'+startup_post_app.startup_post.other_incentives+'", address: "'+startup_post_app.startup_post.address+'"}) {\n' +
                         '    affected_rows\n' +
                         '  }\n' +
                         '}'
