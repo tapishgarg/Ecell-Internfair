@@ -166,19 +166,26 @@
                                         <div class="col-lg-6">
                                             <span class="pf-title">Internship Profile</span>
                                             <div class="pf-field">
-                                                <select data-placeholder="Please Select Specialism" class="chosen"
-                                                        v-model="startup_post.internship_profile" required>
+                                                <input type="text" placeholder="Designer"
+                                                       v-model="startup_post.internship_profile" required/>
+                                            </div>
+                                           <!--  <div class="pf-field">
+                                                <select data-placeholder="Please Select Specialism" class="chosen" v-model="startup_post.internship_profile" required>
                                                     <option>Web Development</option>
                                                     <option>Web Designing</option>
                                                     <option>Art & Culture</option>
                                                     <option>Reading & Writing</option>
 
                                                 </select>
-                                            </div>
+                                            </div> -->
                                         </div>
                                         <div class="col-lg-6">
                                             <span class="pf-title">Duration</span>
                                             <div class="pf-field">
+                                                <input type="text" placeholder="Minimum 4 weeks"
+                                                       v-model="startup_post.duration" required/>
+                                            </div>
+                                            <!-- <div class="pf-field">
                                                 <select data-placeholder="Please Select Specialism" class="chosen"
                                                         v-model="startup_post.duration" required>
                                                     <option>4 Week</option>
@@ -189,7 +196,7 @@
                                                     <option>9 Week</option>
                                                     <option>10 Week</option>
                                                 </select>
-                                            </div>
+                                            </div> -->
                                         </div>
                                         <div class="col-lg-6">
                                             <span class="pf-title">Stipend (per month)</span>
