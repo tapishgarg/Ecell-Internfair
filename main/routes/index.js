@@ -19,7 +19,8 @@ router.get('/whyintern', function (req, res, next) {
 });
 
 router.get('/employer_manage', function (req, res, next) {
-    res.render('home/employer_manage');
+
+    res.render('startup/employer_manage/index');
 });
 
 router.get('/employer_resume', function (req, res, next) {
@@ -27,7 +28,7 @@ router.get('/employer_resume', function (req, res, next) {
 });
 
 router.get('/employer_post', function (req, res, next) {
-    res.render('home/employer_post');
+    res.render('startup/employer_post/index');
 });
 
 router.get('/job_list', function (req, res, next) {

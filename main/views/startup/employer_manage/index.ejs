@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<%include ../common/header.ejs%>
+</head>
+<body>
+
+<div class="page-loading">
+    <img src="/jobhunt/images/loader.gif" alt=""/>
+    <!-- 	<span>Skip Loader</span>
+     --></div>
+
+<div class="theme-layout" id="scrollup">
+    <!-- MENU -->
+    <% include ../../common/navigationbar.ejs %>
+    <!-- MENU -->
+
+    <% include ../common/welcome_pane.ejs %>
+
+    <section>
+        <div class="block no-padding">
+            <div class="container">
+                <div class="row no-gape">
+                    <% include offered_internship_list.ejs %>
+                </div>
+            </div>
+        </div>
+    </section>
+    <% include ../../common/footer.ejs %>
+</div>
+<% include ../../common/login.ejs %>
+<% include ../../common/signup.ejs %>
+
+
+
+</body>
+</html>
