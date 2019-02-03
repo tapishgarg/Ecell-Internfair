@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <%include ../common/header.ejs%>
+    <% include ../common/header.ejs %>
 </head>
 <body>
 
@@ -16,7 +16,9 @@
     <!-- MENU -->
     <section class="overlape">
         <div class="block no-padding">
-            <div data-velocity="-.1" style="background: url(jobhunt/images/home3.jpeg) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax"></div><!-- PARALLAX BACKGROUND IMAGE -->
+            <div data-velocity="-.1"
+                 style="background: url(jobhunt/images/home3.jpeg) repeat scroll 50% 422.28px transparent;"
+                 class="parallax scrolly-invisible no-parallax"></div><!-- PARALLAX BACKGROUND IMAGE -->
             <div class="container fluid">
                 <div class="row">
                     <div class="col-lg-12">
@@ -32,7 +34,7 @@
     <section>
         <div class="block no-padding" id="startup_post_app">
             <div class="container">
-                 <div class="row no-gape">
+                <div class="row no-gape">
                     <!-- <aside class="col-lg-3 column border-right">
                         <div class="widget">
                             <div class="tree_widget-sec">
@@ -131,19 +133,24 @@
                                         <div class="col-lg-12">
                                             <span class="pf-title">Internship Title</span>
                                             <div class="pf-field">
-                                                <input type="text" placeholder="Designer" v-model="startup_post.internship_title" required/>
+                                                <input type="text" placeholder="Designer"
+                                                       v-model="startup_post.internship_title" required/>
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
                                             <span class="pf-title">Description</span>
                                             <div class="pf-field">
-                                                <textarea placeholder="Spent several years working on sheep on Wall Street. Had moderate success investing in Yugos on Wall Street. Managed a small team buying and selling pogo sticks for farmers. Spent several years licensing licorice in West Palm Beach, FL. Developed severalnew methods for working with banjos in the aftermarket. Spent a weekend importing banjos in West Palm Beach, FL.In this position, the Software Engineer ollaborates with Evention's Development team to continuously enhance our current software solutions as well as create new solutions to eliminate the back-office operations and management challenges present" v-model="startup_post.description" required> </textarea>
+                                                <textarea
+                                                        placeholder="Spent several years working on sheep on Wall Street. Had moderate success investing in Yugos on Wall Street. Managed a small team buying and selling pogo sticks for farmers. Spent several years licensing licorice in West Palm Beach, FL. Developed severalnew methods for working with banjos in the aftermarket. Spent a weekend importing banjos in West Palm Beach, FL.In this position, the Software Engineer ollaborates with Evention's Development team to continuously enhance our current software solutions as well as create new solutions to eliminate the back-office operations and management challenges present"
+                                                        v-model="startup_post.description" required> </textarea>
                                             </div>
                                         </div>
-                                        <div class="col-lg-12"><span style="font-size: 12px;">Add Attachment</span><br><br>
-                                        <form action="/action_page.php">
-  <input type="file" name="pic" accept="image/*">
-</form></div>
+                                        <div class="col-lg-12"><span
+                                                    style="font-size: 12px;">Add Attachment</span><br><br>
+                                            <form action="/action_page.php">
+                                                <input type="file" name="pic" accept="image/*">
+                                            </form>
+                                        </div>
                                         <!-- <div class="col-lg-6">
                                             <span class="pf-title">Email</span>
                                             <div class="pf-field">
@@ -159,7 +166,8 @@
                                         <div class="col-lg-6">
                                             <span class="pf-title">Internship Profile</span>
                                             <div class="pf-field">
-                                                <select data-placeholder="Please Select Specialism" class="chosen" v-model="startup_post.internship_profile" required>
+                                                <select data-placeholder="Please Select Specialism" class="chosen"
+                                                        v-model="startup_post.internship_profile" required>
                                                     <option>Web Development</option>
                                                     <option>Web Designing</option>
                                                     <option>Art & Culture</option>
@@ -171,7 +179,8 @@
                                         <div class="col-lg-6">
                                             <span class="pf-title">Duration</span>
                                             <div class="pf-field">
-                                                <select data-placeholder="Please Select Specialism" class="chosen" v-model="startup_post.duration" required>
+                                                <select data-placeholder="Please Select Specialism" class="chosen"
+                                                        v-model="startup_post.duration" required>
                                                     <option>4 Week</option>
                                                     <option>5 Week</option>
                                                     <option>6 Week</option>
@@ -185,13 +194,15 @@
                                         <div class="col-lg-6">
                                             <span class="pf-title">Stipend (per month)</span>
                                             <div class="pf-field">
-                                                <input type="text" placeholder="15000 INR" v-model="startup_post.stipend" required/>
+                                                <input type="text" placeholder="15000 INR"
+                                                       v-model="startup_post.stipend" required/>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <span class="pf-title">Number of Interns</span>
                                             <div class="pf-field">
-                                                <input type="text" placeholder="9-10" v-model="startup_post.interns_number" required/>
+                                                <input type="text" placeholder="9-10"
+                                                       v-model="startup_post.interns_number" required/>
                                             </div>
                                         </div>
 
@@ -204,13 +215,15 @@
                                         <div class="col-lg-6">
                                             <span class="pf-title">Location</span>
                                             <div class="pf-field">
-                                                <input type="text" placeholder="Eg: Work from Home, Gurgaon etc." v-model="startup_post.location" required/>
+                                                <input type="text" placeholder="Eg: Work from Home, Gurgaon etc."
+                                                       v-model="startup_post.location" required/>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <span class="pf-title">IITM Research Park Startup</span>
                                             <div class="pf-field">
-                                                <select data-placeholder="No" class="chosen" v-model="startup_post.research_park_startup" required>
+                                                <select data-placeholder="No" class="chosen"
+                                                        v-model="startup_post.research_park_startup" required>
                                                     <option>No</option>
                                                     <option>Yes</option>
                                                 </select>
@@ -219,39 +232,47 @@
                                         <div class="col-lg-12">
                                             <span class="pf-title">Skills Requirement </span>
                                             <div class="pf-field">
-                                                <textarea placeholder="Eg: Python, C++" v-model="startup_post.skill_requirement" required></textarea>
+                                                <textarea placeholder="Eg: Python, C++"
+                                                          v-model="startup_post.skill_requirement" required></textarea>
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
                                             <span class="pf-title">Specific Requirements (if any)</span>
                                             <div class="pf-field">
-                                                <textarea placeholder="Eg: Should have experience in Raspberry Pi" v-model="startup_post.specific_requirement" required></textarea>
+                                                <textarea placeholder="Eg: Should have experience in Raspberry Pi"
+                                                          v-model="startup_post.specific_requirement"
+                                                          required></textarea>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <span class="pf-title">Accomodation</span>
                                             <div class="pf-field">
 
-                                                <input type="text" placeholder="Eg: No, Guest House" v-model="startup_post.accomodation" required/>
-                                            
+                                                <input type="text" placeholder="Eg: No, Guest House"
+                                                       v-model="startup_post.accomodation" required/>
+
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <span class="pf-title">Travel Allowance</span>
                                             <div class="pf-field">
-                                                <input type="text" placeholder="Eg: No, Flight" v-model="startup_post.travel_allowance" required/>
+                                                <input type="text" placeholder="Eg: No, Flight"
+                                                       v-model="startup_post.travel_allowance" required/>
                                             </div>
                                         </div>
-                                         <div class="col-lg-12">
+                                        <div class="col-lg-12">
                                             <span class="pf-title">Other Incentives (if any)</span>
                                             <div class="pf-field">
-                                                <input type="text" placeholder="Eg: Food Allowance, 5-Days a week, Informal Dress-Code" v-model="startup_post.other_incentives" />
+                                                <input type="text"
+                                                       placeholder="Eg: Food Allowance, 5-Days a week, Informal Dress-Code"
+                                                       v-model="startup_post.other_incentives"/>
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
                                             <span class="pf-title">Complete Address</span>
                                             <div class="pf-field">
-                                                <textarea placeholder="Collins Street West, Victoria 8007, Australia." v-model="startup_post.address" required></textarea>
+                                                <textarea placeholder="Collins Street West, Victoria 8007, Australia."
+                                                          v-model="startup_post.address" required></textarea>
                                             </div>
                                         </div>
 
@@ -270,7 +291,7 @@
                             </div>
                         </div>
                     </div>
-                 </div>
+                </div>
             </div>
         </div>
     </section>
@@ -297,50 +318,49 @@
 <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCYc537bQom7ajFpWE5sQaVyz1SQa9_tuY&sensor=true&libraries=places"></script>
 
 <!-- Include Date Range Picker -->
-<link rel="stylesheet" type="text/css" href="/jobhunt/css/bootstrap-datepicker.css" />
+<link rel="stylesheet" type="text/css" href="/jobhunt/css/bootstrap-datepicker.css"/>
 <script src="/jobhunt/js/bootstrap-datepicker.js" type="text/javascript"></script>
 <script>
-        $(function(){
-            $('.datepicker').datepicker({
-                format: 'mm-dd-yyyy'
-            });
+    $(function () {
+        $('.datepicker').datepicker({
+            format: 'mm-dd-yyyy'
         });
-
+    });
 
 
 </script>
 
 <script>
-    
-    let startup_post_app=new Vue({
-        el:"#startup_post_app",
-        data:{
+
+    let startup_post_app = new Vue({
+        el: "#startup_post_app",
+        data: {
             startup_post: {
-                internship_title:"",
+                internship_title: "",
                 description: "",
-                attachement_url:"",
-                internship_profile:"",
-                duration:"",
-                stipend:"",
-                interns_number:"",
-                location:"",
-                research_park_startup:"",
-                skill_requirement:"",
-                specific_requirement:"",
-                accomodation:"",
-                travel_allowance:"",
-                other_incentives:"",
-                address:""
+                attachement_url: "",
+                internship_profile: "",
+                duration: "",
+                stipend: "",
+                interns_number: "",
+                location: "",
+                research_park_startup: "",
+                skill_requirement: "",
+                specific_requirement: "",
+                accomodation: "",
+                travel_allowance: "",
+                other_incentives: "",
+                address: ""
             }
         },
-        methods:{
-            submit_startup_post: ()=>{
-                 let reqBody = {
-                    query_string: 'mutation {
-  insert_startup_post(objects: {internship_title: "", description: "", attachement_url: "", internship_profile: "", duration: "", stipend: "", interns_number: "", location: "", research_park_startup: "", skill_requirement: "", specific_requirement: "", accomodation: "", travel_allowance: "", other_incentives: "", address: ""}) {
-    affected_rows
-  }
-}'
+        methods: {
+            submit_startup_post: () => {
+                let reqBody = {
+                    query_string: 'mutation {\n' +
+                        '  insert_startup_post(objects: {internship_title: "", description: "", attachement_url: "", internship_profile: "", duration: "", stipend: "", interns_number: "", location: "", research_park_startup: "", skill_requirement: "", specific_requirement: "", accomodation: "", travel_allowance: "", other_incentives: "", address: ""}) {\n' +
+                        '    affected_rows\n' +
+                        '  }\n' +
+                        '}'
                 };
                 axios.post('/db/anonymous', reqBody)
                     .then(function (response) {
@@ -358,8 +378,9 @@
                     });
 
             }
-        }   
-    })
+
+        }
+    });
 </script>
 
 
