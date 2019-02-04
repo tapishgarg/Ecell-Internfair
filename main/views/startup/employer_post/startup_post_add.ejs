@@ -120,10 +120,9 @@
                                     </div>
                                 </div>
 
-                            </div>
-
-                            <div class="col-lg-12">
-                                <button type="submit" @click="submit_startup_post">Submit</button>
+                                <div class="col-lg-12">
+                                    <button onclick="return startup_post_add_app.submit_startup_post()">Submit</button>
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -137,21 +136,21 @@
         el: "#startup_post_add_app",
         data: {
             startup_post: {
-                internship_title: "Designer",
-                description: "Designer",
-                attachement_url: "Designer",
-                internship_profile: "Designer",
-                duration: "Designer",
-                stipend: "Designer",
-                interns_number: "Designer",
-                location: "Designer",
-                research_park_startup: "Designer",
-                skill_requirement: "Designer",
-                specific_requirement: "Designer",
-                accomodation: "Designer",
-                travel_allowance: "Designer",
-                other_incentives: "Designer",
-                address: "Designer"
+                internship_title: "",
+                description: "",
+                attachement_url: "",
+                internship_profile: "",
+                duration: "",
+                stipend: "",
+                interns_number: "",
+                location: "",
+                research_park_startup: "",
+                skill_requirement: "",
+                specific_requirement: "",
+                accomodation: "",
+                travel_allowance: "",
+                other_incentives: "",
+                address: ""
             }
         },
         methods: {
@@ -178,6 +177,7 @@
                 let form = document.getElementById('theForm');
                 for (let i = 0; i < form.elements.length; i++) {
                     if (form.elements[i].value === '' && form.elements[i].hasAttribute('required')) {
+                        alert("Fill all required fields");
                         return false;
                     }
                 }
@@ -190,10 +190,9 @@
                 };
                 axios.post('/db/user', reqBody)
                     .then(function (response) {
-                        console.log(JSON.stringify(response.data));
                         if (response.data.data !== undefined) {
                             if (response.data.data.insert_startup_post.affected_rows > 0) {
-                                // location.href = "/employer_manage";
+                                location.href = "/employer_manage";
                             }
                         } else {
 
@@ -202,6 +201,9 @@
                     .catch(function (error) {
                         console.log(error);
                     });
+                return false;
+
+
             }
         }
     });

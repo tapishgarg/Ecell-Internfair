@@ -121,7 +121,7 @@
         methods: {
             check_is_verified: () => {
                 if (Cookies.get('startup_details') !== null) {
-                    console.log(Cookies.get('startup_details') );
+                    console.log(Cookies.get('startup_details'));
                     navigation_app.is_verified = JSON.parse(Cookies.get('startup_details')).is_verified;
                 }
             }
