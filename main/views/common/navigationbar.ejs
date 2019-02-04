@@ -120,15 +120,13 @@
         },
         methods: {
             check_is_verified: () => {
-                if (Cookies.get('startup_details') !== undefined) {
+                if (Cookies.get('startup_details') !== null) {
+                    console.log(Cookies.get('startup_details') );
                     navigation_app.is_verified = JSON.parse(Cookies.get('startup_details')).is_verified;
-                    console.log("done!");
                 }
             }
         }, mounted: function () {
             this.$nextTick(function () {
-
-                navigation_app.check_is_verified();
 
             })
         }

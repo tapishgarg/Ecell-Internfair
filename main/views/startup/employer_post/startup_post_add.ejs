@@ -119,9 +119,11 @@
                                                           v-model="startup_post.address" required></textarea>
                                     </div>
                                 </div>
-                                <div class="col-lg-12">
-                                    <button @click="submit_startup_post">Submit</button>
-                                </div>
+
+                            </div>
+
+                            <div class="col-lg-12">
+                                <button type="submit" @click="submit_startup_post">Submit</button>
                             </div>
                         </form>
                     </div>
@@ -135,21 +137,21 @@
         el: "#startup_post_add_app",
         data: {
             startup_post: {
-                internship_title: "",
-                description: "",
-                attachement_url: "",
-                internship_profile: "",
-                duration: "",
-                stipend: "",
-                interns_number: "",
-                location: "",
-                research_park_startup: "",
-                skill_requirement: "",
-                specific_requirement: "",
-                accomodation: "",
-                travel_allowance: "",
-                other_incentives: "",
-                address: ""
+                internship_title: "Designer",
+                description: "Designer",
+                attachement_url: "Designer",
+                internship_profile: "Designer",
+                duration: "Designer",
+                stipend: "Designer",
+                interns_number: "Designer",
+                location: "Designer",
+                research_park_startup: "Designer",
+                skill_requirement: "Designer",
+                specific_requirement: "Designer",
+                accomodation: "Designer",
+                travel_allowance: "Designer",
+                other_incentives: "Designer",
+                address: "Designer"
             }
         },
         methods: {
@@ -191,7 +193,7 @@
                         console.log(JSON.stringify(response.data));
                         if (response.data.data !== undefined) {
                             if (response.data.data.insert_startup_post.affected_rows > 0) {
-                                location.href = "/employer_manage";
+                                // location.href = "/employer_manage";
                             }
                         } else {
 
