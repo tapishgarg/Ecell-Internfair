@@ -71,20 +71,22 @@
             check_is_registered: () => {
                 let reqBody = {
                     query_string: '{\n' +
-                        '  startup_details(where: {user_h_id: {_eq: "' + JSON.parse(Cookies.get('auth_details')).h_id + '"}}) {\n' +
-                        '    id\n' +
-                        '    startup_name\n' +
-                        '    is_verified\n' +
+                        '  user_detail(where: {user_h_id: {_eq: "' + JSON.parse(Cookies.get('auth_details')).h_id + '"}}) {\n' +
+                        '    startupDetailsBystartupName {\n' +
+                        '      id\n' +
+                        '      startup_name\n' +
+                        '      is_verified\n' +
+                        '    }\n' +
                         '  }\n' +
-                        '}'
+                        '}\n'
                 };
                 axios.post('/db/user', reqBody)
                     .then(function (response) {
                         console.log(JSON.stringify(response.data));
                         if (response.data.data !== undefined) {
-                            if (response.data.data.startup_details.length > 0) {
+                            if (response.data.data.user_detail[0].startupDetailsBystartupName !=null) {
                                 signupApp.is_registered = true;
-                                Cookies.set('startup_details', JSON.stringify(response.data.data.startup_details[0]));
+                                Cookies.set('startup_details', JSON.stringify(response.data.data.user_detail[0].startupDetailsBystartupName));
                             }
                         } else {
 
