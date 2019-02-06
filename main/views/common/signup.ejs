@@ -19,21 +19,22 @@
                     <!-- <i class="la la-user"></i> -->
                 </div>
                 <div class="cfield">
-                    <input type="text" placeholder="PoC Name" v-model="startup_details.about"/>
+                    <input type="text" placeholder="About the Startup" v-model="startup_details.about"/>
                     <!-- <i class="la la-user"></i> -->
                 </div>
                 <div class="cfield">
-                    <input type="text" placeholder="Contact No." v-model="startup_details.startup_name"/>
+                    <input type="text" placeholder="PoC Name" v-model="startup_details.startup_name"/>
                     <!-- <i class="la la-user"></i> -->
                 </div>
                 <div class="cfield">
-                    <input type="text" placeholder="E-mail Id" v-model="startup_details.about"/>
+                    <input type="text" placeholder="Contact No." v-model="startup_details.about"/>
                     <!-- <i class="la la-user"></i> -->
                 </div>
                 <div class="cfield">
-                    <input type="text" placeholder="Startup Name" v-model="startup_details.startup_name"/>
+                    <input type="text" placeholder="Email Id" v-model="startup_details.about"/>
                     <!-- <i class="la la-user"></i> -->
                 </div>
+
                 <div class="cfield">
                     <input type="text" placeholder="Website" v-model="startup_details.website"/>
                     <!-- <i class="la la-user"></i> -->
@@ -51,10 +52,9 @@
 
 
         <div v-if="is_registered">
-            <h3 style="color: green">
-                <span><a style="color: #0f36a5" href="/startup/manage">Dashboard <i class="fa fa-external-link"></i></a></span></h3>
+            <h3 style="color: green">Thank You For Registering</h3>
             <p>
-                Thank You For Registering!
+                you will be given access shortly and notified
             </p>
         </div>
     </div>
@@ -227,7 +227,7 @@
         auth2.signOut().then(function () {
             my_navbar.user_details.is_signed_in = false;
         });
-        location.href = "/";
+        location.href="/";
     }
 
 
