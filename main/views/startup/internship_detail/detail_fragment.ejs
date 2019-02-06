@@ -122,29 +122,10 @@
             }
         },
         methods: {
-            open_widget: () => {
-                let myUploadWidget = cloudinary.openUploadWidget({
-                        cloudName: "saarang2017",
-                        uploadPreset: "ecell_iitm",
-                        //Step 3:  Add list of sources that should be added as tabs in the widget.
-                        sources: [
-                            "local",
-                            "url",
-                            "camera"
-                        ],
-                    },
-                    function (error, result) {
-                        if (result.event === "success") {
-                            startup_post_add_app.startup_post.attachement_url = result.info.secure_url;
-                            console.log(result.info.secure_url);
-                            myUploadWidget.close();
-                        }
-                    });
-            },
             get_internship_detail: () => {
                 let reqBody = {
                     query_string: '{\n' +
-                        '  startup_post(where: {id: {_eq: <% if (startup_id) { %><%=startup_id%><% } else { %>0<% } %>}}) {\n' +
+                        '  startup_post(where: {id: {_eq: <% if (internship_id) { %><%=internship_id%><% } else { %>0<% } %>}}) {\n' +
                         '    internship_title\n' +
                         '    description\n' +
                         '    attachement_url\n' +
@@ -169,7 +150,7 @@
                         if (response.data.data !== undefined) {
                             console.log(JSON.stringify(response.data));
                             if (response.data.data.startup_post[0] !== undefined) {
-                                startup_post_add_app.startup_post = response.data.data.startup_post[0];
+                                internship_detail_fragment.startup_post = response.data.data.startup_post[0];
                             }
                         } else {
 
