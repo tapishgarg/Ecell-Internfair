@@ -30,6 +30,7 @@
                                     <div @click="open_widget" style="cursor: pointer">
                                         <img src="http://avoradigital.com/online/button.png" style="height: 40px;">
                                     </div>
+                                    <span>{{startup_post.attachement_urlw}}</span>
                                 </div>
                                 <div class="col-lg-6">
                                     <span class="pf-title">Internship Profile</span>
@@ -204,7 +205,8 @@
                 return false;
             },
             get_internship_detail : ()=> {
-                if (Cookie.get("focused_internship")!== undefined){
+                console.log("joeydash")
+                if (Cookies.get("focused_internship")=== undefined){
                     let reqBody = {
                         query_string: '{\n' +
                             '  startup_post(where: {id: {_eq: 42}}) {\n' +
@@ -228,6 +230,7 @@
                     };
                     axios.post('/db/user', reqBody)
                         .then(function (response) {
+
                             if (response.data.data !== undefined) {
                                 console.log(response.data);
                             } else {
@@ -239,6 +242,10 @@
                         });
                 }
             }
+        }, mounted: function () {
+            this.$nextTick(function () {
+                this.get_internship_detail();
+            })
         }
     });
 </script>

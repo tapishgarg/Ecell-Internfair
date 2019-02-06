@@ -157,7 +157,6 @@
             }
         }, mounted: function () {
             this.$nextTick(function () {
-                this.check_is_registered();
 
             })
         }
@@ -191,6 +190,8 @@
                     axios.post('/db/user', reqBody)
                         .then(function (response) {
                             if (response.data.data !== undefined) {
+                                signupApp.check_is_registered();
+
                             } else {
                             }
                         })
@@ -211,7 +212,7 @@
         Cookies.remove('auth_details');
         let auth2 = gapi.auth2.getAuthInstance();
         auth2.signOut().then(function () {
-            signupApp.user_details.is_signed_in = false;
+            my_navbar.user_details.is_signed_in = false;
         });
         location.href="/";
     }
