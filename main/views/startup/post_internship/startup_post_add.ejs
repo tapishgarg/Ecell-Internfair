@@ -202,8 +202,42 @@
                         console.log(error);
                     });
                 return false;
+            },
+            get_internship_detail : ()=> {
+                if (Cookie.get("focused_internship")!== undefined){
+                    let reqBody = {
+                        query_string: '{\n' +
+                            '  startup_post(where: {id: {_eq: 42}}) {\n' +
+                            '    internship_title\n' +
+                            '    description\n' +
+                            '    attachement_url\n' +
+                            '    internship_profile\n' +
+                            '    duration\n' +
+                            '    stipend\n' +
+                            '    interns_number\n' +
+                            '    location\n' +
+                            '    research_park_startup\n' +
+                            '    skill_requirement\n' +
+                            '    specific_requirement\n' +
+                            '    accomodation\n' +
+                            '    travel_allowance\n' +
+                            '    other_incentives\n' +
+                            '    address\n' +
+                            '  }\n' +
+                            '}\n'
+                    };
+                    axios.post('/db/user', reqBody)
+                        .then(function (response) {
+                            if (response.data.data !== undefined) {
+                                console.log(response.data);
+                            } else {
 
-
+                            }
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                }
             }
         }
     });
