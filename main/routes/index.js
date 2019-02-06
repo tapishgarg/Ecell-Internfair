@@ -18,6 +18,11 @@ router.get('/whyintern', function (req, res, next) {
     res.render('home/whyintern');
 });
 
+router.get('/contact_us', function (req, res, next) {
+    res.render('home/contact_us');
+});
+
+
 router.get('/employer_resume', function (req, res, next) {
     res.render('home/employer_resume');
 });

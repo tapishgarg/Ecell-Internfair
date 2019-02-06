@@ -2,11 +2,11 @@ let graphql_host = process.env.GRAPHQL_ENGINE_DATABASE_HOST || "localhost";
 
 let config = {
     google_clientId: "869757478663-gnlmvb29d5mduo26mrq595svsojrgsus.apps.googleusercontent.com",
-    // client secret    qu1RMMJw4PAxItNoEGO6yDoQ
+    // google client secret    qu1RMMJw4PAxItNoEGO6yDoQ
     cloudinary_api_id: {
-        cloud_name: 'joeydash',
-        api_key: '571664355428984',
-        api_secret: 'Br8_bTtFahHJkytcibUAxvrsyjk'
+        cloud_name: 'si-portal',
+        api_key: '672939885848231',
+        api_secret: 'f8CCK49ct9pivHJJ1d_lbq0GVDw'
     },
     graphql_engine: {
         graphql_host: graphql_host,
