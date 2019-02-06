@@ -184,7 +184,7 @@
                 }
                 let reqBody = {
                     query_string: 'mutation {\n' +
-                        '  update_startup_post(where: {id: {_eq: 43}}, _set: {internship_title: "' + startup_post_add_app.startup_post.internship_title + '", description: "' + startup_post_add_app.startup_post.description + '", attachement_url: "' + startup_post_add_app.startup_post.attachement_url + '", internship_profile: "' + startup_post_add_app.startup_post.internship_profile + '", duration: "' + startup_post_add_app.startup_post.duration + '", stipend: "' + startup_post_add_app.startup_post.stipend + '", interns_number: "' + startup_post_add_app.startup_post.interns_number + '", location: "' + startup_post_add_app.startup_post.location + '", research_park_startup: "' + startup_post_add_app.startup_post.research_park_startup + '", skill_requirement: "' + startup_post_add_app.startup_post.skill_requirement + '", specific_requirement: "' + startup_post_add_app.startup_post.specific_requirement + '", accomodation: "' + startup_post_add_app.startup_post.accomodation + '", travel_allowance: "' + startup_post_add_app.startup_post.travel_allowance + '", other_incentives: "' + startup_post_add_app.startup_post.other_incentives + '", address: "' + startup_post_add_app.startup_post.address + '", user_hid: "' + JSON.parse(Cookies.get('auth_details')).h_id + '", startup_details_id: ' + JSON.parse(Cookies.get('startup_details')).id + '}) {\n' +
+                        '  update_startup_post(where: {id: {_eq: <% if (internship_id) { %><%=internship_id%><% } else { %>0<% } %>}}, _set: {internship_title: "' + startup_post_add_app.startup_post.internship_title + '", description: "' + startup_post_add_app.startup_post.description + '", attachement_url: "' + startup_post_add_app.startup_post.attachement_url + '", internship_profile: "' + startup_post_add_app.startup_post.internship_profile + '", duration: "' + startup_post_add_app.startup_post.duration + '", stipend: "' + startup_post_add_app.startup_post.stipend + '", interns_number: "' + startup_post_add_app.startup_post.interns_number + '", location: "' + startup_post_add_app.startup_post.location + '", research_park_startup: "' + startup_post_add_app.startup_post.research_park_startup + '", skill_requirement: "' + startup_post_add_app.startup_post.skill_requirement + '", specific_requirement: "' + startup_post_add_app.startup_post.specific_requirement + '", accomodation: "' + startup_post_add_app.startup_post.accomodation + '", travel_allowance: "' + startup_post_add_app.startup_post.travel_allowance + '", other_incentives: "' + startup_post_add_app.startup_post.other_incentives + '", address: "' + startup_post_add_app.startup_post.address + '", user_hid: "' + JSON.parse(Cookies.get('auth_details')).h_id + '", startup_details_id: ' + JSON.parse(Cookies.get('startup_details')).id + '}) {\n' +
                         '    affected_rows\n' +
                         '  }\n' +
                         '}\n'
@@ -207,7 +207,7 @@
             get_internship_detail: () => {
                 let reqBody = {
                     query_string: '{\n' +
-                        '  startup_post(where: {id: {_eq: <% if (startup_id) { %><%=startup_id%><% } else { %>0<% } %>}}) {\n' +
+                        '  startup_post(where: {id: {_eq: <% if (internship_id) { %><%=internship_id%><% } else { %>0<% } %>}}) {\n' +
                         '    internship_title\n' +
                         '    description\n' +
                         '    attachement_url\n' +
