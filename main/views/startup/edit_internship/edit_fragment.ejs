@@ -1,0 +1,252 @@
+<div class="block no-padding" id="startup_post_add_app">
+    <div class="container">
+        <div class="row no-gape">
+            <div class="col-lg-12 column">
+                <div class="padding-left">
+                    <div class="profile-title">
+                        <h3>Post a New Internship</h3>
+                    </div>
+                    <div class="profile-form-edit" style="margin-bottom: 40px;">
+                        <form id="theForm">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <span class="pf-title">Internship Title</span>
+                                    <div class="pf-field">
+                                        <input type="text" placeholder="Designer"
+                                               v-model="startup_post.internship_title" required/>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <span class="pf-title">Description</span>
+                                    <div class="pf-field">
+                                                <textarea
+                                                        placeholder="Spent several years working on sheep on Wall Street. Had moderate success investing in Yugos on Wall Street. Managed a small team buying and selling pogo sticks for farmers. Spent several years licensing licorice in West Palm Beach, FL. Developed severalnew methods for working with banjos in the aftermarket. Spent a weekend importing banjos in West Palm Beach, FL.In startup_post_app position, the Software Engineer ollaborates with Evention's Development team to continuously enhance our current software solutions as well as create new solutions to eliminate the back-office operations and management challenges present"
+                                                        v-model="startup_post.description" required> </textarea>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12"><span
+                                            style="font-size: 12px;">Add Attachment</span><br><br>
+
+                                    <div @click="open_widget" style="cursor: pointer">
+                                        <img src="http://avoradigital.com/online/button.png" style="height: 40px;">
+                                    </div>
+                                    <span><a :href="startup_post.attachement_url" style="color: #0f36a5;">{{startup_post.attachement_url}}</a></span>
+                                </div>
+                                <div class="col-lg-6">
+                                    <span class="pf-title">Internship Profile</span>
+                                    <div class="pf-field">
+                                        <input type="text" placeholder="Designer"
+                                               v-model="startup_post.internship_profile" required/>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <span class="pf-title">Duration</span>
+                                    <div class="pf-field">
+                                        <input type="text" placeholder="Minimum 4 weeks"
+                                               v-model="startup_post.duration" required/>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <span class="pf-title">Stipend (per month)</span>
+                                    <div class="pf-field">
+                                        <input type="text" placeholder="15000 INR"
+                                               v-model="startup_post.stipend" required/>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <span class="pf-title">Number of Interns</span>
+                                    <div class="pf-field">
+                                        <input type="text" placeholder="9-10"
+                                               v-model="startup_post.interns_number" required/>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <span class="pf-title">Location</span>
+                                    <div class="pf-field">
+                                        <input type="text" placeholder="Eg: Work from Home, Gurgaon etc."
+                                               v-model="startup_post.location" required/>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <span class="pf-title">IITM Research Park Startup</span>
+                                    <div class="pf-field">
+                                        <input type="text" name="" placeholder="yes or no"
+                                               v-model="startup_post.research_park_startup" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <span class="pf-title">Skills Requirement </span>
+                                    <div class="pf-field">
+                                                <textarea placeholder="Eg: Python, C++"
+                                                          v-model="startup_post.skill_requirement" required></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <span class="pf-title">Specific Requirements (if any)</span>
+                                    <div class="pf-field">
+                                                <textarea placeholder="Eg: Should have experience in Raspberry Pi"
+                                                          v-model="startup_post.specific_requirement"
+                                                          required></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <span class="pf-title">Accomodation</span>
+                                    <div class="pf-field">
+
+                                        <input type="text" placeholder="Eg: No, Guest House"
+                                               v-model="startup_post.accomodation" required/>
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <span class="pf-title">Travel Allowance</span>
+                                    <div class="pf-field">
+                                        <input type="text" placeholder="Eg: No, Flight"
+                                               v-model="startup_post.travel_allowance" required/>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <span class="pf-title">Other Incentives (if any)</span>
+                                    <div class="pf-field">
+                                        <input type="text"
+                                               placeholder="Eg: Food Allowance, 5-Days a week, Informal Dress-Code"
+                                               v-model="startup_post.other_incentives"/>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <span class="pf-title">Complete Address</span>
+                                    <div class="pf-field">
+                                                <textarea placeholder="Collins Street West, Victoria 8007, Australia."
+                                                          v-model="startup_post.address" required></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-12">
+                                    <button onclick="return startup_post_add_app.submit_startup_post()">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    let startup_post_add_app = new Vue({
+        el: "#startup_post_add_app",
+        data: {
+            startup_post: {
+                internship_title: "",
+                description: "",
+                attachement_url: "",
+                internship_profile: "",
+                duration: "",
+                stipend: "",
+                interns_number: "",
+                location: "",
+                research_park_startup: "",
+                skill_requirement: "",
+                specific_requirement: "",
+                accomodation: "",
+                travel_allowance: "",
+                other_incentives: "",
+                address: ""
+            }
+        },
+        methods: {
+            open_widget: () => {
+                let myUploadWidget = cloudinary.openUploadWidget({
+                        cloudName: "saarang2017",
+                        uploadPreset: "ecell_iitm",
+                        //Step 3:  Add list of sources that should be added as tabs in the widget.
+                        sources: [
+                            "local",
+                            "url",
+                            "camera"
+                        ],
+                    },
+                    function (error, result) {
+                        if (result.event === "success") {
+                            startup_post_add_app.startup_post.attachement_url = result.info.secure_url;
+                            console.log(result.info.secure_url);
+                            myUploadWidget.close();
+                        }
+                    });
+            },
+            submit_startup_post: () => {
+                let form = document.getElementById('theForm');
+                for (let i = 0; i < form.elements.length; i++) {
+                    if (form.elements[i].value === '' && form.elements[i].hasAttribute('required')) {
+                        alert("Fill all required fields");
+                        return false;
+                    }
+                }
+                let reqBody = {
+                    query_string: 'mutation {\n' +
+                        '  update_startup_post(where: {id: {_eq: 43}}, _set: {internship_title: "' + startup_post_add_app.startup_post.internship_title + '", description: "' + startup_post_add_app.startup_post.description + '", attachement_url: "' + startup_post_add_app.startup_post.attachement_url + '", internship_profile: "' + startup_post_add_app.startup_post.internship_profile + '", duration: "' + startup_post_add_app.startup_post.duration + '", stipend: "' + startup_post_add_app.startup_post.stipend + '", interns_number: "' + startup_post_add_app.startup_post.interns_number + '", location: "' + startup_post_add_app.startup_post.location + '", research_park_startup: "' + startup_post_add_app.startup_post.research_park_startup + '", skill_requirement: "' + startup_post_add_app.startup_post.skill_requirement + '", specific_requirement: "' + startup_post_add_app.startup_post.specific_requirement + '", accomodation: "' + startup_post_add_app.startup_post.accomodation + '", travel_allowance: "' + startup_post_add_app.startup_post.travel_allowance + '", other_incentives: "' + startup_post_add_app.startup_post.other_incentives + '", address: "' + startup_post_add_app.startup_post.address + '", user_hid: "' + JSON.parse(Cookies.get('auth_details')).h_id + '", startup_details_id: ' + JSON.parse(Cookies.get('startup_details')).id + '}) {\n' +
+                        '    affected_rows\n' +
+                        '  }\n' +
+                        '}\n'
+                };
+                axios.post('/db/user', reqBody)
+                    .then(function (response) {
+                        if (response.data.data !== undefined) {
+                            if (response.data.data.update_startup_post.affected_rows > 0) {
+                                location.href = "/startup/manage";
+                            }
+                        } else {
+
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+                return false;
+            },
+            get_internship_detail: () => {
+                let reqBody = {
+                    query_string: '{\n' +
+                        '  startup_post(where: {id: {_eq: <% if (startup_id) { %><%=startup_id%><% } else { %>0<% } %>}}) {\n' +
+                        '    internship_title\n' +
+                        '    description\n' +
+                        '    attachement_url\n' +
+                        '    internship_profile\n' +
+                        '    duration\n' +
+                        '    stipend\n' +
+                        '    interns_number\n' +
+                        '    location\n' +
+                        '    research_park_startup\n' +
+                        '    skill_requirement\n' +
+                        '    specific_requirement\n' +
+                        '    accomodation\n' +
+                        '    travel_allowance\n' +
+                        '    other_incentives\n' +
+                        '    address\n' +
+                        '  }\n' +
+                        '}\n'
+                };
+                axios.post('/db/user', reqBody)
+                    .then(function (response) {
+
+                        if (response.data.data !== undefined) {
+                            console.log(JSON.stringify(response.data));
+                            if (response.data.data.startup_post[0] !== undefined) {
+                                startup_post_add_app.startup_post = response.data.data.startup_post[0];
+                            }
+                        } else {
+
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+
+            }
+        }, mounted: function () {
+            this.$nextTick(function () {
+                this.get_internship_detail();
+            })
+        }
+    });
+</script>

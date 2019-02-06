@@ -30,7 +30,7 @@
                                     <div @click="open_widget" style="cursor: pointer">
                                         <img src="http://avoradigital.com/online/button.png" style="height: 40px;">
                                     </div>
-                                    <span>{{startup_post.attachement_urlw}}</span>
+                                    <span><a :href="startup_post.attachement_url" style="color: #0f36a5;">{{startup_post.attachement_url}}</a></span>
                                 </div>
                                 <div class="col-lg-6">
                                     <span class="pf-title">Internship Profile</span>
@@ -122,7 +122,7 @@
                                 </div>
 
                                 <div class="col-lg-12">
-                                    <button onclick="return startup_post_add_app.submit_startup_post()">Submit</button>
+                                    <button onclick="return startup_post_add_app.submit_startup_post()">Save</button>
                                 </div>
                             </div>
                         </form>
@@ -203,48 +203,9 @@
                         console.log(error);
                     });
                 return false;
-            },
-            get_internship_detail : ()=> {
-                console.log("joeydash")
-                if (Cookies.get("focused_internship")=== undefined){
-                    let reqBody = {
-                        query_string: '{\n' +
-                            '  startup_post(where: {id: {_eq: 42}}) {\n' +
-                            '    internship_title\n' +
-                            '    description\n' +
-                            '    attachement_url\n' +
-                            '    internship_profile\n' +
-                            '    duration\n' +
-                            '    stipend\n' +
-                            '    interns_number\n' +
-                            '    location\n' +
-                            '    research_park_startup\n' +
-                            '    skill_requirement\n' +
-                            '    specific_requirement\n' +
-                            '    accomodation\n' +
-                            '    travel_allowance\n' +
-                            '    other_incentives\n' +
-                            '    address\n' +
-                            '  }\n' +
-                            '}\n'
-                    };
-                    axios.post('/db/user', reqBody)
-                        .then(function (response) {
-
-                            if (response.data.data !== undefined) {
-                                console.log(response.data);
-                            } else {
-
-                            }
-                        })
-                        .catch(function (error) {
-                            console.log(error);
-                        });
-                }
             }
         }, mounted: function () {
             this.$nextTick(function () {
-                this.get_internship_detail();
             })
         }
     });
