@@ -41,9 +41,9 @@
                         <ul class="action_job">
                             <li><span>View Job</span><a href="#" title="" onclick="alert('This is temporarily locked')"><i
                                             class="la la-eye"></i></a></li>
-                            <li><span>Edit</span><a href="#" title="" onclick="alert('This is temporarily locked')"><i
+                            <li v-if="offered_internship.status!=='live'"><span>Edit</span><a href="#" title="" onclick="alert('This is temporarily locked')"><i
                                             class="la la-pencil"></i></a></li>
-                            <li><span>Delete</span><a href="#" title="" onclick="alert('This is temporarily locked')"><i
+                            <li v-if="offered_internship.status!=='live'"><span>Delete</span><a href="#" title="" onclick="alert('This is temporarily locked')"><i
                                             class="la la-trash-o"></i></a></li>
                         </ul>
                     </td>
@@ -93,7 +93,6 @@
             }
         }, mounted: function () {
             this.$nextTick(function () {
-
                 this.load_offered_internship_list();
 
             })
