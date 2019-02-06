@@ -2,14 +2,6 @@
 <html>
 <head>
 <%include ../common/header.ejs%>
-</head>
-<body>
-
-<div class="page-loading">
-    <img src="/jobhunt/images/loader.gif" alt=""/>
-    <!-- 	<span>Skip Loader</span>
-     --></div>
-
 <style>
     h1, h2, h3, h4, h5, h6 {
     }
@@ -242,11 +234,21 @@
         background-color: #cd486b;
     }
 </style>
+</head>
+<body>
+
+<% include ../common/navbar_dark.ejs%>
+<div class="page-loading">
+    <img src="/jobhunt/images/loader.gif" alt=""/>
+    <!-- 	<span>Skip Loader</span>
+     --></div>
+
+
 <div class="theme-layout" id="scrollup">
     <!-- MENU -->
-    <% include ../common/navbar_dark.ejs%>
+    
 
-    <section >
+    <section style="padding-top: 0px;">
         <div class="block no-padding  gray">
             <div class="container">
                 <div class="row">
@@ -270,7 +272,7 @@
                 </div>
             </div>
             <div class="row team-items">
-                <div class="col-md-4 single-item" style="margin-left: 100px">
+                <div class="col-md-4 single-item" style="margin-left: auto;">
                     <div class="item sized">
                         <div class="thumb">
                             <img class="img-fluid" src="/jobhunt/images/Saurabh Jain.png" alt="Thumb">
@@ -294,12 +296,14 @@
                             <h4>Saurabh Jain</h4>
                             <span style="font-size: 12px;">Head | StartUp Internship</span><br>
                             <span style="font-size: 12px;">E-Cell, IIT Madras</span>
-                            <h4 style="font-size: 12px;">intern_ecell@smail.iitm.ac.in</h4>
+                            <h4 style="font-size: 12px; text-transform: lowercase;">intern_ecell@smail.iitm.ac.in</h4>
                         </div>
                     </div>
                 </div>
+            
+        
 
-                <div class="col-md-4 single-item" style="margin-right: -200px;">
+                <div class="col-md-4 single-item" style="margin-left: auto;">
 
                 </div>
                 <div class="col-md-4 single-item">
@@ -326,7 +330,7 @@
                             <h4>Mukund Khandelwal</h4>
                             <span style="font-size: 12px;">Head | StartUp Internship</span><br>
                             <span style="font-size: 12px;">E-Cell, IIT Madras</span>
-                            <h4 style="font-size: 12px;">intern_ecell@smail.iitm.ac.in</h4>
+                            <h4 style="font-size: 12px; text-transform: lowercase;">intern_ecell@smail.iitm.ac.in</h4>
                         </div>
                     </div>
                 </div>
