@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8f5f8ba0-1585-465f-80a4-1271d2ddb1e9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/main/views/startup/edit_internship/edit_fragment.ejs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/views/startup/edit_internship/index.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/routes/startup.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/routes/startup.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/views/common/signup.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/main/views/common/signup.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/views/startup/internship_detail/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/main/views/startup/internship_detail/index.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/views/startup/internship_detail/job_single_part.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/main/views/startup/internship_detail/detail_fragment.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/views/startup/manage/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/main/views/startup/manage/index.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/views/startup/manage/offered_internship_list.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/main/views/startup/manage/manage_fragment.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/views/startup/post_internship/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/main/views/startup/post_internship/index.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/views/startup/post_internship/startup_post_add.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/main/views/startup/post_internship/post_fragment.ejs" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -39,11 +29,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main/views/startup/internship_detail/detail_fragment.ejs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="292">
               <caret line="103" column="40" selection-start-line="103" selection-start-column="40" selection-end-line="103" selection-end-column="40" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/main/views/startup/edit_internship/edit_fragment.ejs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="201">
+              <caret line="186" column="131" selection-start-line="186" selection-start-column="131" selection-end-line="186" selection-end-column="131" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main/routes/startup.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="13" column="62" selection-start-line="13" selection-start-column="49" selection-end-line="13" selection-end-column="62" />
             </state>
           </provider>
         </entry>
@@ -76,7 +84,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/main/bin/www" />
         <option value="$PROJECT_DIR$/main/package.json" />
         <option value="$PROJECT_DIR$/reload_app.sh" />
         <option value="$PROJECT_DIR$/main/views/error.ejs" />
@@ -122,11 +129,12 @@
         <option value="$PROJECT_DIR$/main/views/common/navigationbar.ejs" />
         <option value="$PROJECT_DIR$/main/views/common/signup.ejs" />
         <option value="$PROJECT_DIR$/main/views/startup/manage/offered_internship_list.ejs" />
-        <option value="$PROJECT_DIR$/main/routes/startup.js" />
         <option value="$PROJECT_DIR$/main/views/startup/edit_internship/startup_post_add.ejs" />
         <option value="$PROJECT_DIR$/main/views/startup/post_internship/startup_post_add.ejs" />
         <option value="$PROJECT_DIR$/main/views/startup/manage/manage_fragment.ejs" />
         <option value="$PROJECT_DIR$/main/views/startup/internship_detail/detail_fragment.ejs" />
+        <option value="$PROJECT_DIR$/main/routes/startup.js" />
+        <option value="$PROJECT_DIR$/main/views/startup/edit_internship/edit_fragment.ejs" />
       </list>
     </option>
   </component>
@@ -257,7 +265,7 @@
       <workItem from="1548943168839" duration="75000" />
       <workItem from="1549212951609" duration="1458000" />
       <workItem from="1549252205576" duration="3232000" />
-      <workItem from="1549449229351" duration="14245000" />
+      <workItem from="1549449229351" duration="14721000" />
     </task>
     <task id="LOCAL-00001" summary="example added">
       <created>1548483647435</created>
@@ -448,11 +456,25 @@
       <option name="project" value="LOCAL" />
       <updated>1549474830336</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="example added">
+      <created>1549478612362</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1549478612362</updated>
+    </task>
+    <task id="LOCAL-00029" summary="example added">
+      <created>1549478918759</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1549478918759</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="48878000" />
+    <option name="totallyTimeSpent" value="49354000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -465,17 +487,16 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2746781" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2746781" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="DB Browser" order="2" weight="0.3297568" />
       <window_info id="Project Explorer" order="3" />
       <window_info id="Job Explorer" order="4" />
       <window_info id="Favorites" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.3280098" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3280098" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3280098" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3280098" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -797,13 +818,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/routes/startup.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="28" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main/views/startup/post_internship/index.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="262">
@@ -828,13 +842,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/views/startup/edit_internship/edit_fragment.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="135" selection-start-line="135" selection-end-line="250" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main/views/startup/edit_internship/index.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -842,10 +849,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/main/routes/startup.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="62" selection-start-line="13" selection-start-column="49" selection-end-line="13" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main/views/startup/internship_detail/detail_fragment.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="292">
           <caret line="103" column="40" selection-start-line="103" selection-start-column="40" selection-end-line="103" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/views/startup/edit_internship/edit_fragment.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="186" column="131" selection-start-line="186" selection-start-column="131" selection-end-line="186" selection-end-column="131" />
         </state>
       </provider>
     </entry>
