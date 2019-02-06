@@ -39,9 +39,10 @@
 
 
         <div v-if="is_registered">
-            <h3 style="color: green">Thank You For Registering</h3>
+            <h3 style="color: green">
+                <span><a style="color: #0f36a5" href="/startup/manage">Dashboard</a></span></h3>
             <p>
-                you will be given access shortly and notified
+                Thank You For Registering!
             </p>
         </div>
     </div>
@@ -214,7 +215,7 @@
         auth2.signOut().then(function () {
             my_navbar.user_details.is_signed_in = false;
         });
-        location.href="/";
+        location.href = "/";
     }
 
 
