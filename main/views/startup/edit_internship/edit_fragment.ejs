@@ -30,7 +30,7 @@
                                     <div @click="open_widget" style="cursor: pointer">
                                         <img src="http://avoradigital.com/online/button.png" style="height: 40px;">
                                     </div>
-                                    <span>{{startup_post.attachement_urlw}}</span>
+                                    <span><a :href="startup_post.attachement_url" style="color: #0f36a5;">{{startup_post.attachement_url}}</a></span>
                                 </div>
                                 <div class="col-lg-6">
                                     <span class="pf-title">Internship Profile</span>
@@ -184,15 +184,15 @@
                 }
                 let reqBody = {
                     query_string: 'mutation {\n' +
-                        '  insert_startup_post(objects: {internship_title: "' + startup_post_add_app.startup_post.internship_title + '", description: "' + startup_post_add_app.startup_post.description + '", attachement_url: "' + startup_post_add_app.startup_post.attachement_url + '", internship_profile: "' + startup_post_add_app.startup_post.internship_profile + '", duration: "' + startup_post_add_app.startup_post.duration + '", stipend: "' + startup_post_add_app.startup_post.stipend + '", interns_number: "' + startup_post_add_app.startup_post.interns_number + '", location: "' + startup_post_add_app.startup_post.location + '", research_park_startup: "' + startup_post_add_app.startup_post.research_park_startup + '", skill_requirement: "' + startup_post_add_app.startup_post.skill_requirement + '", specific_requirement: "' + startup_post_add_app.startup_post.specific_requirement + '", accomodation: "' + startup_post_add_app.startup_post.accomodation + '", travel_allowance: "' + startup_post_add_app.startup_post.travel_allowance + '", other_incentives: "' + startup_post_add_app.startup_post.other_incentives + '", address: "' + startup_post_add_app.startup_post.address + '", user_hid: "' + JSON.parse(Cookies.get('auth_details')).h_id + '", startup_details_id: ' + JSON.parse(Cookies.get('startup_details')).id + '}) {\n' +
+                        '  update_startup_post(where: {id: {_eq: <% if (internship_id) { %><%=internship_id%><% } else { %>0<% } %>}}, _set: {internship_title: "' + startup_post_add_app.startup_post.internship_title + '", description: "' + startup_post_add_app.startup_post.description + '", attachement_url: "' + startup_post_add_app.startup_post.attachement_url + '", internship_profile: "' + startup_post_add_app.startup_post.internship_profile + '", duration: "' + startup_post_add_app.startup_post.duration + '", stipend: "' + startup_post_add_app.startup_post.stipend + '", interns_number: "' + startup_post_add_app.startup_post.interns_number + '", location: "' + startup_post_add_app.startup_post.location + '", research_park_startup: "' + startup_post_add_app.startup_post.research_park_startup + '", skill_requirement: "' + startup_post_add_app.startup_post.skill_requirement + '", specific_requirement: "' + startup_post_add_app.startup_post.specific_requirement + '", accomodation: "' + startup_post_add_app.startup_post.accomodation + '", travel_allowance: "' + startup_post_add_app.startup_post.travel_allowance + '", other_incentives: "' + startup_post_add_app.startup_post.other_incentives + '", address: "' + startup_post_add_app.startup_post.address + '", user_hid: "' + JSON.parse(Cookies.get('auth_details')).h_id + '", startup_details_id: ' + JSON.parse(Cookies.get('startup_details')).id + '}) {\n' +
                         '    affected_rows\n' +
                         '  }\n' +
-                        '}'
+                        '}\n'
                 };
                 axios.post('/db/user', reqBody)
                     .then(function (response) {
                         if (response.data.data !== undefined) {
-                            if (response.data.data.insert_startup_post.affected_rows > 0) {
+                            if (response.data.data.update_startup_post.affected_rows > 0) {
                                 location.href = "/startup/manage";
                             }
                         } else {
@@ -204,43 +204,44 @@
                     });
                 return false;
             },
-            get_internship_detail : ()=> {
-                console.log("joeydash")
-                if (Cookies.get("focused_internship")=== undefined){
-                    let reqBody = {
-                        query_string: '{\n' +
-                            '  startup_post(where: {id: {_eq: 42}}) {\n' +
-                            '    internship_title\n' +
-                            '    description\n' +
-                            '    attachement_url\n' +
-                            '    internship_profile\n' +
-                            '    duration\n' +
-                            '    stipend\n' +
-                            '    interns_number\n' +
-                            '    location\n' +
-                            '    research_park_startup\n' +
-                            '    skill_requirement\n' +
-                            '    specific_requirement\n' +
-                            '    accomodation\n' +
-                            '    travel_allowance\n' +
-                            '    other_incentives\n' +
-                            '    address\n' +
-                            '  }\n' +
-                            '}\n'
-                    };
-                    axios.post('/db/user', reqBody)
-                        .then(function (response) {
+            get_internship_detail: () => {
+                let reqBody = {
+                    query_string: '{\n' +
+                        '  startup_post(where: {id: {_eq: <% if (internship_id) { %><%=internship_id%><% } else { %>0<% } %>}}) {\n' +
+                        '    internship_title\n' +
+                        '    description\n' +
+                        '    attachement_url\n' +
+                        '    internship_profile\n' +
+                        '    duration\n' +
+                        '    stipend\n' +
+                        '    interns_number\n' +
+                        '    location\n' +
+                        '    research_park_startup\n' +
+                        '    skill_requirement\n' +
+                        '    specific_requirement\n' +
+                        '    accomodation\n' +
+                        '    travel_allowance\n' +
+                        '    other_incentives\n' +
+                        '    address\n' +
+                        '  }\n' +
+                        '}\n'
+                };
+                axios.post('/db/user', reqBody)
+                    .then(function (response) {
 
-                            if (response.data.data !== undefined) {
-                                console.log(response.data);
-                            } else {
-
+                        if (response.data.data !== undefined) {
+                            console.log(JSON.stringify(response.data));
+                            if (response.data.data.startup_post[0] !== undefined) {
+                                startup_post_add_app.startup_post = response.data.data.startup_post[0];
                             }
-                        })
-                        .catch(function (error) {
-                            console.log(error);
-                        });
-                }
+                        } else {
+
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+
             }
         }, mounted: function () {
             this.$nextTick(function () {

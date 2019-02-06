@@ -100,9 +100,90 @@
 </section>
 
 <script>
-    let internship_detail_fragment = new Vue({
-        el: "",
-        data: {},
-        methods: {}
+    let internship_detail_fragment  = new Vue({
+        el: "#internship_detail_fragment",
+        data: {
+            startup_post: {
+                internship_title: "",
+                description: "",
+                attachement_url: "",
+                internship_profile: "",
+                duration: "",
+                stipend: "",
+                interns_number: "",
+                location: "",
+                research_park_startup: "",
+                skill_requirement: "",
+                specific_requirement: "",
+                accomodation: "",
+                travel_allowance: "",
+                other_incentives: "",
+                address: ""
+            }
+        },
+        methods: {
+            open_widget: () => {
+                let myUploadWidget = cloudinary.openUploadWidget({
+                        cloudName: "saarang2017",
+                        uploadPreset: "ecell_iitm",
+                        //Step 3:  Add list of sources that should be added as tabs in the widget.
+                        sources: [
+                            "local",
+                            "url",
+                            "camera"
+                        ],
+                    },
+                    function (error, result) {
+                        if (result.event === "success") {
+                            startup_post_add_app.startup_post.attachement_url = result.info.secure_url;
+                            console.log(result.info.secure_url);
+                            myUploadWidget.close();
+                        }
+                    });
+            },
+            get_internship_detail: () => {
+                let reqBody = {
+                    query_string: '{\n' +
+                        '  startup_post(where: {id: {_eq: <% if (startup_id) { %><%=startup_id%><% } else { %>0<% } %>}}) {\n' +
+                        '    internship_title\n' +
+                        '    description\n' +
+                        '    attachement_url\n' +
+                        '    internship_profile\n' +
+                        '    duration\n' +
+                        '    stipend\n' +
+                        '    interns_number\n' +
+                        '    location\n' +
+                        '    research_park_startup\n' +
+                        '    skill_requirement\n' +
+                        '    specific_requirement\n' +
+                        '    accomodation\n' +
+                        '    travel_allowance\n' +
+                        '    other_incentives\n' +
+                        '    address\n' +
+                        '  }\n' +
+                        '}\n'
+                };
+                axios.post('/db/user', reqBody)
+                    .then(function (response) {
+
+                        if (response.data.data !== undefined) {
+                            console.log(JSON.stringify(response.data));
+                            if (response.data.data.startup_post[0] !== undefined) {
+                                startup_post_add_app.startup_post = response.data.data.startup_post[0];
+                            }
+                        } else {
+
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+
+            }
+        }, mounted: function () {
+            this.$nextTick(function () {
+                this.get_internship_detail();
+            })
+        }
     });
 </script>

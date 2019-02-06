@@ -1,11 +1,12 @@
 <div class="col-lg-12 column" id="startup_manage_app">
 
 
-    <div >
+    <div>
         <div class="manage-jobs-sec">
             <h3>Manage Internships</h3>
             <div class="btn-extars" style="margin-top: -60px">
-                <a href="/startup/post_internship" title="" class="post-job-btn"><i class="la la-plus"></i>Post Internship</a>
+                <a href="/startup/post_internship" title="" class="post-job-btn"><i class="la la-plus"></i>Post
+                    Internship</a>
             </div>
             <!-- <div class="btn-extars" style="margin-top: -60px">
                 <a href="/startup/post_internship" title="" class="post-job-btn"><i class="la la-plus"></i>Post Internship</a>
@@ -41,9 +42,11 @@
                         <ul class="action_job">
                             <li><span>View Job</span><a href="#" title="" onclick="alert('This is temporarily locked')"><i
                                             class="la la-eye"></i></a></li>
-                            <li v-if="offered_internship.status!=='live'"><span>Edit</span><a href="#" title="" onclick="alert('This is temporarily locked')"><i
+                            <li v-if="offered_internship.status!=='live'"><span>Edit</span><a title="edit"
+                                                                                              @click="edit_internship(offered_internship.id)"><i
                                             class="la la-pencil"></i></a></li>
-                            <li v-if="offered_internship.status!=='live'"><span>Delete</span><a href="#" title="" onclick="alert('This is temporarily locked')"><i
+                            <li v-if="offered_internship.status!=='live'"><span>Delete</span><a href="#" title=""
+                                                                                                @click="delete_internship(offered_internship.id)"><i
                                             class="la la-trash-o"></i></a></li>
                         </ul>
                     </td>
@@ -72,14 +75,15 @@
                         '    internship_profile\n' +
                         '    location\n' +
                         '    status\n' +
+                        '    id\n' +
                         '  }\n' +
                         '}\n'
                 };
                 axios.post('/db/user', reqBody)
                     .then(function (response) {
-                        console.log(response.data)
+                        console.log(response.data);
                         if (response.data.data !== undefined) {
-                            console.log("joeydash")
+                            console.log("joeydash");
 
                             console.log(JSON.stringify(response.data));
                             startup_manage_app.offered_internship_list = response.data.data.startup_post;
@@ -90,6 +94,32 @@
                     .catch(function (error) {
                         console.log(error);
                     });
+            },
+            delete_internship: (id) => {
+                let reqBody = {
+                    query_string: 'mutation {\n' +
+                        '  delete_startup_post(where: {id: {_eq: ' + id + '}}) {\n' +
+                        '    affected_rows\n' +
+                        '  }\n' +
+                        '}\n'
+                };
+                axios.post('/db/user', reqBody)
+                    .then(function (response) {
+                        console.log(response.data);
+                        if (response.data.data !== undefined) {
+                            if (response.data.data.delete_startup_post.affected_rows > 0) {
+                                startup_manage_app.load_offered_internship_list();
+                            }
+                        } else {
+
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            },
+            edit_internship: (id) => {
+                location.href = "/startup/edit_internship/" + id;
             }
         }, mounted: function () {
             this.$nextTick(function () {

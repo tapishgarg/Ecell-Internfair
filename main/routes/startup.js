@@ -10,8 +10,12 @@ router.get('/post_internship', function (req, res, next) {
     res.render('startup/post_internship/index');
 });
 
-router.get('/internship_detail', function (req, res, next) {
-    res.render('startup/internship_detail/index');
+router.get('/edit_internship/:id', function (req, res, next) {
+    res.render('startup/edit_internship/index', {internship_id: req.params.id});
+});
+
+router.get('/internship_detail/:id', function (req, res, next) {
+    res.render('startup/internship_detail/index', {internship_id: req.params.id});
 });
 
 
