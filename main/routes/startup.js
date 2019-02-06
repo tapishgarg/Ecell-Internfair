@@ -15,7 +15,7 @@ router.get('/edit_internship/:id', function (req, res, next) {
 });
 
 router.get('/internship_detail/:id', function (req, res, next) {
-    res.render('startup/internship_detail/index');
+    res.render('startup/internship_detail/index', {internship_id: req.params.id});
 });
 
 
