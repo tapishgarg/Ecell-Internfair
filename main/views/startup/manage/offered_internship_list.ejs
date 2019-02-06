@@ -45,7 +45,7 @@
                         </ul>
                     </td>
                     <td>
-                        <span class="applied-field"> yes </span>
+                        <span class="applied-field"> {{offered_internship.status}}</span>
                     </td>
                 </tr>
 
@@ -64,14 +64,20 @@
         methods: {
             load_offered_internship_list: () => {
                 let reqBody = {
-                    query_string: '{startup_post( where :{startup_details_id : {_eq : ' + JSON.parse(Cookies.get('startup_details')).id + '}}){\n' +
-                        '  internship_profile\n' +
-                        '  location\n' +
-                        '}}'
+                    query_string: '{\n' +
+                        '  startup_post(where: {startup_details_id: {_eq: ' + JSON.parse(Cookies.get('startup_details')).id + '}}) {\n' +
+                        '    internship_profile\n' +
+                        '    location\n' +
+                        '    status\n' +
+                        '  }\n' +
+                        '}\n'
                 };
                 axios.post('/db/user', reqBody)
                     .then(function (response) {
+                        console.log(response.data)
                         if (response.data.data !== undefined) {
+                            console.log("joeydash")
+
                             console.log(JSON.stringify(response.data));
                             startup_manage_app.offered_internship_list = response.data.data.startup_post;
                         } else {
