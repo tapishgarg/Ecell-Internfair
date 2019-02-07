@@ -52,9 +52,9 @@
 
 
         <div v-if="is_registered">
-            <h3 style="color: green">Thank You For Registering</h3>
+            <h3 style="color: green"> <a style="color: #0b1b46; text-decoration: underline;" href="/startup/manage">Dashboard</a></h3>
             <p>
-                you will be given access shortly and notified
+                Thank You For Registering!
             </p>
         </div>
     </div>
@@ -167,9 +167,14 @@
                             console.log(error);
                         });
                 }
+            },
+            check_is_signed_in: () => {
+                console.log(signupApp.user_details.is_signed_in);
+                navigation_app.is_signed_in = signupApp.user_details.is_signed_in;
             }
         }, mounted: function () {
             this.$nextTick(function () {
+                this.check_is_signed_in();
 
             })
         }
@@ -225,9 +230,9 @@
         Cookies.remove('auth_details');
         let auth2 = gapi.auth2.getAuthInstance();
         auth2.signOut().then(function () {
-            my_navbar.user_details.is_signed_in = false;
+            signupApp.user_details.is_signed_in = false;
         });
-        location.href="/";
+        location.href = "/";
     }
 
 

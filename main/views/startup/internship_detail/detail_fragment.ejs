@@ -5,36 +5,38 @@
                 <div class="col-lg-8 column">
                     <div class="job-single-sec">
                         <div class="job-single-head2">
-                            <div class="job-title2"><h3>{{startup_post.internship_profile}}</h3><span class="job-is ft">Full time</span><i
+                            <div class="job-title2"><h3>{{startup_post.internship_profile}}</h3><span class="job-is ft">{{startup_post.duration}}</span><i
                                         class="la la-heart-o"></i></div>
                             <ul class="tags-jobs">
                                 <li><i class="la la-map-marker"></i> {{startup_post.location}}</li>
-                                <li><i class="la la-money"></i> Monthly Salary : <span>{{startup_post.stipend}}</span></li>
+                                <li><i class="la la-money"></i> Monthly Salary : <span>{{startup_post.stipend}}</span>
+                                </li>
                                 <li><i class="la la-calendar-o"></i> Vacancies: {{startup_post.interns_number}}</li>
                             </ul>
                             <span style="padding-left: 32px;"> IITM Research Park : {{startup_post.research_park_startup}}</span>
                         </div><!-- Job Head -->
                         <div class="job-details">
                             <h3>About the Startup</h3>
-                            <pre style="color: black;">
-				 					dbjsdbfdfbdfsbvxcvxnnl
-				 					vxcvxcvcvvxcvcxcv
-				 					sdgsfdfg
-				 					fdgfd
-				 				</pre>
-                            <p>{{startup_post.about}}</p>
+
+                            <p>
+                                {{startup_post.startupDetailsBystartupDetailsId.about}}
+
+                            </p>
+                            <pre>
+
+                            </pre>
                             <h3>Internship Description</h3>
                             <p>{{startup_post.description}}</p>
                             <h3>Required Knowledge, Skills, and Abilities</h3>
                             <ul>
-                                <li>{{startup_post.skill_requiremnent}}
+                                <li>{{startup_post.skill_requirement}}
                                 </li>
-                                
+
                             </ul>
                             <h3>Specific Requirements</h3>
                             <ul>
                                 <li>{{startup_post.specific_requirement}}</li>
-                                
+
                             </ul>
 
                             <h3>Incentives</h3>
@@ -50,12 +52,17 @@
                 </div>
                 <div class="col-lg-4 column">
                     <div class="job-single-head style2">
-                        <div class="job-thumb"><img src="http://placehold.it/124x124" alt=""/></div>
+                        <div class="job-thumb"><img :src="startup_post.startupDetailsBystartupDetailsId.logo_url"
+                                                    alt="" style="height: 100px;"/></div>
                         <div class="job-head-info">
-                            <h4>Tix Dog</h4>
-                            <span>274 Seven Sisters Road, London, N4 2HY</span>
+                            <h4>{{startup_post.startupDetailsBystartupDetailsId.startup_name}}</h4>
+                            <span>{{startup_post.location}}</span>
+                            <p><i class="la la-unlink"></i><a
+                                        :href="startup_post.startupDetailsBystartupDetailsId.website">{{startup_post.startupDetailsBystartupDetailsId.website}}</a>
+                            </p>
                         </div>
-                        <a href="#" title="" class="apply-job-btn"><i class="la la-paper-plane"></i>Edit</a>
+                        <a title="" @click="edit_internship(startup_post.id)" class="apply-job-btn"><i
+                                    class="la la-paper-plane"></i>Edit</a>
                         <a href="/startup/manage" title="" class="viewall-jobs">Manage</a>
                     </div><!-- Job Head -->
                 </div>
@@ -65,10 +72,11 @@
 </section>
 
 <script>
-    let internship_detail_fragment  = new Vue({
+    let internship_detail_fragment = new Vue({
         el: "#internship_detail_fragment",
         data: {
             startup_post: {
+                id: 0,
                 internship_title: "",
                 description: "",
                 attachement_url: "",
@@ -83,14 +91,20 @@
                 accomodation: "",
                 travel_allowance: "",
                 other_incentives: "",
-                address: ""
+                address: "",
+                startupDetailsBystartupDetailsId: {
+                    startup_name: "Accomox",
+                    about: "cool startup",
+                    logo_url: "",
+                    website: ""
+                }
             }
         },
         methods: {
             get_internship_detail: () => {
                 let reqBody = {
                     query_string: '{\n' +
-                        '  startup_post(where: {id: {_eq: <% if (internship_id) { %><%=internship_id%><% } else { %>0<% } %>}}) {\n' +
+                        '  startup_post(where: {id: {_eq: <% if (internship_id) { %><%= internship_id %><% } else { %>0<% } %>}}) {\n' +
                         '    internship_title\n' +
                         '    description\n' +
                         '    attachement_url\n' +
@@ -106,6 +120,13 @@
                         '    travel_allowance\n' +
                         '    other_incentives\n' +
                         '    address\n' +
+                        '    id\n' +
+                        '    startupDetailsBystartupDetailsId {\n' +
+                        '      startup_name\n' +
+                        '      about\n' +
+                        '      logo_url\n' +
+                        '      website\n' +
+                        '    }\n' +
                         '  }\n' +
                         '}\n'
                 };
@@ -125,6 +146,9 @@
                         console.log(error);
                     });
 
+            },
+            edit_internship: (id) => {
+                location.href = "/startup/edit_internship/" + id;
             }
         }, mounted: function () {
             this.$nextTick(function () {

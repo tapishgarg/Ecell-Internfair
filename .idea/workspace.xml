@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8f5f8ba0-1585-465f-80a4-1271d2ddb1e9" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/views/common/navbar_dark.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/main/views/common/navbar_dark.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/views/common/navigationbar.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/main/views/common/navigationbar.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/views/common/signup.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/main/views/common/signup.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/views/home/testimonies.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/main/views/home/testimonies.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/views/startup/internship_detail/detail_fragment.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/main/views/startup/internship_detail/detail_fragment.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/views/startup/manage/manage_fragment.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/main/views/startup/manage/manage_fragment.ejs" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -31,28 +35,24 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main/views/startup/internship_detail/detail_fragment.ejs">
+        <entry file="file://$PROJECT_DIR$/main/views/common/signup.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
-              <caret line="127" column="100" selection-start-line="127" selection-start-column="100" selection-end-line="127" selection-end-column="100" />
+            <state relative-caret-position="241">
+              <caret line="54" column="91" selection-start-line="54" selection-start-column="91" selection-end-line="54" selection-end-column="91" />
+              <folding>
+                <element signature="n#style#0;n#button#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h3#0;n#div#2;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#h3#0;n#div#2;n#div#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/main/views/startup/manage/manage_fragment.ejs">
+        <entry file="file://$PROJECT_DIR$/main/views/startup/internship_detail/detail_fragment.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-160">
-              <caret line="96" column="14" lean-forward="true" selection-start-line="96" selection-start-column="14" selection-end-line="96" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main/routes/startup.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="30" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="30" />
+            <state relative-caret-position="167">
+              <caret line="23" column="32" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -68,6 +68,7 @@
       <find>Cookie.</find>
       <find>\'</find>
       <find>location</find>
+      <find>my_n</find>
     </findStrings>
     <replaceStrings>
       <replace>let</replace>
@@ -120,22 +121,22 @@
         <option value="$PROJECT_DIR$/main/app.js" />
         <option value="$PROJECT_DIR$/main/routes/config.js" />
         <option value="$PROJECT_DIR$/main/routes/index.js" />
-        <option value="$PROJECT_DIR$/main/views/common/navbar_dark.ejs" />
-        <option value="$PROJECT_DIR$/main/views/home/testimonies.ejs" />
         <option value="$PROJECT_DIR$/main/views/home/index.ejs" />
         <option value="$PROJECT_DIR$/main/views/home/contact_us.ejs" />
         <option value="$PROJECT_DIR$/main/views/common/header.ejs" />
         <option value="$PROJECT_DIR$/main/views/startup/internship_detail/job_single_part.ejs" />
         <option value="$PROJECT_DIR$/main/views/startup/internship_detail/index.ejs" />
-        <option value="$PROJECT_DIR$/main/views/common/navigationbar.ejs" />
-        <option value="$PROJECT_DIR$/main/views/common/signup.ejs" />
         <option value="$PROJECT_DIR$/main/views/startup/manage/offered_internship_list.ejs" />
         <option value="$PROJECT_DIR$/main/views/startup/edit_internship/startup_post_add.ejs" />
         <option value="$PROJECT_DIR$/main/views/startup/post_internship/startup_post_add.ejs" />
         <option value="$PROJECT_DIR$/main/views/startup/edit_internship/edit_fragment.ejs" />
         <option value="$PROJECT_DIR$/main/routes/startup.js" />
-        <option value="$PROJECT_DIR$/main/views/startup/internship_detail/detail_fragment.ejs" />
         <option value="$PROJECT_DIR$/main/views/startup/manage/manage_fragment.ejs" />
+        <option value="$PROJECT_DIR$/main/views/common/navbar_dark.ejs" />
+        <option value="$PROJECT_DIR$/main/views/common/navigationbar.ejs" />
+        <option value="$PROJECT_DIR$/main/views/common/signup.ejs" />
+        <option value="$PROJECT_DIR$/main/views/home/testimonies.ejs" />
+        <option value="$PROJECT_DIR$/main/views/startup/internship_detail/detail_fragment.ejs" />
       </list>
     </option>
   </component>
@@ -177,13 +178,6 @@
               <item name="Ecell-Internfair" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Ecell-Internfair" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Ecell-Internfair" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="home" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -192,30 +186,6 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="startup" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Ecell-Internfair" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Ecell-Internfair" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="startup" type="462c0819:PsiDirectoryNode" />
-              <item name="edit_internship" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Ecell-Internfair" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Ecell-Internfair" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="startup" type="462c0819:PsiDirectoryNode" />
-              <item name="internship_detail" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Ecell-Internfair" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Ecell-Internfair" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="startup" type="462c0819:PsiDirectoryNode" />
-              <item name="manage" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -274,7 +244,7 @@
       <workItem from="1548943168839" duration="75000" />
       <workItem from="1549212951609" duration="1458000" />
       <workItem from="1549252205576" duration="3232000" />
-      <workItem from="1549449229351" duration="15320000" />
+      <workItem from="1549449229351" duration="18686000" />
     </task>
     <task id="LOCAL-00001" summary="example added">
       <created>1548483647435</created>
@@ -493,11 +463,32 @@
       <option name="project" value="LOCAL" />
       <updated>1549479247332</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="example added">
+      <created>1549480431001</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1549480431002</updated>
+    </task>
+    <task id="LOCAL-00033" summary="example added">
+      <created>1549480585245</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1549480585245</updated>
+    </task>
+    <task id="LOCAL-00034" summary="example added">
+      <created>1549480680900</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1549480680900</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49953000" />
+    <option name="totallyTimeSpent" value="53319000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -510,9 +501,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2746781" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2746781" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="DB Browser" order="2" weight="0.3297568" />
       <window_info id="Project Explorer" order="3" />
@@ -520,7 +510,7 @@
       <window_info id="Favorites" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3280098" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3280098" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3280098" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -546,7 +536,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="example added" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/main/index.html" />
     <entry file="file://$PROJECT_DIR$/main/Dockerfile">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -716,28 +705,6 @@
         <state relative-caret-position="-2603" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/views/home/testimonies.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="397">
-          <caret line="55" column="10" selection-start-line="55" selection-start-column="10" selection-end-line="55" selection-end-column="10" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#3;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#4;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#section#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/views/home/index.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="580">
-          <caret line="49" selection-start-line="49" selection-end-line="86" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main/views/home/about.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-786">
@@ -776,13 +743,6 @@
     <entry file="file://$PROJECT_DIR$/main/views/common/dashboard.ejs">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/views/home/job_single.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-291">
-          <caret line="30" column="30" selection-end-line="90" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="384">
@@ -818,30 +778,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/views/common/navigationbar.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="131" column="9" lean-forward="true" selection-start-line="127" selection-start-column="9" selection-end-line="131" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/views/common/navbar_dark.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1575">
-          <caret line="105" column="48" selection-start-line="105" selection-start-column="48" selection-end-line="105" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/views/common/signup.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="42" column="81" selection-start-line="42" selection-start-column="81" selection-end-line="42" selection-end-column="81" />
-          <folding>
-            <element signature="n#style#0;n#a#0;n#span#0;n#h3#0;n#div#2;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main/views/startup/post_internship/index.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="262">
@@ -870,13 +806,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/views/startup/internship_detail/detail_fragment.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="127" column="100" selection-start-line="127" selection-start-column="100" selection-end-line="127" selection-end-column="100" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main/routes/startup.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -884,10 +813,71 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/main/views/common/navbar_dark.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="314">
+          <caret line="30" column="21" selection-start-line="30" selection-start-column="21" selection-end-line="30" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/views/common/navigationbar.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="164">
+          <caret line="22" column="17" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/views/common/signup.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="54" column="91" selection-start-line="54" selection-start-column="91" selection-end-line="54" selection-end-column="91" />
+          <folding>
+            <element signature="n#style#0;n#button#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h3#0;n#div#2;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#h3#0;n#div#2;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main/views/startup/manage/manage_fragment.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-160">
-          <caret line="96" column="14" lean-forward="true" selection-start-line="96" selection-start-column="14" selection-end-line="96" selection-end-column="14" />
+        <state relative-caret-position="187">
+          <caret line="120" column="12" selection-start-line="120" selection-start-column="12" selection-end-line="122" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/views/home/testimonies.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="43" selection-start-line="23" selection-start-column="43" selection-end-line="23" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/views/home/index.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-953">
+          <caret line="78" column="38" selection-start-line="78" selection-start-column="38" selection-end-line="78" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/views/home/job_single.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="328">
+          <caret line="63" lean-forward="true" selection-start-line="63" selection-end-line="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/views/home/job_single_part.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="232">
+          <caret line="65" column="63" lean-forward="true" selection-start-line="65" selection-end-line="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/views/startup/internship_detail/detail_fragment.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="23" column="32" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
         </state>
       </provider>
     </entry>
