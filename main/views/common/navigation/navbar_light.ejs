@@ -90,27 +90,4 @@
 </div>
 
 
-<script>
-
-    let navigation_app = new Vue({
-        el: "#navigation_app",
-        data: {
-            is_verified: false,
-            startup_details: {},
-            is_signed_in: false
-        },
-        methods: {
-            check_is_verified: () => {
-                if (Cookies.get('startup_details') !== null) {
-                    navigation_app.is_signed_in = signupApp.user_details.is_signed_in;
-                    navigation_app.is_verified = JSON.parse(Cookies.get('startup_details')).is_verified;
-                    navigation_app.startup_details = JSON.parse(Cookies.get('startup_details'));
-                }
-            }
-        }, mounted: function () {
-            this.$nextTick(function () {
-            })
-        }
-    });
-
-</script>
+<%include logic_script.ejs%>
