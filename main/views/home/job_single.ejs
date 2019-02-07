@@ -34,11 +34,13 @@
 
 <div class="theme-layout" id="scrollup">
     <!-- MENU -->
-    <% include ../common/navigationbar.ejs %>
+    <% include ../common/navigation/navbar_light.ejs %>
 
     <section class="overlape">
         <div class="block no-padding">
-            <div data-velocity="-.1" style="background: url(http://placehold.it/1600x800) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax"></div><!-- PARALLAX BACKGROUND IMAGE -->
+            <div data-velocity="-.1"
+                 style="background: url(http://placehold.it/1600x800) repeat scroll 50% 422.28px transparent;"
+                 class="parallax scrolly-invisible no-parallax"></div><!-- PARALLAX BACKGROUND IMAGE -->
             <div class="container fluid">
                 <div class="row">
                     <div class="col-lg-12">
@@ -53,8 +55,7 @@
 
     <% include ../home/job_single_part.ejs %>
 
-
- <% include ../common/footer.ejs %>
+    <% include ../common/footer.ejs %>
 
 </div>
 
@@ -76,14 +77,14 @@
 <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCYc537bQom7ajFpWE5sQaVyz1SQa9_tuY&sensor=true&libraries=places"></script>
 
 <!-- Include Date Range Picker -->
-<link rel="stylesheet" type="text/css" href="/jobhunt/css/bootstrap-datepicker.css" />
+<link rel="stylesheet" type="text/css" href="/jobhunt/css/bootstrap-datepicker.css"/>
 <script src="/jobhunt/js/bootstrap-datepicker.js" type="text/javascript"></script>
 <script>
-        $(function(){
-            $('.datepicker').datepicker({
-                format: 'mm-dd-yyyy'
-            });
+    $(function () {
+        $('.datepicker').datepicker({
+            format: 'mm-dd-yyyy'
         });
+    });
 </script>
 
 

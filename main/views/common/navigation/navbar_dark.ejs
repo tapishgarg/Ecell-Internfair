@@ -15,21 +15,7 @@
             </div>
         </div>
         <div class="responsive-opensec">
-            <div class="btn-extars">
-                <!-- <a href="#" title="" class="post-job-btn"><i class="la la-plus"></i>Post Jobs</a> -->
-                <ul class="account-btns">
-                    <!-- <div class="g-signin2" data-onsuccess="onSignIn"></div> -->
-                    <li v-if="is_verified"><a title="" href="/startup/manage"><i class="la la-key"></i>
-                            Startups</a>
-                    <li v-if="!is_verified" class="signup-popup"><a title=""><i
-                                    class="la la-key"></i> Startups</a></li>
-
-                    <li class="signin-popup" v-if="!is_signed_in"><a title=""><i class="la la-external-link-square"></i>
-                            Student</a></li>
-                    <li><a title="" onclick="signOut()" v-if="is_signed_in"><i class="la la-sign-out"></i> Sign Out</a>
-                    </li>
-                </ul>
-            </div><!-- Btn Extras -->
+            <% include navbar_btn_extra_fragment.ejs %>
             <!-- <form class="res-search">
                 <input type="text" placeholder="Job title, keywords or company name" />
                 <button type="submit"><i class="la la-search"></i></button>
@@ -72,21 +58,7 @@
                     <a href="https://esummitiitm.com/" title=""><img src="/jobhunt/images/ecell2.png" alt="" height="40"
                                                                      width="170"/></a>
                 </div><!-- Logo -->
-                <div class="btn-extars">
-                    <!-- <a href="#" title="" class="post-job-btn"><i class="la la-plus"></i>Post Jobs</a> -->
-                    <ul class="account-btns">
-                        <!-- <div class="g-signin2" data-onsuccess="onSignIn"></div> -->
-                        <li v-if="is_verified"><a title="" href="/startup/manage"><i class="la la-key"></i>
-                                Startups</a>
-                        <li v-if="!is_verified" class="signup-popup"><a title=""><i
-                                        class="la la-key"></i> Startups</a></li>
-
-                        <li class="signin-popup" v-if="!is_signed_in"><a title=""><i
-                                        class="la la-external-link-square"></i> Student</a></li>
-                        <li><a title="" onclick="signOut()" v-if="is_signed_in"><i class="la la-sign-out"></i> Sign Out</a>
-                        </li>
-                    </ul>
-                </div><!-- Btn Extras -->
+                <% include navbar_btn_extra_fragment.ejs %>
                 <nav>
                     <ul>
                         <li class="menu-item">

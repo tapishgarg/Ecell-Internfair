@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <%include ../common/header.ejs%>
+    <% include ../common/header.ejs %>
 
 </head>
 <body>
@@ -13,11 +13,13 @@
 
 <div class="theme-layout" id="scrollup">
     <!-- MENU -->
-    <% include ../common/navigationbar.ejs %>
+    <% include ../common/navigation/navbar_light.ejs %>
 
     <section class="overlape">
         <div class="block no-padding">
-            <div data-velocity="-.1" style="background: url(jobhunt/images/home4.jpeg) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax"></div><!-- PARALLAX BACKGROUND IMAGE -->
+            <div data-velocity="-.1"
+                 style="background: url(jobhunt/images/home4.jpeg) repeat scroll 50% 422.28px transparent;"
+                 class="parallax scrolly-invisible no-parallax"></div><!-- PARALLAX BACKGROUND IMAGE -->
             <div class="container fluid">
                 <div class="row">
                     <div class="col-lg-12">
@@ -33,7 +35,7 @@
     <section>
         <div class="block remove-top">
             <div class="container">
-                 <div class="row no-gape">
+                <div class="row no-gape">
                     <aside class="col-lg-3 column border-right">
                         <% include ../common/dashboard.ejs %>
                     </aside>
@@ -43,32 +45,32 @@
                                 <h3>Shortlisted Internships</h3>
                                 <table>
                                     <thead>
-                                        <tr>
-                                            <td>Applied Internships</td>
-                                            <td>Position</td>
-                                            <td>Status</td>
-                                        </tr>
+                                    <tr>
+                                        <td>Applied Internships</td>
+                                        <td>Position</td>
+                                        <td>Status</td>
+                                    </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>
-                                                <div class="table-list-title">
-                                                    <i>Massimo Artemisis</i><br />
-                                                    <span><i class="la la-map-marker"></i>Sacramento, California</span>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="table-list-title">
-                                                    <h3><a href="#" title="">Web Designer / Developer</a></h3>
-                                                </div>
-                                            </td>
+                                    <tr>
+                                        <td>
+                                            <div class="table-list-title">
+                                                <i>Massimo Artemisis</i><br/>
+                                                <span><i class="la la-map-marker"></i>Sacramento, California</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="table-list-title">
+                                                <h3><a href="#" title="">Web Designer / Developer</a></h3>
+                                            </div>
+                                        </td>
 
-                                            <td>
-                                                <div class="table-list-title">
-                                                    <h3><a href="#" title="">Web Designer / Developer</a></h3>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                        <td>
+                                            <div class="table-list-title">
+                                                <h3><a href="#" title="">Web Designer / Developer</a></h3>
+                                            </div>
+                                        </td>
+                                    </tr>
                                     </tbody>
                                 </table>
 
@@ -76,19 +78,18 @@
                         </div>
                     </div>
 
-                 </div>
+                </div>
             </div>
         </div>
     </section>
 
-<% include ../common/footer.ejs %>
+    <% include ../common/footer.ejs %>
 
 </div>
 
 <% include ../common/login.ejs %>
 
 <% include ../common/signup.ejs %>
-
 
 </body>
 </html>

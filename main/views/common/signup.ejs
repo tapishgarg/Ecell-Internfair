@@ -75,8 +75,8 @@
                 email: ""
             },
             startup_details: {
-                startup_name: "Accomox",
-                about: "Accomox",
+                startup_name: "",
+                about: "",
                 website: "",
                 logo: "",
                 poc_name: "",
@@ -147,9 +147,15 @@
                             };
                             axios.post('/db/user', reqBody)
                                 .then(function (response) {
-                                    if (response.data.errors !== undefined) {
+                                    if (response.data.errors === undefined) {
+                                        console.log("no error");
+                                        signupApp.is_registered = true;
+                                    } else if (response.data.errors !== undefined && response.data.errors[0].message !== undefined && response.data.errors[0].extensions.code === "constraint-violation") {
+                                        console.log("error");
+                                        alertify.error("Startup already registered with different account");
                                     } else {
-
+                                        console.log("random error:\n");
+                                        console.log(JSON.stringify(response.data));
                                     }
                                 })
                                 .catch(function (error) {
@@ -157,13 +163,10 @@
                                 });
                             axios.post('/db/user', reqBody2)
                                 .then(function (response) {
-                                    if (response.data.errors === undefined) {
-                                        console.log("success!");
-                                        // signupApp.is_registered = true;
-                                    } else if (response.data.errors !== undefined) {
-                                        M.toast({html: 'Startup already registered!'})
+                                    if (response.data.errors !== undefined) {
+
                                     } else {
-                                        console.log(JSON.stringify(response.data));
+
                                     }
                                 })
                                 .catch(function (error) {
