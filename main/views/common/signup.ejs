@@ -23,15 +23,15 @@
                     <!-- <i class="la la-user"></i> -->
                 </div>
                 <div class="cfield">
-                    <input type="text" placeholder="PoC Name" v-model="startup_details.startup_name"/>
+                    <input type="text" placeholder="PoC Name" v-model="startup_details.poc_name"/>
                     <!-- <i class="la la-user"></i> -->
                 </div>
                 <div class="cfield">
-                    <input type="text" placeholder="Contact No." v-model="startup_details.about"/>
+                    <input type="text" placeholder="Contact No." v-model="startup_details.contact_number"/>
                     <!-- <i class="la la-user"></i> -->
                 </div>
                 <div class="cfield">
-                    <input type="text" placeholder="Email Id" v-model="startup_details.about"/>
+                    <input type="text" placeholder="Email Id" v-model="startup_details.email_id"/>
                     <!-- <i class="la la-user"></i> -->
                 </div>
 
@@ -52,7 +52,8 @@
 
 
         <div v-if="is_registered">
-            <h3 style="color: green"> <a style="color: #0b1b46; text-decoration: underline;" href="/startup/manage">Dashboard</a></h3>
+            <h3 style="color: green"><a style="color: #0b1b46; text-decoration: underline;" href="/startup/manage">Dashboard</a>
+            </h3>
             <p>
                 Thank You For Registering!
             </p>
@@ -74,10 +75,13 @@
                 email: ""
             },
             startup_details: {
-                startup_name: "",
-                about: "",
+                startup_name: "Accomox",
+                about: "Accomox",
                 website: "",
-                logo: ""
+                logo: "",
+                poc_name: "",
+                contact_number: "",
+                email_id: ""
             }
         },
         methods: {
@@ -117,55 +121,59 @@
             },
             save_startup_details: () => {
                 if (signupApp.startup_details.startup_name === "" || signupApp.startup_details.startup_name === undefined) {
-                    alert("fill startup name!");
+                    alertify.error("fill startup name!");
                 } else if (signupApp.startup_details.about === "" || signupApp.startup_details.about === undefined) {
-                    alert("fill startup details!");
+                    alertify.error("fill startup details!");
                 } else if (Cookies.get('auth_details') === undefined || Cookies.get('auth_details') === null) {
-                    alert("Sign in please!");
+                    alertify.error("Sign in please!");
                 } else {
+                    alertify.confirm("You can't change your data later on so make sure all the data entered here are correct and properly filled",
+                        function () {
+                            let reqBody = {
+                                query_string: 'mutation save_startup_details {\n' +
+                                    '  insert_startup_details(objects: [{startup_name: "' + signupApp.startup_details.startup_name + '", about: "' + signupApp.startup_details.about + '", website: "' + signupApp.startup_details.website + '", logo_url: "' + signupApp.startup_details.logo + '", poc_name: "' + signupApp.startup_details.poc_name + '", contact_number: "' + signupApp.startup_details.contact_number + '", email_id: "' + signupApp.startup_details.email_id + '", user_h_id: "' + JSON.parse(Cookies.get('auth_details')).h_id + '"}]) {\n' +
+                                    '    returning {\n' +
+                                    '      id\n' +
+                                    '    }\n' +
+                                    '  }\n' +
+                                    '}\n'
+                            };
+                            let reqBody2 = {
+                                query_string: 'mutation save_startup_name {\n' +
+                                    '  update_user_detail(where: {user_h_id: {_eq: "' + JSON.parse(Cookies.get('auth_details')).h_id + '"}}, _set: {startup_name: "' + signupApp.startup_details.startup_name + '"}) {\n' +
+                                    '    affected_rows\n' +
+                                    '  }\n' +
+                                    '}\n'
+                            };
+                            axios.post('/db/user', reqBody)
+                                .then(function (response) {
+                                    if (response.data.errors !== undefined) {
+                                    } else {
 
-                    let reqBody = {
-                        query_string: 'mutation save_startup_details {\n' +
-                            '  insert_startup_details(objects: [{startup_name: "' + signupApp.startup_details.startup_name + '", about: "' + signupApp.startup_details.about + '", website: "' + signupApp.startup_details.website + '", logo_url: "' + signupApp.startup_details.logo + '", user_h_id: "' + JSON.parse(Cookies.get('auth_details')).h_id + '"}]) {\n' +
-                            '    returning {\n' +
-                            '      id\n' +
-                            '    }\n' +
-                            '  }\n' +
-                            '}\n'
-                    };
-                    let reqBody2 = {
-                        query_string: 'mutation save_startup_name {\n' +
-                            '  update_user_detail(where: {user_h_id: {_eq: "' + JSON.parse(Cookies.get('auth_details')).h_id + '"}}, _set: {startup_name: "' + signupApp.startup_details.startup_name + '"}) {\n' +
-                            '    affected_rows\n' +
-                            '  }\n' +
-                            '}\n'
-                    };
-                    axios.post('/db/user', reqBody)
-                        .then(function (response) {
-                            console.log(JSON.stringify(response.data));
-                            if (response.data.data !== undefined) {
-                                console.log("success!");
-                                signupApp.is_registered = true;
-                            } else {
+                                    }
+                                })
+                                .catch(function (error) {
+                                    console.log(error);
+                                });
+                            axios.post('/db/user', reqBody2)
+                                .then(function (response) {
+                                    if (response.data.errors === undefined) {
+                                        console.log("success!");
+                                        // signupApp.is_registered = true;
+                                    } else if (response.data.errors !== undefined) {
+                                        M.toast({html: 'Startup already registered!'})
+                                    } else {
+                                        console.log(JSON.stringify(response.data));
+                                    }
+                                })
+                                .catch(function (error) {
+                                    console.log(error);
+                                });
+                        },
+                        function () {
+                        }).setHeader('<em> Ecell says </em> ');
 
-                            }
-                        })
-                        .catch(function (error) {
-                            console.log(error);
-                        });
-                    axios.post('/db/user', reqBody2)
-                        .then(function (response) {
-                            console.log(JSON.stringify(response.data));
-                            if (response.data.data !== undefined) {
-                                console.log("success!");
-                                signupApp.is_registered = true;
-                            } else {
 
-                            }
-                        })
-                        .catch(function (error) {
-                            console.log(error);
-                        });
                 }
             },
             check_is_signed_in: () => {
