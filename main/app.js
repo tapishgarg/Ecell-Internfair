@@ -3,6 +3,7 @@ let express = require('express');
 let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
+const helmet = require('helmet')
 
 let indexRouter = require('./routes/index');
 let dbRouter = require('./routes/db');
@@ -22,6 +23,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(helmet())
 
 app.use('/', indexRouter);
 app.use('/db', dbRouter);
