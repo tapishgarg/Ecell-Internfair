@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8f5f8ba0-1585-465f-80a4-1271d2ddb1e9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/main/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/main/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/views/common/header.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/main/views/common/header.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/views/common/navigation/navbar_btn_extra_fragment.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/main/views/common/navigation/navbar_btn_extra_fragment.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/views/common/signup.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/main/views/common/signup.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/views/single/error.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/main/views/single/error.ejs" afterDir="false" />
-    </list>
+    <list default="true" id="8f5f8ba0-1585-465f-80a4-1271d2ddb1e9" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -35,7 +26,17 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/main/views/common/navigation/navbar_btn_extra_fragment.ejs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="7" column="108" selection-start-line="7" selection-start-column="105" selection-end-line="7" selection-end-column="108" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -133,6 +134,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -170,7 +172,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -224,6 +225,7 @@
       <workItem from="1549212951609" duration="1458000" />
       <workItem from="1549252205576" duration="3232000" />
       <workItem from="1549449229351" duration="23818000" />
+      <workItem from="1549651773215" duration="255000" />
     </task>
     <task id="LOCAL-00001" summary="example added">
       <created>1548483647435</created>
@@ -502,7 +504,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="58451000" />
+    <option name="totallyTimeSpent" value="58706000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -515,8 +517,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2746781" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27825466" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="DB Browser" order="2" weight="0.3297568" />
       <window_info id="Project Explorer" order="3" />
@@ -534,7 +537,7 @@
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32909784" />
       <window_info anchor="bottom" id="DB Execution Console" order="10" />
       <window_info anchor="bottom" id="Database Changes" order="11" />
-      <window_info anchor="bottom" id="Terminal" order="12" weight="0.3181818" />
+      <window_info anchor="bottom" id="Terminal" order="12" visible="true" weight="0.3181818" />
       <window_info anchor="bottom" id="Event Log" order="13" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -578,13 +581,7 @@
     <entry file="file://$PROJECT_DIR$/.dockerignore">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/views/home/offered_internship_list.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="41" column="117" selection-start-line="41" selection-start-column="117" selection-end-line="41" selection-end-column="117" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/main/views/home/offered_internship_list.ejs" />
     <entry file="file://$PROJECT_DIR$/main/views/common/login.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -633,9 +630,6 @@
           <caret line="16" column="30" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="30" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/views/common/dashboard.ejs">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/main/views/common/footer.ejs">
       <provider selected="true" editor-type-id="text-editor">
@@ -714,13 +708,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/views/single/tapish.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/main/views/single/tapish.ejs" />
     <entry file="file://$PROJECT_DIR$/main/views/home/whyintern.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="199">
@@ -847,13 +835,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/views/common/navigation/navbar_dark.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="397">
-          <caret line="94" selection-start-line="94" selection-end-line="94" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main/views/single/error.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -886,6 +867,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/main/views/common/navigation/navbar_dark.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="427">
+          <caret line="94" selection-start-line="94" selection-end-line="94" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/views/common/dashboard.ejs">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/main/views/common/navigation/logic_script.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -895,8 +886,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main/views/common/navigation/navbar_btn_extra_fragment.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="95" selection-start-line="4" selection-start-column="95" selection-end-line="4" selection-end-column="95" />
+        <state relative-caret-position="105">
+          <caret line="7" column="108" selection-start-line="7" selection-start-column="105" selection-end-line="7" selection-end-column="108" />
         </state>
       </provider>
     </entry>
