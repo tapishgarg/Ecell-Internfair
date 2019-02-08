@@ -21,13 +21,40 @@
         <div class="block no-padding">
             <div class="container">
                 <div class="row no-gape">
-                    <% include manage_fragment.ejs %>
+                    <section>
+                        <div class="block no-padding">
+                            <div class="container">
+                                <div class="row no-gape">
+                                    <aside class="col-lg-3 column border-right">
+
+                                        <% include menu.ejs %>
+
+                                    </aside>
+                                    <% include details_fragment.ejs %>
+                                    <% include applied_internship_fragment.ejs %>
+                                    <% include shortlisted_intenship_fragment.ejs %>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
                 </div>
             </div>
         </div>
     </section>
     <% include ../../common/footer.ejs %>
 </div>
+<script>
+    let ids = ["student_info_app", "applied_internship_app","shortlisted_internship_app"];
+    let select_fragment = (id) => {
+        for (let i = 0; i < ids.length; i++) {
+            if (id === ids[i]) {
+                document.getElementById(ids[i]).style.display = "block";
+            } else {
+                document.getElementById(ids[i]).style.display = "none";
+            }
+        }
+    }
+</script>
 
 
 </body>
