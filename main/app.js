@@ -1,14 +1,17 @@
-let createError = require('http-errors');
-let express = require('express');
-let path = require('path');
-let cookieParser = require('cookie-parser');
-let logger = require('morgan');
-const helmet = require('helmet')
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const helmet = require('helmet');
 
-let indexRouter = require('./routes/index');
-let dbRouter = require('./routes/db');
-let startupRouter = require('./routes/startup');
-let adminRouter = require('./routes/admin');
+
+const indexRouter = require('./routes/index');
+const dbRouter = require('./routes/db');
+const startupRouter = require('./routes/startup');
+const adminRouter = require('./routes/admin');
+const studentRouter = require('./routes/student');
+
 
 
 
@@ -23,12 +26,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(helmet())
+app.use(helmet());
 
 app.use('/', indexRouter);
 app.use('/db', dbRouter);
 app.use('/startup', startupRouter);
 app.use('/admin', adminRouter);
+app.use('/student', studentRouter);
+
 
 
 // catch 404 and forward to error handler
