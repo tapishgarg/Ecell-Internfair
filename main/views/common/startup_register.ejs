@@ -20,7 +20,8 @@
                 </div>
 
                 <div class="cfield">
-                    <textarea style="margin-bottom: 20px; font-size: 13px;" placeholder="About the Startup" v-model="startup_details.about" rows="1" cols="1" ></textarea>
+                    <textarea style="margin-bottom: 20px; font-size: 13px;" placeholder="About the Startup"
+                              v-model="startup_details.about" rows="1" cols="1"></textarea>
                     <!-- <i class="la la-user"></i> -->
                 </div>
                 <br>
@@ -54,7 +55,8 @@
 
 
         <div v-if="is_registered">
-            <h5 style="color: green"><a style="color: #0b1b46;" href="/startup/manage">Startup dashboard <i class="fas fa-link"></i></a>
+            <h5 style="color: green"><a style="color: #0b1b46;" href="/startup/manage">Startup dashboard <i
+                            class="fas fa-link"></i></a>
             </h5>
             <p>
                 Thank You For Registering!
@@ -91,7 +93,7 @@
                 let reqBody = {
                     query_string: '{\n' +
                         '  user_detail(where: {user_h_id: {_eq: "' + JSON.parse(Cookies.get('auth_details')).h_id + '"}}) {\n' +
-                        '    startupDetailsBystartupName {\n' +
+                        '    startupDetailsBystartupId {\n' +
                         '      id\n' +
                         '      startup_name\n' +
                         '      is_verified\n' +
@@ -103,9 +105,9 @@
                     .then(function (response) {
                         if (response.data.data !== undefined) {
                             console.log(JSON.stringify(response.data.data));
-                            if (response.data.data.user_detail[0].startupDetailsBystartupName !== null) {
+                            if (response.data.data.user_detail[0].startupDetailsBystartupId !== null) {
                                 signupApp.is_registered = true;
-                                Cookies.set('startup_details', JSON.stringify(response.data.data.user_detail[0].startupDetailsBystartupName));
+                                Cookies.set('startup_details', JSON.stringify(response.data.data.user_detail[0].startupDetailsBystartupId));
                                 navigation_app.check_is_verified();
                             } else {
                                 signupApp.is_registered = false;
@@ -136,22 +138,40 @@
                                     '  insert_startup_details(objects: [{startup_name: "' + signupApp.startup_details.startup_name + '", about: "' + signupApp.startup_details.about + '", website: "' + signupApp.startup_details.website + '", logo_url: "' + signupApp.startup_details.logo + '", poc_name: "' + signupApp.startup_details.poc_name + '", contact_number: "' + signupApp.startup_details.contact_number + '", email_id: "' + signupApp.startup_details.email_id + '", user_h_id: "' + JSON.parse(Cookies.get('auth_details')).h_id + '"}]) {\n' +
                                     '    returning {\n' +
                                     '      id\n' +
+                                    '      is_verified\n' +
                                     '    }\n' +
                                     '  }\n' +
                                     '}\n'
                             };
-                            let reqBody2 = {
-                                query_string: 'mutation save_startup_name {\n' +
-                                    '  update_user_detail(where: {user_h_id: {_eq: "' + JSON.parse(Cookies.get('auth_details')).h_id + '"}}, _set: {startup_name: "' + signupApp.startup_details.startup_name + '"}) {\n' +
-                                    '    affected_rows\n' +
-                                    '  }\n' +
-                                    '}\n'
-                            };
+
                             axios.post('/db/user', reqBody)
                                 .then(function (response) {
                                     if (response.data.errors === undefined) {
-                                        console.log("no error");
-                                        signupApp.is_registered = true;
+                                        console.log(response.data.data.insert_startup_details.returning[0].is_verified);
+
+                                        navigation_app.is_verified = response.data.data.insert_startup_details.returning[0].is_verified;
+
+                                        let reqBody2 = {
+                                            query_string: 'mutation save_startup_name {\n' +
+                                                '  update_user_detail(where: {user_h_id: {_eq: "' + JSON.parse(Cookies.get('auth_details')).h_id + '"}}, _set: {startup_id: ' + response.data.data.insert_startup_details.returning[0].id + '}) {\n' +
+                                                '    affected_rows\n' +
+                                                '  }\n' +
+                                                '}\n'
+                                        };
+
+                                        axios.post('/db/user', reqBody2)
+                                            .then(function (response) {
+                                                if (response.data.errors === undefined) {
+                                                    signupApp.is_registered = true;
+                                                } else {
+
+                                                }
+                                            })
+                                            .catch(function (error) {
+                                                console.log(error);
+                                            });
+
+
                                     } else if (response.data.errors !== undefined && response.data.errors[0].message !== undefined && response.data.errors[0].extensions.code === "constraint-violation") {
                                         console.log("error");
                                         alertify.error("Startup already registered with different account");
@@ -163,17 +183,7 @@
                                 .catch(function (error) {
                                     console.log(error);
                                 });
-                            axios.post('/db/user', reqBody2)
-                                .then(function (response) {
-                                    if (response.data.errors !== undefined) {
 
-                                    } else {
-
-                                    }
-                                })
-                                .catch(function (error) {
-                                    console.log(error);
-                                });
                         },
                         function () {
                         }).setHeader('<em> Ecell says </em> ');
