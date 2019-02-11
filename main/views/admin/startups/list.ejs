@@ -1,96 +1,291 @@
 <div class="col-lg-12 column" id="startup_manage_app">
 
 
-    <div style="display: inline-flex; justify-content: left">
-        <div class="manage-jobs-sec">
+    <div>
+        <div>
+            <div class="profile-title">
             <h3>Startups</h3>
+            </div>
+           
+            <div class="form-group pull-right">
+                <input type="text" class="search form-control" placeholder="What you looking for?">
+                </div>
+                <span class="counter pull-right"></span>
+                <table class="table table-hover table-bordered results ">
+                  <thead>
+                    <tr>
+                      <th class="col-md-2 col-xs-2">Name</th>
+                      <th class="col-md-2 col-xs-2">Profile</th>
+                      <th class="col-md-2 col-xs-2">View</th>
+                      <th class="col-md-2 col-xs-2">Status</th>
+                      <th class="col-md-2 col-xs-2">Applications</th>
+                      <th class="col-md-2 col-xs-2">Pending</th>
+                      <th class="col-md-2 col-xs-2">Accepted</th>
+                      <th class="col-md-2 col-xs-2">Delete</th>
+                    </tr>
+                    
+                  </thead>
+                  <tfoot>
+                      <tr class="warning no-result">
+                      <td colspan="12"><i class="fa fa-warning"></i> No result</td>
+                    </tr>
+                  </tfoot>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Rahul Agarwal</th>
+                      <td>Editor</td>
+                      <td>Application</td>
+                      <td>Pending</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+
             
-            <table>
-                <thead>
-                <tr >
-                    <td>Name</td>
-                    <td>Profile</td>
-                    <td>View</td>
-                    <td>Status</td>
-                    <td>Applications</td>
-                    <td>Pending</td>
-                    <td>Accepted</td>
-                    <td>Delete</td>
-                </tr>
-                </thead>
-                <tbody>
-                <tr v-for="offered_internship in offered_internship_list">
-                    <td>
-                        <div class="table-list-title">
-                            <h3><a href="#" title="">{{offered_internship.internship_profile}}</a></h3>
-                            <span><i class="la la-map-marker"></i>{{offered_internship.location}}</span>
-                        </div>
-                    </td>
-                    <td>
-                        <span class="applied-field">0 Applied</span>
-                    </td>
-
-
-                    <td>
-                        <ul class="action_job">
-                            <li><span>View Job</span><a href="#" title="" onclick="alert('This is temporarily locked')"><i
-                                            class="la la-eye"></i></a></li>
-                            <li><span>Edit</span><a href="#" title="" onclick="alert('This is temporarily locked')"><i
-                                            class="la la-pencil"></i></a></li>
-                            <li><span>Delete</span><a href="#" title="" onclick="alert('This is temporarily locked')"><i
-                                            class="la la-trash-o"></i></a></li>
-                        </ul>
-                    </td>
-                    <td>
-                        <span class="applied-field"> {{offered_internship.status}}</span>
-                    </td>
-                </tr>
-
-                </tbody>
-            </table>
         </div>
     </div>
 </div>
 
-<script>
-    let startup_manage_app = new Vue({
-        el: "#startup_manage_app",
-        data: {
-            offered_internship_list: []
-        },
-        methods: {
-            load_offered_internship_list: () => {
-                let reqBody = {
-                    query_string: '{\n' +
-                        '  startup_post(where: {startup_details_id: {_eq: ' + JSON.parse(Cookies.get('startup_details')).id + '}}) {\n' +
-                        '    internship_profile\n' +
-                        '    location\n' +
-                        '    status\n' +
-                        '  }\n' +
-                        '}\n'
-                };
-                axios.post('/db/user', reqBody)
-                    .then(function (response) {
-                        console.log(response.data)
-                        if (response.data.data !== undefined) {
-                            console.log("joeydash")
+<style>
+    
 
-                            console.log(JSON.stringify(response.data));
-                            startup_manage_app.offered_internship_list = response.data.data.startup_post;
-                        } else {
+$breakpoint-alpha: 480px; // adjust to your needs
 
-                        }
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
+.container-table100 {
+  width: 100%;
+  min-height: 100vh;
+  background: #bbb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+
+.rwd-table {
+  margin: 1em 0;
+  min-width: 320px; // adjust to your needs
+    background:#eee;
+    td{
+        &:before {
+            content: attr(data-th) "--";
+            font-weight: bold;
+            width: 10em;
+            display: inline-block;
+            @media (min-width: 480px) {
+            display: none;
             }
-        }, mounted: function () {
-            this.$nextTick(function () {
-
-                this.load_offered_internship_list();
-
-            })
         }
-    });
+
+    }
+}
+
+
+/*//////////////////////////////////////////////////////////////////
+[ Table ]*/
+
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+.container-table100 {
+  width: 100%;
+  min-height: 100vh;
+  background:#bbb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+    padding:20px;
+}
+
+table {
+  border-spacing: 1;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+table * {
+  position: relative;
+}
+table td, table th {
+  padding-left: 8px;
+}
+table thead tr {
+  height: 60px;
+  background: #ff0f6f;
+}
+table tbody tr {
+  height: 50px;
+}
+table tbody tr:last-child {
+  border: 0;
+}
+table td, table th {
+  text-align: left;
+}
+
+
+
+.table100-head th{
+  font-family: OpenSans-Regular;
+  font-size: 18px;
+  color: #fff;
+  line-height: 1.2;
+  font-weight: unset;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f5f5f5;
+}
+
+tbody tr {
+  font-family: OpenSans-Regular;
+  font-size: 15px;
+  color: #808080;
+  line-height: 1.2;
+  font-weight: unset;
+}
+
+tbody tr:hover {
+  color: #555555;
+  background-color: #f5f5f5;
+  cursor: pointer;
+}
+
+.column1 {
+  width: 260px;
+  padding-left: 40px;
+}
+
+.column2 {
+  width: 160px;
+}
+
+.column3 {
+  width: 245px;
+}
+
+.column4 {
+  width: 110px;
+  text-align: right;
+    padding-right: 40px;
+}
+
+.column5 {
+  width: 170px;
+  text-align: right;
+}
+
+.column6 {
+  width: 222px;
+  text-align: right;
+  padding-right: 62px;
+}
+
+
+@media screen and (max-width: 480px) {
+  table {
+    display: block;
+  }
+  table > *, table tr, table td, table th {
+    display: block;
+  }
+  table thead {
+    display: none;
+  }
+  table tbody tr {
+    height: auto;
+    padding: 30px 0;
+  }
+  table tbody tr td {
+    padding-left: 40% !important;
+    margin-bottom: 24px;
+  }
+  table tbody tr td:last-child {
+    margin-bottom: 0;
+  }
+  table tbody tr td:before {
+    font-family: OpenSans-Regular;
+    font-size: 14px;
+    color: #4bdd6c;
+    line-height: 1.2;
+    font-weight: unset;
+    position: absolute;
+    width: 40%;
+    left: 30px;
+    top: 0;
+  }
+
+
+  .column4,
+  .column5,
+  .column6 {
+    text-align: left;
+  }
+
+  .column4,
+  .column5,
+  .column6,
+  .column1,
+  .column2,
+  .column3 {
+    width: 100%;
+  }
+
+  tbody tr {
+    font-size: 14px;
+  }
+}
+
+
+.results tr[visible='false'],
+.no-result{
+  display:none;
+}
+
+.results tr[visible='true']{
+  display:table-row;
+}
+
+.counter{
+  padding:8px; 
+  color:#ccc;
+}
+
+</style>
+
+<script>
+    $(document).ready(function() {
+  $(".search").keyup(function () {
+    var searchTerm = $(".search").val();
+    var listItem = $('.results tbody').children('tr');
+    var searchSplit = searchTerm.replace(/ /g, "'):containsi('")
+    
+  $.extend($.expr[':'], {'containsi': function(elem, i, match, array){
+        return (elem.textContent || elem.innerText || '').toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
+    }
+  });
+    
+  $(".results tbody tr").not(":containsi('" + searchSplit + "')").each(function(e){
+    $(this).attr('visible','false');
+  });
+
+  $(".results tbody tr:containsi('" + searchSplit + "')").each(function(e){
+    $(this).attr('visible','true');
+  });
+
+  var jobCount = $('.results tbody tr[visible="true"]').length;
+    $('.counter').text(jobCount + ' item');
+
+  if(jobCount == '0') {$('.no-result').show();}
+    else {$('.no-result').hide();}
+          });
+});
 </script>
