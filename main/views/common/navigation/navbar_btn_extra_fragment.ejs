@@ -4,7 +4,7 @@
         <!-- <div class="g-signin2" data-onsuccess="onSignIn"></div> -->
         <li v-if="is_verified"><a title="" href="/startup/manage"><i class="fas fa-laptop"></i>Dashboard</a>
         <li v-if="!is_verified" class="signup-popup"><a title=""><i class="fas fa-building"></i> Startups</a></li>
-        <li v-if="!is_verified" class="signup-popup-student"><a title=""><i class="fas fa-user-graduate"></i> Student</a></li>
+        <li v-if="!is_verified" class="signin-popup"><a title=""><i class="fas fa-user-graduate"></i> Student</a></li>
         <li><a title="" onclick="signOut()" v-if="is_signed_in"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
         </li>
     </ul>

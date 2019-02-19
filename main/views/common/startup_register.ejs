@@ -55,7 +55,7 @@
 
 
         <div v-if="is_registered">
-            <h5 style="color: green"><a style="color: #0b1b46;" href="/startup/manage">Startup dashboard <i
+            <h5 style="color: green"><a style="color: #0b1b46;" href="/startup/manage">Thank You For Registering!<i
                             class="fas fa-link"></i></a>
             </h5>
             <p>
@@ -232,7 +232,7 @@
                         .then(function (response) {
                             if (response.data.data !== undefined) {
                                 signupApp.check_is_registered();
-
+                                navigation_app.is_signed_in = true;
                             } else {
                             }
                         })
