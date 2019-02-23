@@ -94,7 +94,7 @@
                             if (response.data.data.student_details.length > 0) {
                                 student_register_fragment.is_registered = true;
                                 student_register_fragment.students_details = response.data.data.student_details[0];
-
+                                Cookies.set('student_details', JSON.stringify(response.data.data.student_details[0]));
                             }
                         } else {
 
