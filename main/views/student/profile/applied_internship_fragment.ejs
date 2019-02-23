@@ -44,7 +44,7 @@
                     <!--</td>-->
                     <td>
                         <ul class="action_job">
-                            <li onclick="alert('currently unavailable')"><span>Delete</span><a href="#" title=""><i
+                            <li @click="delete_applied_internship(internship.id)"><span>Delete</span><a href="#" title=""><i
                                             class="la la-trash-o"></i></a></li>
                         </ul>
                     </td>
@@ -74,6 +74,7 @@
                     query_string: '{\n' +
                         '  internship_apply_table(where: {student_id: {_eq: ' + applied_internship_app.students_details.id + '}}) {\n' +
                         '    internship_id\n' +
+                        '    id\n' +
                         '    startupPostByinternshipId {internship_profile\n' +
                         '    location\n' +
                         '      startupDetailsBystartupDetailsId{\n' +
@@ -89,6 +90,30 @@
                         if (response.data.data !== undefined) {
                             if (response.data.data.internship_apply_table.length > 0) {
                                 applied_internship_app.internship_applied_list = response.data.data.internship_apply_table;
+                            }
+                        } else {
+
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            },
+            delete_applied_internship : (id)=>{
+                console.log(id);
+                let reqBody = {
+                    query_string: 'mutation {\n' +
+                        '  delete_internship_apply_table(where: {id: {_eq: '+id+'}}) {\n' +
+                        '    affected_rows\n' +
+                        '  }\n' +
+                        '}'
+                };
+                axios.post('/db/user', reqBody)
+                    .then(function (response) {
+                        console.log(JSON.stringify(response.body));
+                        if (response.data.data !== undefined) {
+                            if (response.data.data.delete_internship_apply_table.affected_rows> 0) {
+                                applied_internship_app.get_all_applied_internship_list();
                             }
                         } else {
 

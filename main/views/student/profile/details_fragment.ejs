@@ -76,6 +76,41 @@
     </div>
 </div>
 <script>
+    /* Start client-defined Callback Handler Functions */
+    function onOpenHandler () {
+        alert('Payments Modal is Opened');
+    }
+
+    function onCloseHandler () {
+        alert('Payments Modal is Closed');
+    }
+
+    function onPaymentSuccessHandler (response) {
+        alert('Payment Success');
+        console.log('Payment Success Response', response);
+    }
+
+    function onPaymentFailureHandler (response) {
+        alert('Payment Failure');
+        console.log('Payment Failure Response', response);
+    }
+    /* End client-defined Callback Handler Functions */
+
+    /* Configuring Handlers */
+    Instamojo.configure({
+        handlers: {
+            onOpen: onOpenHandler,
+            onClose: onCloseHandler,
+            onSuccess: onPaymentSuccessHandler,
+            onFailure: onPaymentFailureHandler
+        }
+    });
+
+    function onButtonClick() {
+        Instamojo.open('http://www.instamojo.com/@ayushya');
+    }
+</script>
+<script>
     let student_info_app = new Vue({
         el: "#student_info_app",
         data: {
