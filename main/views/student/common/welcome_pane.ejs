@@ -15,14 +15,14 @@
     </div>
 </section>
 <script>
-    // let welcome_pane_app = new Vue({
-    //     el: "#welcome_pane_app",
-    //     data: {
-    //         startup_name: ""
-    //     }, mounted: function () {
-    //         this.$nextTick(function () {
-    //             this.startup_name = JSON.parse(Cookies.get('startup_details')).startup_name;
-    //         })
-    //     }
-    // });
+    let welcome_pane_app = new Vue({
+        el: "#welcome_pane_app",
+        data: {
+            startup_name: ""
+        }, mounted: function () {
+            this.$nextTick(function () {
+                this.startup_name = JSON.parse(Cookies.get('user_details')).name;
+            })
+        }
+    });
 </script>

@@ -11,6 +11,8 @@ const dbRouter = require('./routes/db');
 const startupRouter = require('./routes/startup');
 const adminRouter = require('./routes/admin');
 const studentRouter = require('./routes/student');
+const paymentRouter = require('./routes/payment');
+
 
 
 
@@ -33,6 +35,7 @@ app.use('/db', dbRouter);
 app.use('/startup', startupRouter);
 app.use('/admin', adminRouter);
 app.use('/student', studentRouter);
+app.use('/payment', paymentRouter);
 
 
 

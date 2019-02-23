@@ -3,6 +3,7 @@ const router = express.Router();
 const joeygql = require('joeygql');
 
 const cloudinary = require('cloudinary');
+const request = require('request');
 
 const config = require('./config');
 
@@ -63,6 +64,5 @@ router.post('/:role', function (req, res, next) {
     console.log(req.body.query_string);
     joeygql.requestDBWithRole(req.params.role, JSON.parse(req.cookies.auth_details).auth_token, req.body.query_string).then(data => res.json(data)).catch(e => res.json(e));
 });
-
 
 module.exports = router;

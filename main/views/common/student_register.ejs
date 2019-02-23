@@ -1,33 +1,146 @@
-<div class="account-popup-area signin-popup-box">
+<div class="account-popup-area signin-popup-box" id="student_register_fragment">
     <div class="account-popup">
-        <span class="close-popup"><i class="la la-close"></i></span>
-        <h3>User Login</h3>
-        <span>Click To Login With Demo User</span>
-        <div class="select-user">
-            <span>Candidate</span>
-            <span>Employer</span>
-        </div>
-        <form>
-            <div class="cfield">
-                <input type="text" placeholder="Username" />
-                <i class="la la-user"></i>
-            </div>
-            <div class="cfield">
-                <input type="password" placeholder="********" />
-                <i class="la la-key"></i>
-            </div>
-            <p class="remember-label">
-                <input type="checkbox" name="cb" id="cb1"><label for="cb1">Remember me</label>
-            </p>
-            <a href="#" title="">Forgot Password?</a>
-            <button type="submit">Login</button>
-        </form>
-        <div class="extra-login">
-            <span>Or</span>
-            <div class="login-social">
-                <a class="fb-login" href="#" title=""><i class="fa fa-facebook"></i></a>
-                <a class="tw-login" href="#" title=""><i class="fa fa-twitter"></i></a>
-            </div>
-        </div>
+        <!--<span class="close-popup"><i class="la la-close"></i></span>-->
+
+        <!--<div v-if="!is_registered && is_signed_in">-->
+            <!--<form id="student_form">-->
+                <!--<div class="cfield">-->
+                    <!--<input type="text" placeholder="Full Name" v-model="students_details.full_name"/>-->
+                <!--</div>-->
+                <!--<div class="cfield">-->
+                    <!--<input type="text" placeholder="Roll Number" v-model="students_details.roll_num"/>-->
+                <!--</div>-->
+                <!--<div class="cfield">-->
+                    <!--<input type="text" placeholder="Phone Number" v-model="students_details.contact_number"/>-->
+                <!--</div>-->
+
+            <!--</form>-->
+            <!--<p>You have to pay 250 rupees for registering</p>-->
+            <!--<button @click="get_payment_request" style="cursor: pointer;background: #0b1b46; color: white;"> Register-->
+            <!--</button>-->
+        <!--</div>-->
+        <!--<div>-->
+
+        <!--</div>-->
+        <!--<div v-if="!is_signed_in">-->
+            <!--<div class="g-signin2" data-onsuccess="onSignIn" style="display: flex; justify-content: center;"></div>-->
+
+        <!--</div>-->
+        The registration starts tonight
+
     </div>
 </div>
+
+<script>
+    let student_register_fragment = new Vue({
+        el: "#student_register_fragment",
+        data: {
+            is_signed_in: false,
+            is_registered: false,
+            students_details: {
+                full_name: "",
+                roll_num: "",
+                contact_number: "",
+                payment_link: "",
+                payment_request_id: ""
+            }
+        },
+        methods: {
+            save_student_details: () => {
+                if (student_register_fragment.check_form()) {
+                    let reqBody = {
+                        query_string: 'mutation {\n' +
+                            '  insert_student_details(objects: {full_name: "' + student_register_fragment.students_details.full_name + '", roll_num: "' + student_register_fragment.students_details.roll_num + '", contact_number: "' + student_register_fragment.students_details.contact_number + '", payment_link: "' + student_register_fragment.students_details.payment_link + '", payment_request_id: "' + student_register_fragment.students_details.payment_request_id + '", user_hid: "' + JSON.parse(Cookies.get('auth_details')).h_id + '"}) {\n' +
+                            '    affected_rows\n' +
+                            '  }\n' +
+                            '}'
+                    };
+
+                    axios.post('/db/user', reqBody)
+                        .then(function (response) {
+                            if (response.data.errors === undefined) {
+                                if (response.data.data.insert_student_details.affected_rows) {
+                                    student_register_fragment.is_registered = true;
+                                    location.href = '/student/profile';
+                                }
+                            } else {
+
+                            }
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                }
+            },
+            get_students_details: () => {
+                let reqBody = {
+                    query_string: '{\n' +
+                        '  student_details(where: {user_hid: {_eq: "' + JSON.parse(Cookies.get('auth_details')).h_id + '"}}) {\n' +
+                        '    full_name\n' +
+                        '    roll_num\n' +
+                        '    contact_number\n' +
+                        '  }\n' +
+                        '}\n'
+                };
+
+                axios.post('/db/user', reqBody)
+                    .then(function (response) {
+                        console.log(JSON.stringify(response.data));
+                        if (response.data.errors === undefined) {
+                            if (response.data.data.student_details.length > 0) {
+                                student_register_fragment.is_registered = true;
+                                student_register_fragment.students_details = response.data.data.student_details[0];
+
+                            }
+                        } else {
+
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            },
+            check_form: () => {
+                let keys = Object.keys(student_register_fragment.students_details);
+                for (let i = 0; i < keys.length; i++) {
+                    if (student_register_fragment.students_details[keys[i]] === '') {
+                        alert("Fill all required fields");
+                        console.log("false");
+                        return false;
+                    } else if (i === keys.length - 1) {
+                        console.log("true");
+                        return true
+                    }
+                }
+            },
+            get_payment_request: () => {
+                let reqBody = {
+                    phone: student_register_fragment.students_details.contact_number,
+                    buyer_name: student_register_fragment.students_details.full_name,
+                    email: signupApp.user_details.email
+                };
+
+                axios.post('/payment/get_payment_link', reqBody)
+                    .then(function (response) {
+                        if (JSON.parse(response.data).success === true) {
+                            console.log(response.data);
+                            student_register_fragment.students_details.payment_request_id = JSON.parse(response.data).payment_request.id;
+                            student_register_fragment.students_details.payment_link = JSON.parse(response.data).payment_request.longurl;
+                            student_register_fragment.save_student_details();
+                        } else {
+                            alert("Enter proper detail");
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            }
+        }, mounted: function () {
+            this.$nextTick(function () {
+                if (Cookies.get('auth_details') !== undefined) {
+                    this.get_students_details()
+                }
+            })
+        }
+    });
+</script>
