@@ -59,9 +59,9 @@
                                         :href="startup_post.startupDetailsBystartupDetailsId.website">{{startup_post.startupDetailsBystartupDetailsId.website}}</a>
                             </p>
                         </div>
-                        <a title="" class="apply-job-btn" v-if="is_paid"><i
-                                    class="la la-paper-plane" v-if="!is_paid"></i>Apply</a>
-                        <p>You need pay before you apply for internship</p>
+                        <a title="" class="apply-job-btn" v-if="students_details.is_paid" @click="apply_internship"><i
+                                    class="la la-paper-plane"></i>Apply</a>
+                        <a v-if="!students_details.is_paid" href="/student/profile" style="color: #0b1b46;font-size: small"><i class="fas fa-info-circle"></i> You need pay ₹250 before you apply for internship</a>
                     </div><!-- Job Head -->
                 </div>
             </div>
@@ -73,6 +73,10 @@
     let internship_detail_fragment = new Vue({
         el: "#internship_detail_fragment",
         data: {
+            students_details : {
+                is_paid : false,
+                id : 0
+            },
             is_paid : false,
             startup_post: {
                 id: 0,
@@ -145,12 +149,36 @@
                     });
 
             },
-            edit_internship: (id) => {
-                location.href = "/startup/edit_internship/" + id;
-            }
+            apply_internship : ()=>{
+                let reqBody = {
+                    query_string: 'mutation {\n' +
+                        '  insert_internship_apply_table(objects: {student_id: '+internship_detail_fragment.students_details.id+', internship_id: '+internship_detail_fragment.startup_post.id+', resume_url: "blah blah"}) {\n' +
+                        '    affected_rows\n' +
+                        '  }\n' +
+                        '}\n'
+                };
+                axios.post('/db/user', reqBody)
+                    .then(function (response) {
+                        console.log(JSON.stringify(response.data))
+                        if (response.data.data !== undefined) {
+                            if (response.data.data.startup_post[0] !== undefined) {
+                                internship_detail_fragment.startup_post = response.data.data.startup_post[0];
+                            }
+                        } else {
+
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            },
+            get_students_details : ()=>{
+                internship_detail_fragment.students_details = JSON.parse(Cookies.get('student_details'));
+            },
         }, mounted: function () {
             this.$nextTick(function () {
                 this.get_internship_detail();
+                this.get_students_details();
             })
         }
     });

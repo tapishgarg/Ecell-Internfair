@@ -232,6 +232,7 @@
                         .then(function (response) {
                             if (response.data.data !== undefined) {
                                 signupApp.check_is_registered();
+                                student_register_fragment.get_students_details();
                                 navigation_app.is_signed_in = true;
                                 student_register_fragment.is_signed_in = true;
                             } else {
@@ -252,6 +253,7 @@
     function signOut() {
         Cookies.remove('user_details');
         Cookies.remove('auth_details');
+        Cookies.remove('student_details')
         let auth2 = gapi.auth2.getAuthInstance();
         auth2.signOut().then(function () {
             signupApp.user_details.is_signed_in = false;

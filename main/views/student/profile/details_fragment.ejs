@@ -125,6 +125,8 @@
                     .then(function (response) {
                         console.log(JSON.stringify(response.data))
                         if (response.data.errors === undefined) {
+                            console.log(JSON.stringify(response.data))
+
                             if (response.data.data.student_details.length > 0) {
                                 student_info_app.student_details = response.data.data.student_details[0];
                             }
