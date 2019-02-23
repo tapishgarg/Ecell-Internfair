@@ -1,4 +1,4 @@
-<div class="col-lg-12 column" id="startup_manage_app">
+<div class="col-lg-12 column" id="internship_manage_app">
 
 
     <div>
@@ -32,7 +32,7 @@
                   </tfoot>
                   <tbody>
                     <tr>
-                      <th scope="row">Rahul Agarwal</th>
+                      <th scope="row">{{startupDetailsBystartupDetailsId.startup_name}}</th>
                       <td>Editor</td>
                       <td>Application</td>
                       <td>Pending</td>
@@ -45,6 +45,52 @@
         </div>
     </div>
 </div>
+
+<script>
+  var internship_manage_app=new Vue({
+    el:'#internship_manage_app',
+    data: {
+      id:"",
+      internship_profile:"",
+      status:"",
+      startupDetailsBystartupDetailsId:{
+        startup_name:""
+      }  
+    },
+    methods:{
+      get_detail_internship:()=>{
+        let reqBody={
+          query_string:'{\n' +
+                        '  startup_post(where: {id: {_eq: }}) {\n' +
+                        '    internship_title\n' +
+                        
+                        '    startupDetailsBystartupDetailsId {\n' +
+                        '      startup_name\n' 
+                        
+
+          
+        }
+
+        axios.post('/db/user',reqBody)
+        .then(function(response){
+          if (response.data.data !== undefined) {
+                            console.log(JSON.stringify(response.data));
+                            if (response.data.data.startup_post[0] !== undefined) {
+                                internship_detail_fragment.startup_post = response.data.data.startup_post[0];
+                            }
+                        } else {
+
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                      });
+      }
+      
+    },
+  })
+
+</script>
 
 <style>
     
