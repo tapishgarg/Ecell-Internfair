@@ -15,7 +15,7 @@
                     <span class="fav-job"><i class="la la-heart-o"></i></span>
                 </div>
                 <span class="job-lctn">{{internship.startupDetailsBystartupDetailsId.location}}</span>
-                <a href="#" title="">APPLY NOW</a>
+                <a @click="show_details(internship.id)" title="">Show Details</a>
             </div><!-- JOB Grid -->
         </div>
 
@@ -57,6 +57,9 @@
                     .catch(function (error) {
                         console.log(error);
                     });
+            },
+            show_details: (id) => {
+                location.href = "/student/internship/detail/" + id;
             }
         }, mounted: function () {
             this.$nextTick(function () {

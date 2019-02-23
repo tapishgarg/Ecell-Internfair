@@ -1,0 +1,155 @@
+<section>
+    <div class="block" id="internship_detail_fragment">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 column">
+                    <div class="job-single-sec">
+                        <div class="job-single-head2">
+                            <div class="job-title2"><h3>{{startup_post.internship_profile}}</h3><span class="job-is ft">{{startup_post.duration}}</span><i
+                                        class="la la-heart-o"></i></div>
+                            <ul class="tags-jobs">
+                                <li><i class="la la-map-marker"></i> {{startup_post.location}}</li>
+                                <li><i class="la la-money"></i> Monthly Salary : <span>{{startup_post.stipend}}</span>
+                                </li>
+                                <li><i class="la la-calendar-o"></i> Vacancies: {{startup_post.interns_number}}</li>
+                            </ul>
+                            <span style="padding-left: 32px;"> IITM Research Park : {{startup_post.research_park_startup}}</span>
+                        </div><!-- Job Head -->
+                        <div class="job-details">
+                            <h3>About the Startup</h3>
+
+                            <p style="white-space: pre-line; display: block; margin-right: 90px;">
+                                {{startup_post.startupDetailsBystartupDetailsId.about}}
+
+                            </p>
+                            <h3>Internship Description</h3>
+                            <p style="white-space: pre-line;">{{startup_post.description}}</p>
+                            <h3>Required Knowledge, Skills, and Abilities</h3>
+                            <ul>
+                                <li style="white-space: pre-line;">{{startup_post.skill_requirement}}
+                                </li>
+
+                            </ul>
+                            <h3>Specific Requirements</h3>
+                            <ul>
+                                <li style="white-space: pre-line;">{{startup_post.specific_requirement}}</li>
+
+                            </ul>
+
+                            <h3>Incentives</h3>
+                            <ul>
+                                <li style="font-weight: bold;">Stipend : {{startup_post.stipend}}</li>
+                                <li style="font-weight: bold;">Accomodation : {{startup_post.accomodation}}</li>
+                                <li style="font-weight: bold;">Travel Allowance : {{startup_post.travel_allowance}}</li>
+                                <li style="font-weight: bold;">Other : {{startup_post.other_incentives}}</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-4 column">
+                    <div class="job-single-head style2">
+                        <div class="job-thumb"><img :src="startup_post.startupDetailsBystartupDetailsId.logo_url"
+                                                    alt="" style="height: 100px;"/></div>
+                        <div class="job-head-info">
+                            <h4>{{startup_post.startupDetailsBystartupDetailsId.startup_name}}</h4>
+                            <span>{{startup_post.location}}</span>
+                            <p><i class="la la-unlink"></i><a
+                                        :href="startup_post.startupDetailsBystartupDetailsId.website">{{startup_post.startupDetailsBystartupDetailsId.website}}</a>
+                            </p>
+                        </div>
+                        <!--<a title="" @click="edit_internship(startup_post.id)" class="apply-job-btn"><i-->
+                                    <!--class="la la-paper-plane"></i>Edit</a>-->
+                        <!--<a href="/startup/manage" title="" class="viewall-jobs">Manage</a>-->
+                    </div><!-- Job Head -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    let internship_detail_fragment = new Vue({
+        el: "#internship_detail_fragment",
+        data: {
+            startup_post: {
+                id: 0,
+                internship_title: "",
+                description: "",
+                attachement_url: "",
+                internship_profile: "",
+                duration: "",
+                stipend: "",
+                interns_number: "",
+                location: "",
+                research_park_startup: "",
+                skill_requirement: "",
+                specific_requirement: "",
+                accomodation: "",
+                travel_allowance: "",
+                other_incentives: "",
+                address: "",
+                startupDetailsBystartupDetailsId: {
+                    startup_name: "Accomox",
+                    about: "cool startup",
+                    logo_url: "",
+                    website: ""
+                }
+            }
+        },
+        methods: {
+            get_internship_detail: () => {
+                let reqBody = {
+                    query_string: '{\n' +
+                        '  startup_post(where: {id: {_eq: <% if (internship_id) { %><%= internship_id %><% } else { %>0<% } %>}}) {\n' +
+                        '    internship_title\n' +
+                        '    description\n' +
+                        '    attachement_url\n' +
+                        '    internship_profile\n' +
+                        '    duration\n' +
+                        '    stipend\n' +
+                        '    interns_number\n' +
+                        '    location\n' +
+                        '    research_park_startup\n' +
+                        '    skill_requirement\n' +
+                        '    specific_requirement\n' +
+                        '    accomodation\n' +
+                        '    travel_allowance\n' +
+                        '    other_incentives\n' +
+                        '    address\n' +
+                        '    id\n' +
+                        '    startupDetailsBystartupDetailsId {\n' +
+                        '      startup_name\n' +
+                        '      about\n' +
+                        '      logo_url\n' +
+                        '      website\n' +
+                        '    }\n' +
+                        '  }\n' +
+                        '}\n'
+                };
+                axios.post('/db/anonymous', reqBody)
+                    .then(function (response) {
+
+                        if (response.data.data !== undefined) {
+                            if (response.data.data.startup_post[0] !== undefined) {
+                                internship_detail_fragment.startup_post = response.data.data.startup_post[0];
+                            }
+                        } else {
+
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+
+            },
+            edit_internship: (id) => {
+                location.href = "/startup/edit_internship/" + id;
+            }
+        }, mounted: function () {
+            this.$nextTick(function () {
+                this.get_internship_detail();
+            })
+        }
+    });
+</script>
