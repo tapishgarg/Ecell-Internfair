@@ -5,7 +5,8 @@
             <div class="job-grid border">
                 <div class="job-title-sec">
                     <div class="c-logo" v-if="internship.startupDetailsBystartupDetailsId.logo_url"><img
-                                :src="internship.startupDetailsBystartupDetailsId.logo_url" alt="startup logo" style="width: 100%;"/></div>
+                                :src="internship.startupDetailsBystartupDetailsId.logo_url" alt="startup logo"
+                                style="width: 100%;"/></div>
                     <h3><a href="#" title="">{{internship.internship_profile}}</a></h3>
                     <span>Massimo Artemisis</span>
                     <span class="fav-job"><i class="la la-heart-o"></i></span>
@@ -40,7 +41,7 @@
                         '}'
                 };
 
-                axios.post('/db/user', reqBody)
+                axios.post('/db/anonymous', reqBody)
                     .then(function (response) {
                         if (response.data.errors === undefined) {
                             if (response.data.data.startup_post.length > 0) {
@@ -56,9 +57,7 @@
             }
         }, mounted: function () {
             this.$nextTick(function () {
-                if (Cookies.get('auth_details') !== undefined) {
-                    this.get_all_internship_list();
-                }
+                this.get_all_internship_list();
             })
         }
 
