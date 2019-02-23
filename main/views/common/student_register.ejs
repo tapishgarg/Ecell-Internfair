@@ -26,6 +26,11 @@
             <div class="g-signin2" data-onsuccess="onSignIn" style="display: flex; justify-content: center;"></div>
 
         </div>
+
+        <div v-if="is_registered && is_signed_in">
+            Go to <a href="/student/profile">Dashboard</a>
+
+        </div>
     </div>
 </div>
 
@@ -40,7 +45,8 @@
                 roll_num: "",
                 contact_number: "",
                 payment_link: "",
-                payment_request_id: ""
+                payment_request_id: "",
+                is_paid: false
             }
         },
         methods: {
@@ -77,18 +83,18 @@
                         '    full_name\n' +
                         '    roll_num\n' +
                         '    contact_number\n' +
+                        '    is_paid\n' +
                         '  }\n' +
                         '}\n'
                 };
 
                 axios.post('/db/user', reqBody)
                     .then(function (response) {
-                        console.log(JSON.stringify(response.data));
                         if (response.data.errors === undefined) {
                             if (response.data.data.student_details.length > 0) {
                                 student_register_fragment.is_registered = true;
                                 student_register_fragment.students_details = response.data.data.student_details[0];
-
+                                Cookies.set('student_details', JSON.stringify(response.data.data.student_details[0]));
                             }
                         } else {
 

@@ -5,8 +5,9 @@
                 <div class="col-lg-8 column">
                     <div class="job-single-sec">
                         <div class="job-single-head2">
-                            <div class="job-title2"><h3>{{startup_post.internship_profile}}</h3><span class="job-is ft">{{startup_post.duration}}</span><i
-                                        class="la la-heart-o"></i></div>
+                            <div class="job-title2"><h3>{{startup_post.internship_profile}}</h3><span class="job-is ft">{{startup_post.duration}}</span>
+                                <!--<i class="la la-heart-o"></i>-->
+                            </div>
                             <ul class="tags-jobs">
                                 <li><i class="la la-map-marker"></i> {{startup_post.location}}</li>
                                 <li><i class="la la-money"></i> Monthly Salary : <span>{{startup_post.stipend}}</span>
@@ -58,9 +59,9 @@
                                         :href="startup_post.startupDetailsBystartupDetailsId.website">{{startup_post.startupDetailsBystartupDetailsId.website}}</a>
                             </p>
                         </div>
-                        <!--<a title="" @click="edit_internship(startup_post.id)" class="apply-job-btn"><i-->
-                                    <!--class="la la-paper-plane"></i>Edit</a>-->
-                        <!--<a href="/startup/manage" title="" class="viewall-jobs">Manage</a>-->
+                        <a title="" class="apply-job-btn" v-if="is_paid"><i
+                                    class="la la-paper-plane" v-if="!is_paid"></i>Apply</a>
+                        <p>You need pay before you apply for internship</p>
                     </div><!-- Job Head -->
                 </div>
             </div>
@@ -72,6 +73,7 @@
     let internship_detail_fragment = new Vue({
         el: "#internship_detail_fragment",
         data: {
+            is_paid : false,
             startup_post: {
                 id: 0,
                 internship_title: "",

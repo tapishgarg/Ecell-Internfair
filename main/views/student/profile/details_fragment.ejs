@@ -6,31 +6,31 @@
                     <div class="col-lg-6">
                         <span class="pf-title">Full Name</span>
                         <div class="pf-field">
-                            <input type="text" placeholder="Ali TUFAN"/>
+                            <input type="text" placeholder="Sangeeta Saikia" v-model="student_details.full_name"/>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <span class="pf-title">Roll No.</span>
                         <div class="pf-field">
-                            <input type="text" placeholder="ME15B036"/>
+                            <input type="text" placeholder="AE16B109" v-model="student_details.roll_num"/>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <span class="pf-title">College</span>
                         <div class="pf-field">
-                            <input type="text" placeholder="IITM"/>
+                            <input type="text" placeholder="IITM" v-model="student_details.college"/>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <span class="pf-title">Branch</span>
                         <div class="pf-field">
-                            <input type="text" placeholder="Mechanical Engineering"/>
+                            <input type="text" placeholder="Aerospace Engineering"  v-model="student_details.branch"/>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <span class="pf-title">CGPA</span>
                         <div class="pf-field">
-                            <input type="text" placeholder="Mechanical Engineering"/>
+                            <input type="number" placeholder="8"  v-model="student_details.cgpa"/>
                         </div>
                     </div>
 
@@ -45,30 +45,30 @@
                     <div class="col-lg-6">
                         <span class="pf-title">Contact Number</span>
                         <div class="pf-field">
-                            <input type="text" placeholder="Ali TUFAN"/>
+                            <input type="text" placeholder="9876543210" v-model="student_details.contact_number" readonly/>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <span class="pf-title">Alternate Number</span>
                         <div class="pf-field">
-                            <input type="text" placeholder="ME15B036"/>
+                            <input type="text" placeholder="9876543210" v-model="student_details.alt_contact_number"/>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <span class="pf-title">Email</span>
                         <div class="pf-field">
-                            <input type="text" placeholder="IITM"/>
+                            <input type="email" placeholder="google@joeydash.com"  v-model="user_details.email" readonly/>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <span class="pf-title">Alternate Email</span>
                         <div class="pf-field">
-                            <input type="text" placeholder="Mechanical Engineering"/>
+                            <input type="email" placeholder="google@joeydash.com"  v-model="student_details.alt_email"/>
                         </div>
                     </div>
 
-                    <div class="col-lg-12">
-                        <button type="submit">Update</button>
+                    <div class="col-lg-12" v-if="!student_details.is_paid">
+                        <button type="submit">Save And Pay ₹250</button>
                     </div>
                 </div>
             </form>
@@ -82,7 +82,7 @@
             user_details: {
                 email: ""
             },
-            students_details: {
+            student_details: {
                 id: 0,
                 full_name: "",
                 roll_num: "",
@@ -94,13 +94,54 @@
                 cgpa: "",
                 alt_contact_number: "",
                 alt_email: "",
-                resume_url: ""
+                resume_url: "",
+                is_paid: false
             },
         },
         methods: {
             get_students_details: () => {
+                let reqBody = {
+                    query_string: '{\n' +
+                        '  student_details(where: {user_hid: {_eq: "'+JSON.parse(Cookies.get('auth_details')).h_id+'"}}) {\n' +
+                        '    id\n' +
+                        '    full_name\n' +
+                        '    roll_num\n' +
+                        '    contact_number\n' +
+                        '    college\n' +
+                        '    branch\n' +
+                        '    cgpa\n' +
+                        '    alt_contact_number\n' +
+                        '    alt_email\n' +
+                        '    resume_url\n' +
+                        '    payment_link\n' +
+                        '    payment_request_id\n' +
+                        '    payment_id\n' +
+                        '    is_paid\n' +
+                        '  }\n' +
+                        '}\n'
+                };
 
+                axios.post('/db/user', reqBody)
+                    .then(function (response) {
+                        console.log(JSON.stringify(response.data))
+                        if (response.data.errors === undefined) {
+                            if (response.data.data.student_details.length > 0) {
+                                student_info_app.student_details = response.data.data.student_details[0];
+                            }
+                        } else {
+
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
             }
+        }, mounted: function () {
+            this.$nextTick(function () {
+                if (Cookies.get('auth_details') !== undefined) {
+                    this.get_students_details();
+                }
+            })
         }
     });
 </script>
