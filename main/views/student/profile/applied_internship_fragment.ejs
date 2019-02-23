@@ -5,7 +5,7 @@
 
             <center v-if="!internship_applied_list.length>0">
 
-                <img src="/images/box.png"  style="height: 100px;margin-top: 100px;" >
+                <img src="/images/box.png" style="height: 100px;margin-top: 100px;">
                 <h6 style="margin-bottom: 100px;">No Internship applied till now</h6>
             </center>
             <table v-if="internship_applied_list.length>0">
@@ -13,6 +13,8 @@
                 <tr>
                     <td>Applied Internships</td>
                     <td>Position</td>
+                    <td>Resume URL</td>
+                    <td>Status</td>
                     <!--<td>Preference</td>-->
                     <td>Actions</td>
                 </tr>
@@ -27,7 +29,19 @@
                     </td>
                     <td>
                         <div class="table-list-title">
-                            <h3><a href="#" title="">{{internship.startupPostByinternshipId.internship_profile}}</a>
+                            <h3>{{internship.startupPostByinternshipId.internship_profile}}
+                            </h3>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="table-list-title">
+                            <h3><a :href="internship.resume_url" title="">resume link</a>
+                            </h3>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="table-list-title">
+                            <h3>{{internship.status}}
                             </h3>
                         </div>
                     </td>
@@ -44,7 +58,7 @@
                     <!--</td>-->
                     <td>
                         <ul class="action_job">
-                            <li @click="delete_applied_internship(internship.id)"><span>Delete</span><a href="#" title=""><i
+                            <li @click="delete_applied_internship(internship.id)"><span>Delete</span><a title=""><i
                                             class="la la-trash-o"></i></a></li>
                         </ul>
                     </td>
@@ -74,6 +88,8 @@
                     query_string: '{\n' +
                         '  internship_apply_table(where: {student_id: {_eq: ' + applied_internship_app.students_details.id + '}}) {\n' +
                         '    internship_id\n' +
+                        '    resume_url\n' +
+                        '    status\n' +
                         '    id\n' +
                         '    startupPostByinternshipId {internship_profile\n' +
                         '    location\n' +
@@ -90,29 +106,29 @@
                         if (response.data.data !== undefined) {
                             if (response.data.data.internship_apply_table.length > 0) {
                                 applied_internship_app.internship_applied_list = response.data.data.internship_apply_table;
+                            } else {
+                                applied_internship_app.internship_applied_list = [];
                             }
                         } else {
-
                         }
                     })
                     .catch(function (error) {
                         console.log(error);
                     });
             },
-            delete_applied_internship : (id)=>{
-                console.log(id);
+            delete_applied_internship: (id) => {
                 let reqBody = {
                     query_string: 'mutation {\n' +
-                        '  delete_internship_apply_table(where: {id: {_eq: '+id+'}}) {\n' +
+                        '  delete_internship_apply_table(where: {id: {_eq: ' + id + '}}) {\n' +
                         '    affected_rows\n' +
                         '  }\n' +
                         '}'
                 };
                 axios.post('/db/user', reqBody)
                     .then(function (response) {
-                        console.log(JSON.stringify(response.body));
+                        console.log(JSON.stringify(response.data));
                         if (response.data.data !== undefined) {
-                            if (response.data.data.delete_internship_apply_table.affected_rows> 0) {
+                            if (response.data.data.delete_internship_apply_table.affected_rows > 0) {
                                 applied_internship_app.get_all_applied_internship_list();
                             }
                         } else {
