@@ -18,10 +18,9 @@ router.post('/get_payment_link', function (req, res, next) {
     };
     let payload = {
         purpose: 'Intern Fair IITM',
-        amount: '250',
+        amount: '9',
         phone: req.body.phone,
         buyer_name: req.body.buyer_name,
-        redirect_url: 'http://accomox.in/',
         send_email: false,
         send_sms: false,
         email: req.body.email,
@@ -36,6 +35,7 @@ router.post('/get_payment_link', function (req, res, next) {
             res.json(body);
         }else {
             res.json(body);
+            console.log(body);
         }
     });
 });

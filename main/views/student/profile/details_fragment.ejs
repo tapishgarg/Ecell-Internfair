@@ -24,13 +24,13 @@
                     <div class="col-lg-4">
                         <span class="pf-title">Branch</span>
                         <div class="pf-field">
-                            <input type="text" placeholder="Aerospace Engineering"  v-model="student_details.branch"/>
+                            <input type="text" placeholder="Aerospace Engineering" v-model="student_details.branch"/>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <span class="pf-title">CGPA</span>
                         <div class="pf-field">
-                            <input type="number" placeholder="8"  v-model="student_details.cgpa"/>
+                            <input type="number" placeholder="8" v-model="student_details.cgpa"/>
                         </div>
                     </div>
 
@@ -45,7 +45,8 @@
                     <div class="col-lg-6">
                         <span class="pf-title">Contact Number</span>
                         <div class="pf-field">
-                            <input type="text" placeholder="9876543210" v-model="student_details.contact_number" readonly/>
+                            <input type="text" placeholder="9876543210" v-model="student_details.contact_number"
+                                   readonly/>
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -57,59 +58,27 @@
                     <div class="col-lg-6">
                         <span class="pf-title">Email</span>
                         <div class="pf-field">
-                            <input type="email" placeholder="google@joeydash.com"  v-model="user_details.email" readonly/>
+                            <input type="email" placeholder="google@joeydash.com" v-model="user_details.email"
+                                   readonly/>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <span class="pf-title">Alternate Email</span>
                         <div class="pf-field">
-                            <input type="email" placeholder="google@joeydash.com"  v-model="student_details.alt_email"/>
+                            <input type="email" placeholder="google@joeydash.com" v-model="student_details.alt_email"/>
                         </div>
                     </div>
 
-                    <div class="col-lg-12" v-if="!student_details.is_paid">
-                        <button type="submit">Save And Pay ₹250</button>
-                    </div>
+
                 </div>
             </form>
+            <div class="col-lg-12" v-if="!student_details.is_paid">
+                <button type="submit" onclick="onButtonClick()">Save And Pay ₹250</button>
+            </div>
         </div>
     </div>
 </div>
-<script>
-    /* Start client-defined Callback Handler Functions */
-    function onOpenHandler () {
-        alert('Payments Modal is Opened');
-    }
 
-    function onCloseHandler () {
-        alert('Payments Modal is Closed');
-    }
-
-    function onPaymentSuccessHandler (response) {
-        alert('Payment Success');
-        console.log('Payment Success Response', response);
-    }
-
-    function onPaymentFailureHandler (response) {
-        alert('Payment Failure');
-        console.log('Payment Failure Response', response);
-    }
-    /* End client-defined Callback Handler Functions */
-
-    /* Configuring Handlers */
-    Instamojo.configure({
-        handlers: {
-            onOpen: onOpenHandler,
-            onClose: onCloseHandler,
-            onSuccess: onPaymentSuccessHandler,
-            onFailure: onPaymentFailureHandler
-        }
-    });
-
-    function onButtonClick() {
-        Instamojo.open('http://www.instamojo.com/@ayushya');
-    }
-</script>
 <script>
     let student_info_app = new Vue({
         el: "#student_info_app",
@@ -137,7 +106,7 @@
             get_students_details: () => {
                 let reqBody = {
                     query_string: '{\n' +
-                        '  student_details(where: {user_hid: {_eq: "'+JSON.parse(Cookies.get('auth_details')).h_id+'"}}) {\n' +
+                        '  student_details(where: {user_hid: {_eq: "' + JSON.parse(Cookies.get('auth_details')).h_id + '"}}) {\n' +
                         '    id\n' +
                         '    full_name\n' +
                         '    roll_num\n' +
@@ -158,9 +127,9 @@
 
                 axios.post('/db/user', reqBody)
                     .then(function (response) {
-                        console.log(JSON.stringify(response.data))
+                        console.log(JSON.stringify(response.data));
                         if (response.data.errors === undefined) {
-                            console.log(JSON.stringify(response.data))
+                            console.log(JSON.stringify(response.data));
 
                             if (response.data.data.student_details.length > 0) {
                                 student_info_app.student_details = response.data.data.student_details[0];
@@ -172,13 +141,92 @@
                     .catch(function (error) {
                         console.log(error);
                     });
-            }
+            },
+            get_user_details: () => {
+                student_info_app.user_details = JSON.parse(Cookies.get('user_details'));
+            },
+            save_student_details: () => {
+                if (student_register_fragment.check_form()) {
+                    let reqBody = {
+                        query_string: 'mutation {\n' +
+                            '  update_student_details(where: {id: {_eq: ' + student_info_app.students_details.id + '}}, _set: {college: "' + student_info_app.students_details.college + '", branch: "' + student_info_app.students_details.branch + '", cgpa: "' + student_info_app.students_details.cgpa + '", alt_email: "' + student_info_app.students_details.alt_email + '", alt_contact_number: "' + student_info_app.students_details.alt_contact_number + '", is_paid: ' + student_info_app.students_details.is_paid + ', payment_id: "' + student_info_app.students_details.payment_link + '"}) {\n' +
+                            '    affected_rows\n' +
+                            '  }\n' +
+                            '}\n'
+                    };
+
+                    axios.post('/db/user', reqBody)
+                        .then(function (response) {
+                            if (response.data.errors === undefined) {
+                                if (response.data.data.insert_student_details.affected_rows) {
+                                    student_register_fragment.is_registered = true;
+                                    location.href = '/student/profile';
+                                }
+                            } else {
+
+                            }
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                }
+            },
         }, mounted: function () {
             this.$nextTick(function () {
                 if (Cookies.get('auth_details') !== undefined) {
                     this.get_students_details();
                 }
+                if (Cookies.get('user_details') !== undefined) {
+                    this.get_user_details();
+                }
             })
         }
     });
+</script>
+<script>
+    /* Start client-defined Callback Handler Functions */
+    function onOpenHandler() {
+    }
+
+    function onCloseHandler() {
+    }
+
+    function onPaymentSuccessHandler(response) {
+        student_info_app.students_details.payment_id = response.paymentId;
+        student_info_app.startup_details.is_paid = true;
+        console.log('Payment Success Response', response);
+        student_info_app.save_student_details();
+
+    }
+
+    function onPaymentFailureHandler(response) {
+        alert('Payment Failure');
+    }
+
+    /* End client-defined Callback Handler Functions */
+
+    /* Configuring Handlers */
+    Instamojo.configure({
+        handlers: {
+            onOpen: onOpenHandler,
+            onClose: onCloseHandler,
+            onSuccess: onPaymentSuccessHandler,
+            onFailure: onPaymentFailureHandler
+        }
+    });
+
+    function onButtonClick() {
+        console.log(student_info_app.student_details.payment_link);
+        if (student_info_app.student_details.college === undefined || student_info_app.student_details.college === '' || student_info_app.student_details.college === null) {
+            // Instamojo.open('https://test.instamojo.com/@joydassudipta/ld78574a5535f444b904c35b9bbe673a6/');
+            // Instamojo.open(student_info_app.student_details.payment_link);
+            alert("Enter college details");
+        } else if (student_info_app.student_details.cgpa === undefined || student_info_app.student_details.cgpa === '' || student_info_app.student_details.cgpa === null) {
+
+        } else if (student_info_app.student_details.branch === undefined || student_info_app.student_details.branch === '' || student_info_app.student_details.branch === null) {
+
+        } else {
+
+        }
+    }
 </script>
