@@ -199,8 +199,9 @@
                     });
             },
             get_students_details : ()=>{
-                internship_detail_fragment.students_details = JSON.parse(Cookies.get('student_details'));
-            },
+                if (Cookies.get('student_details') !== undefined) {
+                    internship_detail_fragment.students_details = JSON.parse(Cookies.get('student_details'));
+                }            },
             check_if_applied : ()=>{
                 let reqBody = {
                     query_string: '{\n' +

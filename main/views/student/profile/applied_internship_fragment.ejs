@@ -7,53 +7,97 @@
                 <tr>
                     <td>Applied Internships</td>
                     <td>Position</td>
-                    <td>Preference</td>
-                    <td></td>
+                    <!--<td>Preference</td>-->
+                    <td>Actions</td>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
+                <tr v-for="internship in internship_applied_list">
                     <td>
                         <div class="table-list-title">
-                            <i>Massimo Artemisis</i><br/>
-                            <span><i class="la la-map-marker"></i>Sacramento, California</span>
+                            <i>{{internship.startupPostByinternshipId.startupDetailsBystartupDetailsId.startup_name}}</i><br/>
+                            <span><i class="la la-map-marker"></i>{{internship.startupPostByinternshipId.location}}</span>
                         </div>
                     </td>
                     <td>
                         <div class="table-list-title">
-                            <h3><a href="#" title="">Web Designer / Developer</a>
+                            <h3><a href="#" title="">{{internship.startupPostByinternshipId.internship_profile}}</a>
                             </h3>
                         </div>
                     </td>
-                    <td>
-                                                <span><div class="pf-field">
-                                                <select data-placeholder="Please Select Specialism" class="chosen">
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>3</option>
-                                                    <option>4</option>
+                    <!--<td>-->
+                    <!--<span><div class="pf-field">-->
+                    <!--<select data-placeholder="Please Select Specialism" class="chosen">-->
+                    <!--<option>1</option>-->
+                    <!--<option>2</option>-->
+                    <!--<option>3</option>-->
+                    <!--<option>4</option>-->
 
-                                                </select>
-                                            </div></span><br/>
-                    </td>
+                    <!--</select>-->
+                    <!--</div></span><br/>-->
+                    <!--</td>-->
                     <td>
                         <ul class="action_job">
-                            <li><span>Delete</span><a href="#" title=""><i
+                            <li onclick="alert('currently unavailable')"><span>Delete</span><a href="#" title=""><i
                                             class="la la-trash-o"></i></a></li>
                         </ul>
                     </td>
                 </tr>
                 </tbody>
             </table>
-            <div class="col-lg-12">
-                <button type="submit">Save</button>
-            </div>
         </div>
     </div>
 </div>
 <script>
     let applied_internship_app = new Vue({
         el: "#applied_internship_app",
-        data: {}
+        data: {
+            students_details: {
+                id: 0
+            },
+            internship_applied_list : [],
+        },
+        methods: {
+            get_students_details: () => {
+                if (Cookies.get('student_details') !== undefined) {
+                    applied_internship_app.students_details = JSON.parse(Cookies.get('student_details'));
+                }
+            },
+            get_all_applied_internship_list  : ()=>{
+                let reqBody = {
+                    query_string: '{\n' +
+                        '  internship_apply_table(where: {student_id: {_eq: '+applied_internship_app.students_details.id+'}}) {\n' +
+                        '    internship_id\n' +
+                        '    startupPostByinternshipId {internship_profile\n' +
+                        '    location\n' +
+                        '      startupDetailsBystartupDetailsId{\n' +
+                        '        startup_name\n' +
+                        '      }\n' +
+                        '    }\n' +
+                        '  }\n' +
+                        '}'
+                };
+                axios.post('/db/anonymous', reqBody)
+                    .then(function (response) {
+                        console.log(JSON.stringify(response.data));
+                        if (response.data.data !== undefined) {
+                            if (response.data.data.internship_apply_table.length > 0) {
+                                applied_internship_app.internship_applied_list = response.data.data.internship_apply_table;
+                            }
+                        } else {
+
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            }
+        }, mounted: function () {
+            this.$nextTick(function () {
+                this.get_students_details();
+                this.get_all_applied_internship_list();
+            })
+        }
     });
+
 </script>
