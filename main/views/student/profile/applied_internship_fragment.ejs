@@ -2,7 +2,13 @@
     <div class="padding-left">
         <div class="manage-jobs-sec">
             <h3>Manage Internships</h3>
-            <table>
+
+            <center v-if="!internship_applied_list.length>0">
+
+                <img src="/images/box.png"  style="height: 100px;margin-top: 100px;" >
+                <h6 style="margin-bottom: 100px;">No Internship applied till now</h6>
+            </center>
+            <table v-if="internship_applied_list.length>0">
                 <thead>
                 <tr>
                     <td>Applied Internships</td>
@@ -55,7 +61,7 @@
             students_details: {
                 id: 0
             },
-            internship_applied_list : [],
+            internship_applied_list: [],
         },
         methods: {
             get_students_details: () => {
@@ -63,10 +69,10 @@
                     applied_internship_app.students_details = JSON.parse(Cookies.get('student_details'));
                 }
             },
-            get_all_applied_internship_list  : ()=>{
+            get_all_applied_internship_list: () => {
                 let reqBody = {
                     query_string: '{\n' +
-                        '  internship_apply_table(where: {student_id: {_eq: '+applied_internship_app.students_details.id+'}}) {\n' +
+                        '  internship_apply_table(where: {student_id: {_eq: ' + applied_internship_app.students_details.id + '}}) {\n' +
                         '    internship_id\n' +
                         '    startupPostByinternshipId {internship_profile\n' +
                         '    location\n' +
