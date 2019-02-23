@@ -1,0 +1,66 @@
+<div class="job-grid-sec" id="internship_list_fragment">
+    <div class="row" v-if="internship_list.length > 0">
+
+        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" v-for="internship in internship_list">
+            <div class="job-grid border">
+                <div class="job-title-sec">
+                    <div class="c-logo" v-if="internship.startupDetailsBystartupDetailsId.logo_url"><img
+                                :src="internship.startupDetailsBystartupDetailsId.logo_url" alt="startup logo" style="width: 100%;"/></div>
+                    <h3><a href="#" title="">{{internship.internship_profile}}</a></h3>
+                    <span>Massimo Artemisis</span>
+                    <span class="fav-job"><i class="la la-heart-o"></i></span>
+                </div>
+                <span class="job-lctn">{{internship.startupDetailsBystartupDetailsId.location}}</span>
+                <a href="#" title="">APPLY NOW</a>
+            </div><!-- JOB Grid -->
+        </div>
+
+    </div>
+</div>
+
+<script>
+    let internship_list_fragment = new Vue({
+        el: "#internship_list_fragment",
+        data: {
+            internship_list: []
+        },
+        methods: {
+            get_all_internship_list: () => {
+                let reqBody = {
+                    query_string: ' {\n' +
+                        '  startup_post {\n' +
+                        '    id\n' +
+                        '    startupDetailsBystartupDetailsId {\n' +
+                        '      startup_name\n' +
+                        '      logo_url\n' +
+                        '    }\n' +
+                        '    internship_profile\n' +
+                        '    address\n' +
+                        '  }\n' +
+                        '}'
+                };
+
+                axios.post('/db/user', reqBody)
+                    .then(function (response) {
+                        if (response.data.errors === undefined) {
+                            if (response.data.data.startup_post.length > 0) {
+                                internship_list_fragment.internship_list = response.data.data.startup_post;
+                            }
+                        } else {
+
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            }
+        }, mounted: function () {
+            this.$nextTick(function () {
+                if (Cookies.get('auth_details') !== undefined) {
+                    this.get_all_internship_list();
+                }
+            })
+        }
+
+    });
+</script>

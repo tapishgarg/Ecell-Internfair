@@ -1,33 +1,31 @@
 <div class="account-popup-area signin-popup-box" id="student_register_fragment">
     <div class="account-popup">
-        <!--<span class="close-popup"><i class="la la-close"></i></span>-->
+        <span class="close-popup"><i class="la la-close"></i></span>
 
-        <!--<div v-if="!is_registered && is_signed_in">-->
-            <!--<form id="student_form">-->
-                <!--<div class="cfield">-->
-                    <!--<input type="text" placeholder="Full Name" v-model="students_details.full_name"/>-->
-                <!--</div>-->
-                <!--<div class="cfield">-->
-                    <!--<input type="text" placeholder="Roll Number" v-model="students_details.roll_num"/>-->
-                <!--</div>-->
-                <!--<div class="cfield">-->
-                    <!--<input type="text" placeholder="Phone Number" v-model="students_details.contact_number"/>-->
-                <!--</div>-->
+        <div v-if="!is_registered && is_signed_in">
+            <form id="student_form">
+                <div class="cfield">
+                    <input type="text" placeholder="Full Name" v-model="students_details.full_name"/>
+                </div>
+                <div class="cfield">
+                    <input type="text" placeholder="Roll Number" v-model="students_details.roll_num"/>
+                </div>
+                <div class="cfield">
+                    <input type="text" placeholder="Phone Number" v-model="students_details.contact_number"/>
+                </div>
 
-            <!--</form>-->
-            <!--<p>You have to pay 250 rupees for registering</p>-->
-            <!--<button @click="get_payment_request" style="cursor: pointer;background: #0b1b46; color: white;"> Register-->
-            <!--</button>-->
-        <!--</div>-->
-        <!--<div>-->
+            </form>
+            <p>You have to pay 250 rupees for registering</p>
+            <button @click="get_payment_request" style="cursor: pointer;background: #0b1b46; color: white;"> Register
+            </button>
+        </div>
+        <div>
 
-        <!--</div>-->
-        <!--<div v-if="!is_signed_in">-->
-            <!--<div class="g-signin2" data-onsuccess="onSignIn" style="display: flex; justify-content: center;"></div>-->
+        </div>
+        <div v-if="!is_signed_in">
+            <div class="g-signin2" data-onsuccess="onSignIn" style="display: flex; justify-content: center;"></div>
 
-        <!--</div>-->
-        The registration starts tonight<br>
-        Its okay even I am exited too
+        </div>
     </div>
 </div>
 
