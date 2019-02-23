@@ -18,7 +18,7 @@ router.post('/get_payment_link', function (req, res, next) {
     };
     let payload = {
         purpose: 'Intern Fair IITM',
-        amount: '9',
+        amount: '250',
         phone: req.body.phone,
         buyer_name: req.body.buyer_name,
         send_email: false,
