@@ -2,16 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8f5f8ba0-1585-465f-80a4-1271d2ddb1e9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/main/views/student/internship/index.ejs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/views/student/internship/list.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/routes/student.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/routes/student.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/views/common/student_register.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/main/views/common/student_register.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/views/student/profile/applied_internship_fragment.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/main/views/student/profile/applied_internship_fragment.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/views/student/profile/bookmark_internship_fragment.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/main/views/student/profile/bookmark_internship_fragment.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/views/student/profile/details_fragment.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/main/views/student/profile/details_fragment.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/views/student/profile/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/main/views/student/profile/index.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/views/student/profile/menu.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/main/views/student/profile/menu.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/views/student/internship/list.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/main/views/student/internship/list.ejs" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -41,7 +33,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main/views/common/student_register.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="376">
+            <state relative-caret-position="1464">
               <caret line="141" column="9" lean-forward="true" selection-start-line="135" selection-start-column="9" selection-end-line="141" selection-end-column="9" />
             </state>
           </provider>
@@ -50,11 +42,20 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main/views/student/internship/list.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="118" lean-forward="true" selection-start-line="7" selection-start-column="118" selection-end-line="7" selection-end-column="118" />
+            <state relative-caret-position="90">
+              <caret line="6" column="39" selection-start-line="6" selection-start-column="39" selection-end-line="6" selection-end-column="39" />
               <folding>
                 <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main/routes/db.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="211">
+              <caret line="55" column="23" selection-start-line="55" selection-start-column="14" selection-end-line="55" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -322,14 +323,7 @@
       <workItem from="1550245799142" duration="601000" />
       <workItem from="1550592650047" duration="2340000" />
       <workItem from="1550686154475" duration="659000" />
-      <workItem from="1550691460729" duration="16850000" />
-    </task>
-    <task id="LOCAL-00001" summary="example added">
-      <created>1548483647435</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1548483647435</updated>
+      <workItem from="1550691460729" duration="17288000" />
     </task>
     <task id="LOCAL-00002" summary="example added">
       <created>1548483873601</created>
@@ -660,11 +654,25 @@
       <option name="project" value="LOCAL" />
       <updated>1550885495839</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="example added">
+      <created>1550915987149</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1550915987149</updated>
+    </task>
+    <task id="LOCAL-00050" summary="example added">
+      <created>1550916300893</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1550916300894</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="87554000" />
+    <option name="totallyTimeSpent" value="87992000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -963,13 +971,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/routes/db.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-449">
-          <caret line="11" column="39" lean-forward="true" selection-start-line="11" selection-start-column="39" selection-end-line="11" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
@@ -1077,17 +1078,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/main/routes/db.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="55" column="23" selection-start-line="55" selection-start-column="14" selection-end-line="55" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main/views/common/student_register.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
+        <state relative-caret-position="1464">
           <caret line="141" column="9" lean-forward="true" selection-start-line="135" selection-start-column="9" selection-end-line="141" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main/views/student/internship/list.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="118" lean-forward="true" selection-start-line="7" selection-start-column="118" selection-end-line="7" selection-end-column="118" />
+        <state relative-caret-position="90">
+          <caret line="6" column="39" selection-start-line="6" selection-start-column="39" selection-end-line="6" selection-end-column="39" />
           <folding>
             <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
           </folding>

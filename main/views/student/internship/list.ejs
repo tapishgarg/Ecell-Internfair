@@ -7,8 +7,11 @@
                     <div class="c-logo" v-if="internship.startupDetailsBystartupDetailsId.logo_url"><img
                                 :src="internship.startupDetailsBystartupDetailsId.logo_url" alt="startup logo"
                                 style="width: 100%;"/></div>
+                    <div class="c-logo" v-if="!internship.startupDetailsBystartupDetailsId.logo_url"><img
+                                alt="startup logo"
+                                style="width: 100%;"/></div>
                     <h3><a href="#" title="">{{internship.internship_profile}}</a></h3>
-                    <span>Massimo Artemisis</span>
+                    <span>{{internship.startupDetailsBystartupDetailsId.startup_name}}</span>
                     <span class="fav-job"><i class="la la-heart-o"></i></span>
                 </div>
                 <span class="job-lctn">{{internship.startupDetailsBystartupDetailsId.location}}</span>
