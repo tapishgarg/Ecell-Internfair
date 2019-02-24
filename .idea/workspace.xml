@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8f5f8ba0-1585-465f-80a4-1271d2ddb1e9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/main/public/images/resume.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/views/startup/post_internship/post_fragment.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/main/views/startup/post_internship/post_fragment.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/views/student/internship/detail/detail_fragment.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/main/views/student/internship/detail/detail_fragment.ejs" afterDir="false" />
-    </list>
+    <list default="true" id="8f5f8ba0-1585-465f-80a4-1271d2ddb1e9" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -52,8 +47,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main/views/startup/post_internship/post_fragment.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="205">
-              <caret line="163" column="51" selection-start-line="163" selection-start-column="51" selection-end-line="163" selection-end-column="51" />
+            <state relative-caret-position="190">
+              <caret line="162" column="45" selection-start-line="162" selection-start-column="45" selection-end-line="162" selection-end-column="45" />
             </state>
           </provider>
         </entry>
@@ -306,14 +301,7 @@
       <workItem from="1550592650047" duration="2340000" />
       <workItem from="1550686154475" duration="659000" />
       <workItem from="1550691460729" duration="38674000" />
-      <workItem from="1550977730850" duration="11124000" />
-    </task>
-    <task id="LOCAL-00023" summary="example added">
-      <created>1549455124934</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1549455124934</updated>
+      <workItem from="1550977730850" duration="11374000" />
     </task>
     <task id="LOCAL-00024" summary="example added">
       <created>1549455962271</created>
@@ -651,11 +639,18 @@
       <option name="project" value="LOCAL" />
       <updated>1550987984741</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="example added">
+      <created>1550990479445</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1550990479445</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="120502000" />
+    <option name="totallyTimeSpent" value="120752000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1103,8 +1098,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main/views/startup/post_internship/post_fragment.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="163" column="51" selection-start-line="163" selection-start-column="51" selection-end-line="163" selection-end-column="51" />
+        <state relative-caret-position="190">
+          <caret line="162" column="45" selection-start-line="162" selection-start-column="45" selection-end-line="162" selection-end-column="45" />
         </state>
       </provider>
     </entry>
