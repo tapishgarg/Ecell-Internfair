@@ -66,6 +66,7 @@
                                 if (response.data.data.insert_student_details.affected_rows) {
                                     student_register_fragment.is_registered = true;
                                     navigation_app.set_student_registered();
+                                    location.href = '/student/profile';
                                 }
                             } else {
 
