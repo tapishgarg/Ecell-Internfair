@@ -28,7 +28,7 @@
         </div>
 
         <div v-if="is_registered && is_signed_in">
-            Redirecting you to <a href="/student/profile">Dashboard</a>
+            Go to your <a href="/student/profile">Dashboard</a>
 
         </div>
     </div>
@@ -66,7 +66,6 @@
                                 if (response.data.data.insert_student_details.affected_rows) {
                                     student_register_fragment.is_registered = true;
                                     navigation_app.set_student_registered();
-                                    location.href = '/student/profile';
                                 }
                             } else {
 

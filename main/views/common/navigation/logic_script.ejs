@@ -34,6 +34,7 @@
                 if (Cookies.get("startup_details") !== undefined) {
                     if (JSON.parse(Cookies.get("startup_details")).is_verified === true) {
                         navigation_app.set_startup_verified();
+                        startup_register_fragment.is_verified = true;
                     }
                 }
             }
