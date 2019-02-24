@@ -3,6 +3,15 @@
         <div class="profile-form-edit">
             <form>
                 <div class="row">
+                    <div class="col-lg-12" style="margin-top: 10px;" v-if="!student_details.is_paid">
+                        <div class="alert alert-success">
+                            <strong>Info:</strong> You must fill all the necessary information below and pay ₹250 before
+                            applying for the internship <br>Although you can <a style="color: #721c24;"
+                                                                                href="/student/internship/list">browse
+                                internship</a> before paying.
+                        </div>
+                    </div>
+
                     <div class="col-lg-6">
                         <span class="pf-title">Full Name</span>
                         <div class="pf-field">
@@ -146,30 +155,29 @@
                 student_info_app.user_details = JSON.parse(Cookies.get('user_details'));
             },
             save_student_details: () => {
-                if (student_register_fragment.check_form()) {
-                    let reqBody = {
-                        query_string: 'mutation {\n' +
-                            '  update_student_details(where: {id: {_eq: ' + student_info_app.student_details.id + '}}, _set: {college: "' + student_info_app.student_details.college + '", branch: "' + student_info_app.student_details.branch + '", cgpa: "' + student_info_app.student_details.cgpa + '", alt_email: "' + student_info_app.student_details.alt_email + '", alt_contact_number: "' + student_info_app.student_details.alt_contact_number + '", is_paid: ' + student_info_app.student_details.is_paid + ', payment_id: "' + student_info_app.student_details.payment_id + '"}) {\n' +
-                            '    affected_rows\n' +
-                            '  }\n' +
-                            '}\n'
-                    };
+                let reqBody = {
+                    query_string: 'mutation {\n' +
+                        '  update_student_details(where: {id: {_eq: ' + student_info_app.student_details.id + '}}, _set: {college: "' + student_info_app.student_details.college + '", branch: "' + student_info_app.student_details.branch + '", cgpa: "' + student_info_app.student_details.cgpa + '", alt_email: "' + student_info_app.student_details.alt_email + '", alt_contact_number: "' + student_info_app.student_details.alt_contact_number + '", is_paid: ' + student_info_app.student_details.is_paid + ', payment_id: "' + student_info_app.student_details.payment_id + '"}) {\n' +
+                        '    affected_rows\n' +
+                        '  }\n' +
+                        '}\n'
+                };
 
-                    axios.post('/db/user', reqBody)
-                        .then(function (response) {
-                            console.log(JSON.stringify(response.data));
-                            if (response.data.errors === undefined) {
-                                if (response.data.data.update_student_details.affected_rows > 0) {
-                                    student_register_fragment.is_registered = true;
-                                }
-                            } else {
-
+                axios.post('/db/user', reqBody)
+                    .then(function (response) {
+                        console.log(JSON.stringify(response.data));
+                        if (response.data.errors === undefined) {
+                            if (response.data.data.update_student_details.affected_rows > 0) {
+                                student_register_fragment.is_registered = true;
                             }
-                        })
-                        .catch(function (error) {
-                            console.log(error);
-                        });
-                }
+                        } else {
+
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+
             },
         }, mounted: function () {
             this.$nextTick(function () {
@@ -216,18 +224,21 @@
     });
 
     function onButtonClick() {
-        console.log(student_info_app.student_details.payment_link);
-        if (student_info_app.student_details.college === undefined || student_info_app.student_details.college === '' || student_info_app.student_details.college === null) {
-            // Instamojo.open('https://test.instamojo.com/@joydassudipta/ld78574a5535f444b904c35b9bbe673a6/');
-            // Instamojo.open(student_info_app.student_details.payment_link);
-            alert("Enter college name pliz");
-        } else if (student_info_app.student_details.cgpa === undefined || student_info_app.student_details.cgpa === '' || student_info_app.student_details.cgpa === null) {
-            alert("Enter cgpa pliz");
-        } else if (student_info_app.student_details.branch === undefined || student_info_app.student_details.branch === '' || student_info_app.student_details.branch === null) {
-            alert("Enter Branch pliz");
-        } else {
-            Instamojo.open(student_info_app.student_details.payment_link);
 
-        }
+            if (student_info_app.student_details.college === undefined || student_info_app.student_details.college === '' || student_info_app.student_details.college === null) {
+                // Instamojo.open('https://test.instamojo.com/@joydassudipta/ld78574a5535f444b904c35b9bbe673a6/');
+                // Instamojo.open(student_info_app.student_details.payment_link);
+                alert("Enter college name pliz");
+            } else if (student_info_app.student_details.cgpa === undefined || student_info_app.student_details.cgpa === '' || student_info_app.student_details.cgpa === null) {
+                alert("Enter cgpa pliz");
+            } else if (student_info_app.student_details.branch === undefined || student_info_app.student_details.branch === '' || student_info_app.student_details.branch === null) {
+                alert("Enter Branch pliz");
+            } else {
+                if (confirm("Please make sure all information are correct because you can't change this information later")) {
+                    Instamojo.open(student_info_app.student_details.payment_link);
+                }
+            }
+
+
     }
 </script>

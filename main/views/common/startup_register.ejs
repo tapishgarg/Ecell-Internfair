@@ -4,7 +4,7 @@
     }
 </style>
 
-<div class="account-popup-area signup-popup-box" id="signupApp">
+<div class="account-popup-area signup-popup-box" id="startup_register_fragment">
     <div class="account-popup">
         <span class="close-popup"><i class="la la-close"></i></span>
         <div v-bind:class="{ hide: user_details.is_signed_in}">
@@ -55,11 +55,12 @@
 
 
         <div v-if="is_registered">
-            <h5 style="color: green"><a style="color: #0b1b46;" href="/startup/manage">Thank You For Registering!<i
-                            class="fas fa-link"></i></a>
+            <h5 style="color: green">Thank You For Registering!</a>
             </h5>
             <p>
-                Thank You For Registering!
+
+                Please wait while we verify your startup<br>
+                Its okay even I am exited too
             </p>
         </div>
     </div>
@@ -68,8 +69,8 @@
 
 <script>
 
-    let signupApp = new Vue({
-        el: '#signupApp',
+    let startup_register_fragment = new Vue({
+        el: '#startup_register_fragment',
         data: {
             is_registered: false,
             user_details: {
@@ -106,14 +107,13 @@
                         if (response.data.data !== undefined) {
                             console.log(JSON.stringify(response.data.data));
                             if (response.data.data.user_detail[0].startupDetailsBystartupId !== null) {
-                                signupApp.is_registered = true;
+                                startup_register_fragment.is_registered = true;
                                 Cookies.set('startup_details', JSON.stringify(response.data.data.user_detail[0].startupDetailsBystartupId));
+                                navigation_app.set_startup_registered();
                                 navigation_app.check_is_verified();
                             } else {
-                                signupApp.is_registered = false;
-                                Cookies.set('startup_details', JSON.stringify({is_verified: false}));
-                                // navigation_app.check_is_verified();
-
+                                startup_register_fragment.is_registered = false;
+                                Cookies.remove('startup_details');
                             }
                         } else {
 
@@ -124,142 +124,76 @@
                     });
             },
             save_startup_details: () => {
-                if (signupApp.startup_details.startup_name === "" || signupApp.startup_details.startup_name === undefined) {
-                    alertify.error("fill startup name!");
-                } else if (signupApp.startup_details.about === "" || signupApp.startup_details.about === undefined) {
-                    alertify.error("fill startup details!");
+                if (startup_register_fragment.startup_details.startup_name === "" || startup_register_fragment.startup_details.startup_name === undefined) {
+                    alert("ill startup name!");
+                } else if (startup_register_fragment.startup_details.about === "" || startup_register_fragment.startup_details.about === undefined) {
+                    alert("fill startup details!");
                 } else if (Cookies.get('auth_details') === undefined || Cookies.get('auth_details') === null) {
-                    alertify.error("Sign in please!");
+                    alert("Sign in please!");
                 } else {
-                    alertify.confirm("You can't change your data later on so make sure all the data entered here are correct and properly filled",
-                        function () {
-                            let reqBody = {
-                                query_string: 'mutation save_startup_details {\n' +
-                                    '  insert_startup_details(objects: [{startup_name: "' + signupApp.startup_details.startup_name + '", about: "' + signupApp.startup_details.about + '", website: "' + signupApp.startup_details.website + '", logo_url: "' + signupApp.startup_details.logo + '", poc_name: "' + signupApp.startup_details.poc_name + '", contact_number: "' + signupApp.startup_details.contact_number + '", email_id: "' + signupApp.startup_details.email_id + '", user_h_id: "' + JSON.parse(Cookies.get('auth_details')).h_id + '"}]) {\n' +
-                                    '    returning {\n' +
-                                    '      id\n' +
-                                    '      is_verified\n' +
-                                    '    }\n' +
-                                    '  }\n' +
-                                    '}\n'
-                            };
+                    if (confirm("You can't change your data later on so make sure all the data entered here are correct and properly filled")) {
+                        let reqBody = {
+                            query_string: 'mutation save_startup_details {\n' +
+                                '  insert_startup_details(objects: [{startup_name: "' + startup_register_fragment.startup_details.startup_name + '", about: "' + startup_register_fragment.startup_details.about + '", website: "' + startup_register_fragment.startup_details.website + '", logo_url: "' + startup_register_fragment.startup_details.logo + '", poc_name: "' + startup_register_fragment.startup_details.poc_name + '", contact_number: "' + startup_register_fragment.startup_details.contact_number + '", email_id: "' + startup_register_fragment.startup_details.email_id + '", user_h_id: "' + JSON.parse(Cookies.get('auth_details')).h_id + '"}]) {\n' +
+                                '    returning {\n' +
+                                '      id\n' +
+                                '      is_verified\n' +
+                                '    }\n' +
+                                '  }\n' +
+                                '}\n'
+                        };
 
-                            axios.post('/db/user', reqBody)
-                                .then(function (response) {
-                                    if (response.data.errors === undefined) {
-                                        console.log(response.data.data.insert_startup_details.returning[0].is_verified);
+                        axios.post('/db/user', reqBody)
+                            .then(function (response) {
+                                if (response.data.errors === undefined) {
+                                    console.log(response.data.data.insert_startup_details.returning[0].is_verified);
 
-                                        navigation_app.is_verified = response.data.data.insert_startup_details.returning[0].is_verified;
+                                    navigation_app.is_verified = response.data.data.insert_startup_details.returning[0].is_verified;
 
-                                        let reqBody2 = {
-                                            query_string: 'mutation save_startup_name {\n' +
-                                                '  update_user_detail(where: {user_h_id: {_eq: "' + JSON.parse(Cookies.get('auth_details')).h_id + '"}}, _set: {startup_id: ' + response.data.data.insert_startup_details.returning[0].id + '}) {\n' +
-                                                '    affected_rows\n' +
-                                                '  }\n' +
-                                                '}\n'
-                                        };
+                                    let reqBody2 = {
+                                        query_string: 'mutation save_startup_name {\n' +
+                                            '  update_user_detail(where: {user_h_id: {_eq: "' + JSON.parse(Cookies.get('auth_details')).h_id + '"}}, _set: {startup_id: ' + response.data.data.insert_startup_details.returning[0].id + '}) {\n' +
+                                            '    affected_rows\n' +
+                                            '  }\n' +
+                                            '}\n'
+                                    };
 
-                                        axios.post('/db/user', reqBody2)
-                                            .then(function (response) {
-                                                if (response.data.errors === undefined) {
-                                                    signupApp.is_registered = true;
-                                                } else {
+                                    axios.post('/db/user', reqBody2)
+                                        .then(function (response) {
+                                            if (response.data.errors === undefined) {
+                                                startup_register_fragment.is_registered = true;
+                                            } else {
 
-                                                }
-                                            })
-                                            .catch(function (error) {
-                                                console.log(error);
-                                            });
+                                            }
+                                        })
+                                        .catch(function (error) {
+                                            console.log(error);
+                                        });
 
 
-                                    } else if (response.data.errors !== undefined && response.data.errors[0].message !== undefined && response.data.errors[0].extensions.code === "constraint-violation") {
-                                        console.log("error");
-                                        alertify.error("Startup already registered with different account");
-                                    } else {
-                                        console.log("random error:\n");
-                                        console.log(JSON.stringify(response.data));
-                                    }
-                                })
-                                .catch(function (error) {
-                                    console.log(error);
-                                });
+                                } else if (response.data.errors !== undefined && response.data.errors[0].message !== undefined && response.data.errors[0].extensions.code === "constraint-violation") {
+                                    console.log("error");
+                                    alert("Startup already registered with different account");
+                                } else {
+                                    console.log("random error:\n");
+                                    console.log(JSON.stringify(response.data));
+                                }
+                            })
+                            .catch(function (error) {
+                                console.log(error);
+                            });
+                    } else {
 
-                        },
-                        function () {
-                        }).setHeader('<em> Ecell says </em> ');
+                    }
 
 
                 }
-            },
-            check_is_signed_in: () => {
-                console.log(signupApp.user_details.is_signed_in);
-                navigation_app.is_signed_in = signupApp.user_details.is_signed_in;
             }
         }, mounted: function () {
             this.$nextTick(function () {
-                this.check_is_signed_in();
-
             })
         }
     });
-
-
-    function onSignIn(googleUser) {
-        let profile = googleUser.getBasicProfile();
-        signupApp.user_details = {
-            is_signed_in: true,
-            name: profile.getName(),
-            image_url: profile.getImageUrl(),
-            email: profile.getEmail()
-        };
-        let user_details = signupApp.user_details;
-        Cookies.set('user_details', JSON.stringify(user_details));
-        let reqBody = {
-            id_token: googleUser.getAuthResponse().id_token,
-        };
-        axios.post('/db/sign_in', reqBody)
-            .then(function (response) {
-                if (response.data.data !== undefined) {
-                    Cookies.set('auth_details', JSON.stringify(response.data.data.insert_joey_user.returning[0]));
-                    let reqBody = {
-                        query_string: 'mutation {\n' +
-                            '  insert_user_detail(objects: [{name: "' + profile.getName() + '", email: "' + profile.getEmail() + '", image_url: "' + profile.getImageUrl() + '", user_h_id: "' + response.data.data.insert_joey_user.returning[0].h_id + '"}], on_conflict: {constraint: user_detail_user_h_id_key, update_columns: [name, email, image_url]}) {\n' +
-                            '    affected_rows\n' +
-                            '  }\n' +
-                            '}'
-                    };
-                    axios.post('/db/user', reqBody)
-                        .then(function (response) {
-                            if (response.data.data !== undefined) {
-                                signupApp.check_is_registered();
-                                student_register_fragment.get_students_details();
-                                navigation_app.is_signed_in = true;
-                                student_register_fragment.is_signed_in = true;
-                            } else {
-                            }
-                        })
-                        .catch(function (error) {
-                            console.log(error);
-                        });
-                } else {
-                    console.log(response.data);
-                }
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-    }
-
-    function signOut() {
-        Cookies.remove('user_details');
-        Cookies.remove('auth_details');
-        Cookies.remove('student_details')
-        let auth2 = gapi.auth2.getAuthInstance();
-        auth2.signOut().then(function () {
-            signupApp.user_details.is_signed_in = false;
-        });
-        location.href = "/";
-    }
 
 
 </script>

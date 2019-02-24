@@ -3,23 +3,103 @@
     let navigation_app = new Vue({
         el: "#navigation_app",
         data: {
-            is_verified: false,
-            startup_details: {},
-            is_signed_in: false
+            is_loading: true,
+            is_signed_in: false,
+            is_student_registered: false,
+            is_startup_registered: false,
+            is_startup_verified: false,
         },
         methods: {
+
+            set_signed_in: () => {
+                navigation_app.is_signed_in = true;
+                student_register_fragment.is_signed_in = true;
+                startup_register_fragment.user_details.is_signed_in = true;
+            },
+            set_student_registered: () => {
+                navigation_app.is_loading = false;
+                navigation_app.is_student_registered = true;
+            },
+            set_startup_registered: () => {
+                navigation_app.is_loading = false;
+                navigation_app.is_startup_registered = true;
+            },
+            set_startup_verified: () => {
+                navigation_app.is_loading = false;
+                navigation_app.is_startup_verified = true;
+            },
             check_is_verified: () => {
-                if (Cookies.get('startup_details') !== null) {
-                    navigation_app.is_signed_in = signupApp.user_details.is_signed_in;
-                    navigation_app.is_verified = JSON.parse(Cookies.get('startup_details')).is_verified;
-                    navigation_app.startup_details = JSON.parse(Cookies.get('startup_details'));
+                if (Cookies.get("startup_details") !== undefined) {
+                    if (JSON.parse(Cookies.get("startup_details")).is_verified === true) {
+                        navigation_app.set_startup_verified();
+                    }
                 }
             }
         }, mounted: function () {
             this.$nextTick(function () {
+                setTimeout(function () {
+                    navigation_app.is_loading = false;
+                }, 3000);
             })
         }
     });
+
+    function onSignIn(googleUser) {
+        let profile = googleUser.getBasicProfile();
+        startup_register_fragment.user_details = {
+            is_signed_in: true,
+            name: profile.getName(),
+            image_url: profile.getImageUrl(),
+            email: profile.getEmail()
+        };
+        let user_details = startup_register_fragment.user_details;
+        Cookies.set('user_details', JSON.stringify(user_details));
+        let reqBody = {
+            id_token: googleUser.getAuthResponse().id_token,
+        };
+        axios.post('/db/sign_in', reqBody)
+            .then(function (response) {
+                if (response.data.data !== undefined) {
+                    Cookies.set('auth_details', JSON.stringify(response.data.data.insert_joey_user.returning[0]));
+                    let reqBody = {
+                        query_string: 'mutation {\n' +
+                            '  insert_user_detail(objects: [{name: "' + profile.getName() + '", email: "' + profile.getEmail() + '", image_url: "' + profile.getImageUrl() + '", user_h_id: "' + response.data.data.insert_joey_user.returning[0].h_id + '"}], on_conflict: {constraint: user_detail_user_h_id_key, update_columns: [name, email, image_url]}) {\n' +
+                            '    affected_rows\n' +
+                            '  }\n' +
+                            '}'
+                    };
+                    axios.post('/db/user', reqBody)
+                        .then(function (response) {
+                            if (response.data.data !== undefined) {
+                                navigation_app.set_signed_in();
+                                startup_register_fragment.check_is_registered();
+                                student_register_fragment.get_students_details();
+                            } else {
+                            }
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                } else {
+                    console.log(response.data);
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+
+    function signOut() {
+        Cookies.remove('user_details');
+        Cookies.remove('auth_details');
+        Cookies.remove('student_details');
+        Cookies.remove('startup_details');
+        let auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+            startup_register_fragment.user_details.is_signed_in = false;
+        });
+        location.href = "/";
+    }
 
 
 </script>
