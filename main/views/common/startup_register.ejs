@@ -57,10 +57,14 @@
         <div v-if="is_registered">
             <h5 style="color: green">Thank You For Registering!</a>
             </h5>
-            <p>
+            <p v-if="!is_verified">
 
                 Please wait while we verify your startup<br>
                 Its okay even I am exited too
+            </p>
+            <p v-if="is_verified">
+
+                Redirecting you to the <a href="/startup/manage">Dashboard</a>
             </p>
         </div>
     </div>
@@ -73,6 +77,7 @@
         el: '#startup_register_fragment',
         data: {
             is_registered: false,
+            is_verified: false,
             user_details: {
                 is_signed_in: false,
                 name: "",
@@ -146,10 +151,7 @@
                         axios.post('/db/user', reqBody)
                             .then(function (response) {
                                 if (response.data.errors === undefined) {
-                                    console.log(response.data.data.insert_startup_details.returning[0].is_verified);
-
                                     navigation_app.is_verified = response.data.data.insert_startup_details.returning[0].is_verified;
-
                                     let reqBody2 = {
                                         query_string: 'mutation save_startup_name {\n' +
                                             '  update_user_detail(where: {user_h_id: {_eq: "' + JSON.parse(Cookies.get('auth_details')).h_id + '"}}, _set: {startup_id: ' + response.data.data.insert_startup_details.returning[0].id + '}) {\n' +
@@ -157,11 +159,15 @@
                                             '  }\n' +
                                             '}\n'
                                     };
-
                                     axios.post('/db/user', reqBody2)
                                         .then(function (response) {
                                             if (response.data.errors === undefined) {
                                                 startup_register_fragment.is_registered = true;
+                                                navigation_app.set_startup_registered();
+                                                if (navigation_app.is_verified===true){
+                                                    startup_register_fragment.is_verified = true;
+                                                    location.href = "/startup/manage";
+                                                }
                                             } else {
 
                                             }

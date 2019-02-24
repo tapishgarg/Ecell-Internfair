@@ -19,10 +19,12 @@
             set_student_registered: () => {
                 navigation_app.is_loading = false;
                 navigation_app.is_student_registered = true;
+                navigation_app.is_startup_registered = false;
             },
             set_startup_registered: () => {
                 navigation_app.is_loading = false;
                 navigation_app.is_startup_registered = true;
+                navigation_app.is_student_registered = false;
             },
             set_startup_verified: () => {
                 navigation_app.is_loading = false;
