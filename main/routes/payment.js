@@ -25,7 +25,6 @@ router.post('/get_payment_link', function (req, res, next) {
         send_sms: false,
         email: req.body.email,
         allow_repeated_payments: false,
-        affiliate_commission : '2%'
     };
 
     request.post('https://www.instamojo.com/api/1.1/payment-requests/', {
