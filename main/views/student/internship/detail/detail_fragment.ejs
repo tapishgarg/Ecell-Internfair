@@ -50,8 +50,8 @@
                 </div>
                 <div class="col-lg-4 column">
                     <div class="job-single-head style2">
-                        <div class="job-thumb"><img :src="startup_post.startupDetailsBystartupDetailsId.logo_url"
-                                                    alt="" style="height: 100px;"/></div>
+                        <div><img :src="startup_post.startupDetailsBystartupDetailsId.logo_url"
+                                  alt="" style="height: 100px;"/></div>
                         <div class="job-head-info">
                             <h4>{{startup_post.startupDetailsBystartupDetailsId.startup_name}}</h4>
                             <span>{{startup_post.location}}</span>
@@ -59,11 +59,16 @@
                                         :href="startup_post.startupDetailsBystartupDetailsId.website">{{startup_post.startupDetailsBystartupDetailsId.website}}</a>
                             </p>
                         </div>
-                        <a title="" class="apply-job-btn" v-if="students_details.is_paid && !is_applied && !is_max_reached" @click="open_widget"><i
+                        <a title="" class="apply-job-btn"
+                           v-if="students_details.is_paid && !is_applied && !is_max_reached" @click="open_widget"><i
                                     class="la la-paper-plane"></i>Apply</a>
-                        <a v-if="!students_details.is_paid"  style="color: #0b1b46;font-size: small"><i class="fas fa-info-circle"></i> You need pay ₹250 before you apply for internship</a>
-                        <a v-if="is_applied" style="color: #0b1b46;font-size: small"><i class="fas fa-info-circle"></i> You already applied for this internship</a>
-                        <a v-if="is_max_reached && !is_applied" style="color: #0b1b46;font-size: small"><i class="fas fa-info-circle"></i> You already reached max limit of applying internship</a>
+                        <a v-if="!students_details.is_paid" style="color: #0b1b46;font-size: small"><i
+                                    class="fas fa-info-circle"></i> You need pay ₹250 before you apply for
+                            internship</a>
+                        <a v-if="is_applied" style="color: #0b1b46;font-size: small"><i class="fas fa-info-circle"></i>
+                            You already applied for this internship</a>
+                        <a v-if="is_max_reached && !is_applied" style="color: #0b1b46;font-size: small"><i
+                                    class="fas fa-info-circle"></i> You already reached max limit of applying internship</a>
 
                     </div><!-- Job Head -->
                 </div>
@@ -76,13 +81,13 @@
     let internship_detail_fragment = new Vue({
         el: "#internship_detail_fragment",
         data: {
-            resume_url : "",
-            students_details : {
-                is_paid : false,
-                id : 0
+            resume_url: "",
+            students_details: {
+                is_paid: false,
+                id: 0
             },
-            is_applied : false,
-            is_max_reached : false,
+            is_applied: false,
+            is_max_reached: false,
             startup_post: {
                 id: 0,
                 internship_title: "",
@@ -175,38 +180,39 @@
                     });
 
             },
-            apply_internship : ()=>{
-                internship_detail_fragment.is_applied = true ;
+            apply_internship: () => {
+                internship_detail_fragment.is_applied = true;
                 let reqBody = {
                     query_string: 'mutation {\n' +
-                        '  insert_internship_apply_table(objects: {student_id: '+internship_detail_fragment.students_details.id+', internship_id: '+internship_detail_fragment.startup_post.id+', resume_url: "'+internship_detail_fragment.resume_url+'"}) {\n' +
+                        '  insert_internship_apply_table(objects: {student_id: ' + internship_detail_fragment.students_details.id + ', internship_id: ' + internship_detail_fragment.startup_post.id + ', resume_url: "' + internship_detail_fragment.resume_url + '"}) {\n' +
                         '    affected_rows\n' +
                         '  }\n' +
                         '}\n'
                 };
                 axios.post('/db/user', reqBody)
                     .then(function (response) {
-                        console.log(JSON.stringify(response.data))
+                        console.log(JSON.stringify(response.data));
                         if (response.data.data !== undefined) {
                             if (response.data.data.insert_internship_apply_table.affected_rows > 0) {
                                 internship_detail_fragment.check_if_applied();
                             }
                         } else {
-                            internship_detail_fragment.is_applied = false ;
+                            internship_detail_fragment.is_applied = false;
                         }
                     })
                     .catch(function (error) {
                         console.log(error);
                     });
             },
-            get_students_details : ()=>{
+            get_students_details: () => {
                 if (Cookies.get('student_details') !== undefined) {
                     internship_detail_fragment.students_details = JSON.parse(Cookies.get('student_details'));
-                }            },
-            check_if_applied : ()=>{
+                }
+            },
+            check_if_applied: () => {
                 let reqBody = {
                     query_string: '{\n' +
-                        '  internship_apply_table(where: {student_id: {_eq: '+internship_detail_fragment.students_details.id+'}}) {\n' +
+                        '  internship_apply_table(where: {student_id: {_eq: ' + internship_detail_fragment.students_details.id + '}}) {\n' +
                         '    internship_id\n' +
                         '  }\n' +
                         '}\n'
@@ -215,13 +221,13 @@
                     .then(function (response) {
                         if (response.data.data !== undefined) {
                             if (response.data.data.internship_apply_table.length > 0) {
-                                for (let i = 0; i < response.data.data.internship_apply_table.length ; i++ ){
-                                    console.log(JSON.stringify(internship_detail_fragment.startup_post.id))
-                                    if (response.data.data.internship_apply_table[i].internship_id===internship_detail_fragment.startup_post.id){
+                                for (let i = 0; i < response.data.data.internship_apply_table.length; i++) {
+                                    console.log(JSON.stringify(internship_detail_fragment.startup_post.id));
+                                    if (response.data.data.internship_apply_table[i].internship_id === internship_detail_fragment.startup_post.id) {
                                         internship_detail_fragment.is_applied = true;
                                     }
                                 }
-                                if (response.data.data.internship_apply_table.length >4 ){
+                                if (response.data.data.internship_apply_table.length > 4) {
                                     internship_detail_fragment.is_max_reached = true;
                                 }
 

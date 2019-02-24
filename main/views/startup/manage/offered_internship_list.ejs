@@ -1,11 +1,12 @@
 <div class="col-lg-12 column" id="startup_manage_app">
 
 
-    <div >
+    <div>
         <div class="manage-jobs-sec">
             <h3>Manage Internships</h3>
             <div class="btn-extars" style="margin-top: -60px">
-                <a href="/startup/post_internship" title="" class="post-job-btn"><i class="la la-plus"></i>Post Internship</a>
+                <a href="/startup/post_internship" title="" class="post-job-btn"><i class="la la-plus"></i>Post
+                    Internship</a>
             </div>
             <!-- <div class="btn-extars" style="margin-top: -60px">
                 <a href="/startup/post_internship" title="" class="post-job-btn"><i class="la la-plus"></i>Post Internship</a>
@@ -41,9 +42,11 @@
                         <ul class="action_job">
                             <li><span>View Job</span><a href="#" title="" onclick="alert('This is temporarily locked')"><i
                                             class="la la-eye"></i></a></li>
-                            <li v-if="offered_internship.status!=='live'"><span>Edit</span><a href="#" title="" onclick="alert('This is temporarily locked')"><i
+                            <li v-if="offered_internship.status!=='live'"><span>Edit</span><a href="#" title=""
+                                                                                              onclick="alert('This is temporarily locked')"><i
                                             class="la la-pencil"></i></a></li>
-                            <li v-if="offered_internship.status!=='live'"><span>Delete</span><a href="#" title="" onclick="alert('This is temporarily locked')"><i
+                            <li v-if="offered_internship.status!=='live'"><span>Delete</span><a href="#" title=""
+                                                                                                onclick="alert('This is temporarily locked')"><i
                                             class="la la-trash-o"></i></a></li>
                         </ul>
                     </td>
@@ -77,9 +80,9 @@
                 };
                 axios.post('/db/user', reqBody)
                     .then(function (response) {
-                        console.log(response.data)
+                        console.log(response.data);
                         if (response.data.data !== undefined) {
-                            console.log("joeydash")
+                            console.log("joeydash");
 
                             console.log(JSON.stringify(response.data));
                             startup_manage_app.offered_internship_list = response.data.data.startup_post;

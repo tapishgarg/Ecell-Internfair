@@ -1,0 +1,153 @@
+<section>
+    <div class="block" id="count_fragment_app">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="stats-sec style2">
+                        <div class="row">
+                            <div class="col-lg-3  col-md-3 col-sm-6 col-xs-6">
+                                <div class="stats">
+                                    <span>{{number_of_internship}}</span>
+                                    <h5>Internship Posted</h5>
+                                </div>
+                            </div>
+                            <div class="col-lg-3  col-md-3 col-sm-6 col-xs-6">
+                                <div class="stats">
+                                    <span>{{number_of_internship_applied}}</span>
+                                    <h5>Internship Applied</h5>
+                                </div>
+                            </div>
+                            <div class="col-lg-3  col-md-3 col-sm-6 col-xs-6">
+                                <div class="stats">
+                                    <span>{{number_of_startups}}</span>
+                                    <h5>Startups</h5>
+                                </div>
+                            </div>
+                            <div class="col-lg-3  col-md-3 col-sm-6 col-xs-6">
+                                <div class="stats">
+                                    <span>{{number_of_student_registered}}</span>
+                                    <h5>Student Registered</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    let count_fragment_app = new Vue({
+        el : "#count_fragment_app",
+        data : {
+            number_of_startups : 0,
+            number_of_internship : 0,
+            number_of_internship_applied : 0,
+            number_of_student_registered : 0,
+        },
+        methods : {
+            get_startups_number : ()=>{
+                let reqBody2 = {
+                    query_string: '{\n' +
+                        '  startup_details_aggregate {\n' +
+                        '    aggregate {\n' +
+                        '      count\n' +
+                        '    }\n' +
+                        '  }\n' +
+                        '}'
+                };
+                axios.post('/db/anonymous', reqBody2)
+                    .then(function (response) {
+                        console.log(JSON.stringify(response.data));
+                        if (response.data.errors === undefined) {
+                            count_fragment_app.number_of_startups = response.data.data.startup_details_aggregate.aggregate.count;
+                        } else {
+
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            },
+            get_startups_post_number : ()=>{
+                let reqBody2 = {
+                    query_string: '{\n' +
+                        '  startup_post_aggregate {\n' +
+                        '    aggregate {\n' +
+                        '      count\n' +
+                        '    }\n' +
+                        '  }\n' +
+                        '}\n'
+                };
+                axios.post('/db/anonymous', reqBody2)
+                    .then(function (response) {
+                        console.log(JSON.stringify(response.data));
+                        if (response.data.errors === undefined) {
+                            count_fragment_app.number_of_internship = response.data.data.startup_post_aggregate.aggregate.count;
+                        } else {
+
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            },
+            get_startups_internship_applied : ()=>{
+                let reqBody2 = {
+                    query_string: '{\n' +
+                        '  internship_apply_table_aggregate {\n' +
+                        '    aggregate {\n' +
+                        '      count\n' +
+                        '    }\n' +
+                        '  }\n' +
+                        '}\n'
+                };
+                axios.post('/db/anonymous', reqBody2)
+                    .then(function (response) {
+                        console.log(JSON.stringify(response.data));
+                        if (response.data.errors === undefined) {
+                            count_fragment_app.number_of_internship_applied = response.data.data.internship_apply_table_aggregate.aggregate.count;
+                        } else {
+
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            },
+            get_startups_student_registered : ()=>{
+                let reqBody2 = {
+                    query_string: '{\n' +
+                        '  student_details_aggregate {\n' +
+                        '    aggregate {\n' +
+                        '      count\n' +
+                        '    }\n' +
+                        '  }\n' +
+                        '}'
+                };
+                axios.post('/db/anonymous', reqBody2)
+                    .then(function (response) {
+                        console.log(JSON.stringify(response.data));
+                        if (response.data.errors === undefined) {
+                            count_fragment_app.number_of_student_registered = response.data.data.student_details_aggregate.aggregate.count;
+                        } else {
+
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            }
+        },
+        mounted: function() {
+            this.$nextTick(function () {
+                this.get_startups_number();
+                this.get_startups_post_number();
+                this.get_startups_internship_applied();
+                this.get_startups_student_registered();
+
+            });
+        }
+    });
+</script>

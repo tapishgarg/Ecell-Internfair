@@ -164,8 +164,9 @@
                                             if (response.data.errors === undefined) {
                                                 startup_register_fragment.is_registered = true;
                                                 navigation_app.set_startup_registered();
-                                                if (navigation_app.is_verified===true){
+                                                if (navigation_app.is_verified === true) {
                                                     startup_register_fragment.is_verified = true;
+                                                    //Todo you must store cookie before redirecting
                                                     location.href = "/startup/manage";
                                                 }
                                             } else {

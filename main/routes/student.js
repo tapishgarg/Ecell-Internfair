@@ -15,5 +15,4 @@ router.get('/internship/detail/:id', function (req, res, next) {
 });
 
 
-
 module.exports = router;

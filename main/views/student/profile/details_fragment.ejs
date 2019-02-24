@@ -225,19 +225,19 @@
 
     function onButtonClick() {
 
-            if (student_info_app.student_details.college === undefined || student_info_app.student_details.college === '' || student_info_app.student_details.college === null) {
-                // Instamojo.open('https://test.instamojo.com/@joydassudipta/ld78574a5535f444b904c35b9bbe673a6/');
-                // Instamojo.open(student_info_app.student_details.payment_link);
-                alert("Enter college name pliz");
-            } else if (student_info_app.student_details.cgpa === undefined || student_info_app.student_details.cgpa === '' || student_info_app.student_details.cgpa === null) {
-                alert("Enter cgpa pliz");
-            } else if (student_info_app.student_details.branch === undefined || student_info_app.student_details.branch === '' || student_info_app.student_details.branch === null) {
-                alert("Enter Branch pliz");
-            } else {
-                if (confirm("Please make sure all information are correct because you can't change this information later")) {
-                    Instamojo.open(student_info_app.student_details.payment_link);
-                }
+        if (student_info_app.student_details.college === undefined || student_info_app.student_details.college === '' || student_info_app.student_details.college === null) {
+            // Instamojo.open('https://test.instamojo.com/@joydassudipta/ld78574a5535f444b904c35b9bbe673a6/');
+            // Instamojo.open(student_info_app.student_details.payment_link);
+            alert("Enter college name pliz");
+        } else if (student_info_app.student_details.cgpa === undefined || student_info_app.student_details.cgpa === '' || student_info_app.student_details.cgpa === null) {
+            alert("Enter cgpa pliz");
+        } else if (student_info_app.student_details.branch === undefined || student_info_app.student_details.branch === '' || student_info_app.student_details.branch === null) {
+            alert("Enter Branch pliz");
+        } else {
+            if (confirm("Please make sure all information are correct because you can't change this information later")) {
+                Instamojo.open(student_info_app.student_details.payment_link);
             }
+        }
 
 
     }

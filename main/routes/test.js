@@ -18,7 +18,7 @@ request.post('https://www.instamojo.com/api/1.1/payment-requests/', {
     headers: headers
 }, function (error, response, body) {
     console.log(response);
-    if (!error && response.statusCode == 201) {
+    if (!error && response.statusCode === 201) {
         console.log(body);
     }
 });

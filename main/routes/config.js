@@ -14,16 +14,16 @@ let config = {
         graphql_url: "http://" + graphql_host + ":" + "8080" + "/v1alpha1/graphql"
     },
     sendGridKey: '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',
-    instamojo_keys : {
-        test : {
-            api_key : "test_bc5d0ff7ab93913d48c141db000",
-            auth_key : "test_084bd7acbd7183f58bfe6c2e54e",
-            salt_key : "7e92c8ff2f2f45cd884143f5b1984cca"
+    instamojo_keys: {
+        test: {
+            api_key: "test_bc5d0ff7ab93913d48c141db000",
+            auth_key: "test_084bd7acbd7183f58bfe6c2e54e",
+            salt_key: "7e92c8ff2f2f45cd884143f5b1984cca"
         },
-        prod : {
-            api_key : "74223f7bfeb2f7a1e59cb20a0d214ae6",
-            auth_key : "264b9c30c8fd7c6131726c757a8822a5",
-            salt_key : "bda67ebd30e6429fa0a35fe11f6cec92"
+        prod: {
+            api_key: "74223f7bfeb2f7a1e59cb20a0d214ae6",
+            auth_key: "264b9c30c8fd7c6131726c757a8822a5",
+            salt_key: "bda67ebd30e6429fa0a35fe11f6cec92"
         }
     }
 };

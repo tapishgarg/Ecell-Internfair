@@ -33,7 +33,7 @@ router.post('/get_payment_link', function (req, res, next) {
     }, function (error, response, body) {
         if (!error && response.statusCode == 201) {
             res.json(body);
-        }else {
+        } else {
             res.json(body);
             console.log(body);
         }
