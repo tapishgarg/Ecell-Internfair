@@ -3,7 +3,13 @@
         <div class="container">
             <div class="row">
                 <div v-if="!students_details.is_paid" class="col-lg-8 column alert alert-success" style="margin: 10px;">
-                    <strong>Info: </strong> <span style="font-size: smaller">you need to pay ₹250 before applying.</span>
+                    <span style="font-size: smaller">you need to pay ₹250 before applying.</span>
+                </div>
+                <div v-if="is_applied" class="col-lg-8 column alert alert-success" style="margin: 10px;">
+                    <span style="font-size: smaller">You already applied for this internship.</span>
+                </div>
+                <div v-if="is_max_reached && !is_applied" class="col-lg-8 column alert alert-danger" style="margin: 10px;">
+                    <span style="font-size: smaller">You crossed the max limit of applying internship.</span>
                 </div>
                 <div class="col-lg-8 column">
                     <div class="job-single-sec">
@@ -62,15 +68,24 @@
                                         :href="startup_post.startupDetailsBystartupDetailsId.website">{{startup_post.startupDetailsBystartupDetailsId.website}}</a>
                             </p>
                         </div>
-                        <a title="" class="apply-job-btn"
-                           v-if="students_details.is_paid && !is_applied && !is_max_reached" @click="open_widget"><i
-                                    class="la la-paper-plane"></i>Apply</a>
-                        <div></div>
+                        <div v-if="resume_url" style="margin-bottom: 10px;">
+                            <a :href="resume_url" style="font-size: x-small;color: #0b1b46;"> <img
+                                        src="/images/resume.png" style="height: 20px;margin-right: 5px;">{{resume_url}}</a><br>
 
-                        <a v-if="is_applied" style="color: #0b1b46;font-size: small"><i class="fas fa-info-circle"></i>
-                            You already applied for this internship</a>
+                        </div>
+                        <a title="" class="apply-job-btn"
+                           v-if="students_details.is_paid && !is_applied && !is_max_reached && resume_url"
+                           @click="apply_internship"><i
+                                    class="la la-paper-plane"></i>Apply</a>
+                        <a title="" class="apply-job-btn"
+                           v-if="students_details.is_paid && !is_applied && !is_max_reached && !resume_url"
+                           @click="open_widget"><i
+                                    class="fa fa-file-upload"></i>Upload Resume</a>
+                        <a style="color: #0b1b46;font-size: small" v-if="!resume_url"><i class="fas fa-info-circle"></i>
+                            You should upload pdf file only</a>
+
                         <a v-if="is_max_reached && !is_applied" style="color: #0b1b46;font-size: small"><i
-                                    class="fas fa-info-circle"></i> You already reached max limit of applying internship</a>
+                                    class="fas fa-info-circle"></i> You crossed the max limit of applying internship</a>
 
                     </div><!-- Job Head -->
                 </div>
@@ -83,7 +98,7 @@
     let internship_detail_fragment = new Vue({
         el: "#internship_detail_fragment",
         data: {
-            resume_url: "",
+            resume_url: null,
             students_details: {
                 is_paid: false,
                 id: 0
@@ -118,20 +133,17 @@
         methods: {
             open_widget: () => {
                 let myUploadWidget = cloudinary.openUploadWidget({
-                        cloudName: "saarang2017",
-                        uploadPreset: "ecell_iitm",
+                        cloudName: "si-portal",
+                        uploadPreset: "resumes",
                         //Step 3:  Add list of sources that should be added as tabs in the widget.
                         sources: [
                             "local",
                             "url",
-                            "camera"
                         ],
                     },
                     function (error, result) {
                         if (result.event === "success") {
                             internship_detail_fragment.resume_url = result.info.secure_url;
-                            console.log(result.info.secure_url);
-                            internship_detail_fragment.apply_internship();
                             myUploadWidget.close();
                         }
                     });
@@ -183,28 +195,31 @@
 
             },
             apply_internship: () => {
-                internship_detail_fragment.is_applied = true;
-                let reqBody = {
-                    query_string: 'mutation {\n' +
-                        '  insert_internship_apply_table(objects: {student_id: ' + internship_detail_fragment.students_details.id + ', internship_id: ' + internship_detail_fragment.startup_post.id + ', resume_url: "' + internship_detail_fragment.resume_url + '"}) {\n' +
-                        '    affected_rows\n' +
-                        '  }\n' +
-                        '}\n'
-                };
-                axios.post('/db/user', reqBody)
-                    .then(function (response) {
-                        console.log(JSON.stringify(response.data));
-                        if (response.data.data !== undefined) {
-                            if (response.data.data.insert_internship_apply_table.affected_rows > 0) {
-                                internship_detail_fragment.check_if_applied();
+                if (confirm("Are you sure that your resume is correct and you want to apply for this internship?")) {
+                    internship_detail_fragment.is_applied = true;
+                    let reqBody = {
+                        query_string: 'mutation {\n' +
+                            '  insert_internship_apply_table(objects: {student_id: ' + internship_detail_fragment.students_details.id + ', internship_id: ' + internship_detail_fragment.startup_post.id + ', resume_url: "' + internship_detail_fragment.resume_url + '"}) {\n' +
+                            '    affected_rows\n' +
+                            '  }\n' +
+                            '}\n'
+                    };
+                    axios.post('/db/user', reqBody)
+                        .then(function (response) {
+                            console.log(JSON.stringify(response.data));
+                            if (response.data.data !== undefined) {
+                                if (response.data.data.insert_internship_apply_table.affected_rows > 0) {
+                                    internship_detail_fragment.check_if_applied();
+                                }
+                            } else {
+                                internship_detail_fragment.is_applied = false;
                             }
-                        } else {
-                            internship_detail_fragment.is_applied = false;
-                        }
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                }
+
             },
             get_students_details: () => {
                 if (Cookies.get('student_details') !== undefined) {
@@ -216,6 +231,7 @@
                     query_string: '{\n' +
                         '  internship_apply_table(where: {student_id: {_eq: ' + internship_detail_fragment.students_details.id + '}}) {\n' +
                         '    internship_id\n' +
+                        '    resume_url\n' +
                         '  }\n' +
                         '}\n'
                 };
@@ -227,6 +243,8 @@
                                     console.log(JSON.stringify(internship_detail_fragment.startup_post.id));
                                     if (response.data.data.internship_apply_table[i].internship_id === internship_detail_fragment.startup_post.id) {
                                         internship_detail_fragment.is_applied = true;
+                                        console.log(JSON.stringify(response.data.data.internship_apply_table[i]));
+                                        internship_detail_fragment.resume_url = response.data.data.internship_apply_table[i].resume_url;
                                     }
                                 }
                                 if (response.data.data.internship_apply_table.length > 4) {
