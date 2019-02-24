@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset=utf-8>
+    <meta name=description content="Joeydash is chilling in aerospace">
+    <meta name=author content=joeydash>
+    <meta name=mobile-web-app-capable content=yes>
+    <meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,minimal-ui">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <table v-if="checkedTickets.length>0">
+        <tr>
+            <th v-for="key in Object.keys(checkedTickets[0])">{{key}}</th>
+            <!--<th>Contact</th>-->
+            <!--<th>Country</th>-->
+        </tr>
+        <tr v-for="ticket in checkedTickets">
+            <td v-for="key in Object.keys(checkedTickets[0])">{{ticket[key]}}</td>
+        </tr>
+
+    </table>
+
+</div>
+
+<script>
+    let app = new Vue({
+        el: '#app',
+        data: {
+            checkedTickets: []
+        },
+        methods: {
+            getCheckTickets: () => {
+                axios.get('/payment/paid/list/json')
+                    .then(function (response) {
+                        // handle success
+                        app.checkedTickets = JSON.parse(response.data).payments;
+                    })
+                    .catch(function (error) {
+                        // handle error
+                        console.log(error);
+                    })
+                    .then(function () {
+                        // always executed
+                    });
+            },
+            setRefreshTimer: () => {
+                setInterval(function () {
+                    app.getCheckTickets();
+                }, 3000);
+            }
+        },
+        mounted: function () {
+            this.$nextTick(function () {
+                this.getCheckTickets();
+                // this.setRefreshTimer();
+            })
+        }
+    })
+</script>
+</body>
+</html>

@@ -24,7 +24,8 @@ router.post('/get_payment_link', function (req, res, next) {
         send_email: false,
         send_sms: false,
         email: req.body.email,
-        allow_repeated_payments: false
+        allow_repeated_payments: false,
+        affiliate_commission : '2%'
     };
 
     request.post('https://www.instamojo.com/api/1.1/payment-requests/', {
@@ -35,10 +36,30 @@ router.post('/get_payment_link', function (req, res, next) {
             res.json(body);
         } else {
             res.json(body);
-            console.log(body);
         }
     });
 });
+
+
+router.get('/paid/list/json', function (req, res, next) {
+    let headers = {
+        'X-Api-Key': config.instamojo_keys.prod.api_key,
+        'X-Auth-Token': config.instamojo_keys.prod.auth_key
+    };
+    request.get('https://www.instamojo.com/api/1.1/payments/', {headers: headers}, function(error, response, body){
+        if (!error && response.statusCode === 201) {
+            res.json(body.payments);
+        } else {
+            res.json(body);
+        }
+    });
+});
+
+
+router.get('/paid/list', function (req, res, next) {
+    res.render('single/payments');
+});
+
 
 
 module.exports = router;
