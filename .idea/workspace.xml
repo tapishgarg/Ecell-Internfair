@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8f5f8ba0-1585-465f-80a4-1271d2ddb1e9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/main/views/single/payments.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/public/images/download-file.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/internfair.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/internfair.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/routes/payment.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/routes/payment.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/views/single/payments.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/main/views/single/payments.ejs" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -31,29 +33,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main/views/single/payments.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="855">
-              <caret line="57" column="22" lean-forward="true" selection-start-line="57" selection-start-column="22" selection-end-line="57" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/main/routes/payment.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="27" column="35" selection-start-line="27" selection-start-column="35" selection-end-line="27" selection-end-column="35" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main/routes/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="316">
-              <caret line="54" selection-start-line="54" selection-end-line="57" />
+            <state relative-caret-position="240">
+              <caret line="131" column="27" selection-start-line="131" selection-start-column="27" selection-end-line="131" selection-end-column="27" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -161,12 +149,12 @@
         <option value="$PROJECT_DIR$/main/views/student/internship/detail/detail_fragment.ejs" />
         <option value="$PROJECT_DIR$/main/views/startup/post_internship/post_fragment.ejs" />
         <option value="$PROJECT_DIR$/main/views/single/payment_list.ejs" />
-        <option value="$PROJECT_DIR$/main/views/single/payments.ejs" />
         <option value="$PROJECT_DIR$/main/routes/payment.js" />
+        <option value="$PROJECT_DIR$/main/views/single/payments.ejs" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
+  <component name="ProjectFrameBounds" fullScreen="true">
     <option name="width" value="1440" />
     <option name="height" value="900" />
   </component>
@@ -192,20 +180,20 @@
               <item name="Ecell-Internfair" type="b2602c69:ProjectViewProjectNode" />
               <item name="Ecell-Internfair" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="routes" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Ecell-Internfair" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Ecell-Internfair" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Ecell-Internfair" type="b2602c69:ProjectViewProjectNode" />
               <item name="Ecell-Internfair" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Ecell-Internfair" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Ecell-Internfair" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Ecell-Internfair" type="b2602c69:ProjectViewProjectNode" />
@@ -226,19 +214,19 @@
     <property name="restartRequiresConfirmation" value="false" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/main/views/common/navigation" />
-      <recent name="$PROJECT_DIR$/main/views/startup/employer_post" />
-      <recent name="$PROJECT_DIR$/main/views/startup/common" />
-      <recent name="$PROJECT_DIR$/main/views/startup/manage" />
-      <recent name="$PROJECT_DIR$/main/views/single" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/main/public/images" />
       <recent name="$PROJECT_DIR$/main/views/student/internship/list" />
       <recent name="$PROJECT_DIR$/main/views/student/internship/detail" />
       <recent name="$PROJECT_DIR$/main/views/student" />
       <recent name="$PROJECT_DIR$/main/views/student/profile" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/main/views/common/navigation" />
+      <recent name="$PROJECT_DIR$/main/views/startup/employer_post" />
+      <recent name="$PROJECT_DIR$/main/views/startup/common" />
+      <recent name="$PROJECT_DIR$/main/views/startup/manage" />
+      <recent name="$PROJECT_DIR$/main/views/single" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -294,21 +282,8 @@
       <workItem from="1550686154475" duration="659000" />
       <workItem from="1550691460729" duration="38674000" />
       <workItem from="1550977730850" duration="11482000" />
-      <workItem from="1551024294579" duration="1466000" />
-    </task>
-    <task id="LOCAL-00025" summary="example added">
-      <created>1549470678707</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1549470678708</updated>
-    </task>
-    <task id="LOCAL-00026" summary="example added">
-      <created>1549474156441</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1549474156441</updated>
+      <workItem from="1551024294579" duration="1845000" />
+      <workItem from="1551167979878" duration="2654000" />
     </task>
     <task id="LOCAL-00027" summary="example added">
       <created>1549474830336</created>
@@ -639,11 +614,25 @@
       <option name="project" value="LOCAL" />
       <updated>1551012208596</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="example added">
+      <created>1551026059041</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1551026059042</updated>
+    </task>
+    <task id="LOCAL-00075" summary="example added">
+      <created>1551026434470</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1551026434470</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="122326000" />
+    <option name="totallyTimeSpent" value="125359000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -655,10 +644,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="6" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.3104435" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.31473532" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="DB Browser" order="2" weight="0.3297568" />
       <window_info id="Project Explorer" order="3" />
@@ -666,7 +655,7 @@
       <window_info id="Favorites" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3280098" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.31695333" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.31695333" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -1060,13 +1049,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/routes/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
-          <caret line="54" selection-start-line="54" selection-end-line="57" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main/views/common/header.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
@@ -1074,17 +1056,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/views/single/payments.ejs">
+    <entry file="file://$PROJECT_DIR$/main/routes/payment.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="855">
-          <caret line="57" column="22" lean-forward="true" selection-start-line="57" selection-start-column="22" selection-end-line="57" selection-end-column="22" />
+        <state relative-caret-position="405">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/routes/payment.js">
+    <entry file="file://$PROJECT_DIR$/main/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="27" column="35" selection-start-line="27" selection-start-column="35" selection-end-line="27" selection-end-column="35" />
+        <state relative-caret-position="316">
+          <caret line="54" selection-start-line="54" selection-end-line="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/views/single/payments.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="131" column="27" selection-start-line="131" selection-start-column="27" selection-end-line="131" selection-end-column="27" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
