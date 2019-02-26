@@ -89,9 +89,9 @@
 <body>
 <div id="app">
     <div class="topnav" style="margin-bottom: 20px;">
-        <a class="active"><b>Payment List</b></a>
+        <a class="active"><b>Payment Paid List</b></a>
         <a> {{search_list.length}} Rows</a>
-        <a style="cursor: pointer;" onclick="saveFile()"> Download XLSX</a>
+        <a style="cursor: pointer;" onclick="saveFile()"> Download below list as XLSX</a>
         <input type="text" @keyup="search_object" placeholder="search payment id" v-model="search_str">
     </div>
 
@@ -155,16 +155,48 @@
             search_object: () => {
                 if (app.search_str.length > 0) {
                     app.search_list = app.checkedTickets.filter(function (obj) {
-                        return matchRuleShort(obj.payment_id.toLowerCase(), "*" + app.search_str.toLowerCase() + "*");
+                        return app.search_in_obj(app.search_str, obj);
                     })
                 } else {
                     app.search_list = app.checkedTickets;
                 }
             },
+            search_in_obj: (str, obj) => {
+                keys = Object.keys(obj);
+                for (let i = 0; i < keys.length; i++) {
+                    if (obj[keys[i]]){
+                        if (app.matchRuleShort(obj[keys[i]].toLowerCase(), "*" + str.toLowerCase() + "*")) {
+                            return true;
+                        }else if (i === keys.length - 1) {
+                            return false;
+                        }
+                    }else{
+                        return false;
+                    }
+                }
+            },
+            matchRuleShort: (str, rule) => {
+                return new RegExp("^" + rule.split("*").join(".*") + "$").test(str);
+            },
+            matchRuleExpl: (str, rule) => {
+                // "."  => Find a single character, except newline or line terminator
+                // ".*" => Matches any string that contains zero or more characters
+                rule = rule.split("*").join(".*");
+
+                // "^"  => Matches any string with the following at the beginning of it
+                // "$"  => Matches any string with that in front at the end of it
+                rule = "^" + rule + "$";
+
+                //Create a regular expression object for matching string
+                let regex = new RegExp(rule);
+
+                //Returns true if it finds a match, otherwise it returns false
+                return regex.test(str);
+            },
             download_xlsx: () => {
-                var data1 = [{a: 1, b: 10}, {a: 2, b: 20}];
-                var opts = [{sheetid: 'One', header: true}];
-                var res = alasql('SELECT * INTO XLSX("restest344b.xlsx",?) FROM ?',
+                let data1 = [{a: 1, b: 10}, {a: 2, b: 20}];
+                let opts = [{sheetid: 'One', header: true}];
+                let res = alasql('SELECT * INTO XLSX("restest344b.xlsx",?) FROM ?',
                     [opts, [data1]]);
             }
         },
@@ -176,32 +208,10 @@
         }
     });
 
-    //Short code
-    function matchRuleShort(str, rule) {
-        return new RegExp("^" + rule.split("*").join(".*") + "$").test(str);
-    }
-
-    //Explanation code
-    function matchRuleExpl(str, rule) {
-        // "."  => Find a single character, except newline or line terminator
-        // ".*" => Matches any string that contains zero or more characters
-        rule = rule.split("*").join(".*");
-
-        // "^"  => Matches any string with the following at the beginning of it
-        // "$"  => Matches any string with that in front at the end of it
-        rule = "^" + rule + "$";
-
-        //Create a regular expression object for matching string
-        var regex = new RegExp(rule);
-
-        //Returns true if it finds a match, otherwise it returns false
-        return regex.test(str);
-    }
-
     window.saveFile = function saveFile() {
-        var data1 = app.search_list;
-        var opts = [{sheetid: 'One', header: true}];
-        var res = alasql('SELECT * INTO XLSX("restest344b.xlsx",?) FROM ?',
+        let data1 = app.search_list;
+        let opts = [{sheetid: 'One', header: true}];
+        let res = alasql('SELECT * INTO XLSX("search.xlsx",?) FROM ?',
             [opts, [data1]]);
     }
 
