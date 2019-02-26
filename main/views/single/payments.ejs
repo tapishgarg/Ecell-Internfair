@@ -92,7 +92,7 @@
         <a class="active"><b>Payment Paid List</b></a>
         <a> {{search_list.length}} Rows</a>
         <a style="cursor: pointer;" onclick="saveFile()"> Download below list as XLSX</a>
-        <input type="text" @keyup="search_object" placeholder="search payment id" v-model="search_str">
+        <input type="text" @keyup="search_object" placeholder="Search..." v-model="search_str">
     </div>
 
     <table v-if="checkedTickets.length>0">
@@ -164,13 +164,13 @@
             search_in_obj: (str, obj) => {
                 keys = Object.keys(obj);
                 for (let i = 0; i < keys.length; i++) {
-                    if (obj[keys[i]]){
+                    if (obj[keys[i]]) {
                         if (app.matchRuleShort(obj[keys[i]].toLowerCase(), "*" + str.toLowerCase() + "*")) {
                             return true;
-                        }else if (i === keys.length - 1) {
+                        } else if (i === keys.length - 1) {
                             return false;
                         }
-                    }else{
+                    } else {
                         return false;
                     }
                 }
