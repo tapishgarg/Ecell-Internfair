@@ -1,14 +1,25 @@
-<div class="col-lg-9 column" id="student_info_app">
+<div class="col-lg-9 column" id="student_info_app" xmlns="http://www.w3.org/1999/html"
+     xmlns="http://www.w3.org/1999/html">
     <div class="padding-left">
         <div class="profile-form-edit">
             <form>
                 <div class="row">
+                    <!--<div class="col-lg-12" style="margin-top: 10px;" v-if="!student_details.is_paid">-->
+                    <!--<div class="alert alert-success">-->
+                    <!--<strong>Info:</strong> You must fill all the necessary information below and pay ₹250 before-->
+                    <!--applying for the internship <br>Although you can <a style="color: #721c24;"-->
+                    <!--href="/student/internship/list">browse-->
+                    <!--internship</a> before paying.-->
+                    <!--</div>-->
+                    <!--</div>-->
                     <div class="col-lg-12" style="margin-top: 10px;" v-if="!student_details.is_paid">
-                        <div class="alert alert-success">
-                            <strong>Info:</strong> You must fill all the necessary information below and pay ₹250 before
-                            applying for the internship <br>Although you can <a style="color: #721c24;"
-                                                                                href="/student/internship/list">browse
-                                internship</a> before paying.
+                        <div class="alert alert-warning">
+                            You are late. <b>28 Feb 11:59 pm</b> was the deadline so you can't apply for internship
+                            now<br>Although you
+                            can <a style="color: #721c24;"
+                                   href="/student/internship/list">browse
+                                internship</a>.</br>
+                            See you soon :)
                         </div>
                     </div>
 
@@ -81,9 +92,9 @@
 
                 </div>
             </form>
-            <div class="col-lg-12" v-if="!student_details.is_paid">
-                <button type="submit" onclick="onButtonClick()">Save And Pay ₹250</button>
-            </div>
+            <!--<div class="col-lg-12" v-if="!student_details.is_paid">-->
+            <!--<button type="submit" onclick="onButtonClick()">Save And Pay ₹250</button>-->
+            <!--</div>-->
         </div>
     </div>
 </div>
