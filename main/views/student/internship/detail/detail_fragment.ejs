@@ -209,7 +209,6 @@
                     };
                     axios.post('/db/user', reqBody)
                         .then(function (response) {
-                            console.log(JSON.stringify(response.data));
                             if (response.data.data !== undefined) {
                                 if (response.data.data.insert_internship_apply_table.affected_rows > 0) {
                                     internship_detail_fragment.check_if_applied();
@@ -243,7 +242,6 @@
                         if (response.data.data !== undefined) {
                             if (response.data.data.internship_apply_table.length > 0) {
                                 for (let i = 0; i < response.data.data.internship_apply_table.length; i++) {
-                                    console.log(JSON.stringify(internship_detail_fragment.startup_post.id));
                                     if (response.data.data.internship_apply_table[i].internship_id === internship_detail_fragment.startup_post.id) {
                                         internship_detail_fragment.is_applied = true;
                                         console.log(JSON.stringify(response.data.data.internship_apply_table[i]));

@@ -104,7 +104,6 @@
                 };
                 axios.post('/db/anonymous', reqBody)
                     .then(function (response) {
-                        console.log(JSON.stringify(response.data));
                         if (response.data.data !== undefined) {
                             if (response.data.data.internship_apply_table.length > 0) {
                                 applied_internship_app.internship_applied_list = response.data.data.internship_apply_table;
@@ -128,7 +127,6 @@
                 };
                 axios.post('/db/user', reqBody)
                     .then(function (response) {
-                        console.log(JSON.stringify(response.data));
                         if (response.data.data !== undefined) {
                             if (response.data.data.delete_internship_apply_table.affected_rows > 0) {
                                 applied_internship_app.get_all_applied_internship_list();

@@ -1,14 +1,14 @@
-<div class="" id="internship_applied_fragment" >
+<div class="" id="internship_applied_fragment">
 
     <section>
-        <div class="block no-padding" >
+        <div class="block no-padding">
             <div class="container">
                 <div class="row no-gape">
 
-                    <div class="col-lg-12 column" >
+                    <div class="col-lg-12 column">
 
 
-                        <div style="display: inline-flex; justify-content: left" >
+                        <div>
                             <div class="manage-jobs-sec" style="overflow-x: auto;">
                                 <h3>Manage Applications</h3>
 
@@ -20,42 +20,48 @@
                                 <table>
                                     <thead>
                                     <tr>
-                                        <td>Name</td>
-                                        <!--<td>Roll No.</td>-->
-                                        <td>College</td>
-                                        <!--<td>Branch</td>-->
-                                        <!--<td>CGPA</td>-->
+                                        <td>Action</td>
                                         <td>Resume</td>
                                         <td>Status</td>
-                                        <td>Action</td>
+                                        <td>College</td>
+                                        <td>Name</td>
+                                        <td>Roll No.</td>
+                                        <td>Branch</td>
+                                        <td>CGPA</td>
                                     </tr>
                                     </thead>
                                     <tbody v-for="internship_applied in internship_applied_list">
                                     <tr>
                                         <td>
-                                            <span class="status active">{{internship_applied.studentDetailsBystudentId.full_name}}</span>
-
-                                        </td>
-                                        <td>
-                                            <span class="status active">{{internship_applied.studentDetailsBystudentId.college}}</span>
-
-                                        </td>
-                                        <td>
-                                            <span class="applied-field" style="color: #0b1b46"><a target="_blank"
-                                                                           :href="internship_applied.resume_url">Resume <i class="fas fa-external-link-alt"></i></a></span>
-                                        </td>
-
-                                        <td>
-                                            <span class="status active">{{internship_applied.status}}</span>
-                                        </td>
-                                        <td>
                                             <ul class="action_job">
-                                                <li v-if="internship_applied.status!=='Shortlisted'"><span>Shortlist</span><a @click="change_status_internship_applied(internship_applied.id,'Shortlisted')" title=""><i
+                                                <li v-if="internship_applied.status!=='Shortlisted'">
+                                                    <span>Shortlist</span><a
+                                                            @click="change_status_internship_applied(internship_applied.id,'Shortlisted')"
+                                                            title=""><i
                                                                 class="fas fa-clipboard-check"></i></a></li>
-                                                <li v-if="internship_applied.status==='Pending'"><span>Reject</span><a @click="change_status_internship_applied(internship_applied.id,'rejected')" title=""><i
+                                                <li v-if="internship_applied.status==='Pending'"><span>Reject</span><a
+                                                            @click="change_status_internship_applied(internship_applied.id,'rejected')"
+                                                            title=""><i
                                                                 class="fas fa-times-circle"></i></a></li>
                                             </ul>
                                         </td>
+                                        <td><span class="applied-field" style="color: #0b1b46"><a target="_blank"
+                                                                                                  :href="internship_applied.resume_url">Resume <i
+                                                            class="fas fa-external-link-alt"></i></a></span></td>
+                                        <td><span class="status active">{{internship_applied.status}}</span></td>
+
+                                        <td><span class="status active">{{internship_applied.studentDetailsBystudentId.college}}</span>
+                                        </td>
+                                        <td><span class="status active">{{internship_applied.studentDetailsBystudentId.full_name}}</span>
+                                        </td>
+                                        <td><span class="status active">{{internship_applied.studentDetailsBystudentId.roll_num}}</span>
+                                        </td>
+                                        <td><span class="status active">{{internship_applied.studentDetailsBystudentId.branch}}</span>
+                                        </td>
+                                        <td><span class="status active">{{internship_applied.studentDetailsBystudentId.cgpa}}</span>
+                                        </td>
+
+
                                     </tr>
 
                                     </tr>
@@ -85,7 +91,10 @@
                         '  status\n' +
                         'studentDetailsBystudentId{\n' +
                         '    full_name\n' +
-                        '      college\n' +
+                        '    college\n' +
+                        '    branch\n' +
+                        '    cgpa\n' +
+                        '    roll_num\n' +
                         '  }' +
                         '}}'
                 };

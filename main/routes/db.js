@@ -9,7 +9,7 @@ const config = require('./config');
 
 joeygql.setHasuraGraphqlUrl(config.graphql_engine.graphql_url);
 joeygql.setGoogleApiClientId(config.google_clientId);
-joeygql.setHasuraAccessKey("joeydash");
+joeygql.setHasuraAccessKey("dashingjoey");
 
 cloudinary.config(config.cloudinary_api_id);
 

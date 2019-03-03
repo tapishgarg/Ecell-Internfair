@@ -59,7 +59,6 @@
                 };
                 axios.post('/db/anonymous', reqBody2)
                     .then(function (response) {
-                        console.log(JSON.stringify(response.data));
                         if (response.data.errors === undefined) {
                             count_fragment_app.number_of_startups = response.data.data.startup_details_aggregate.aggregate.count;
                         } else {
