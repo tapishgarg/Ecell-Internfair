@@ -20,7 +20,6 @@
                                 <table>
                                     <thead>
                                     <tr>
-                                        <td>Action</td>
                                         <td>Resume</td>
                                         <td>Status</td>
                                         <td>College</td>
@@ -28,23 +27,12 @@
                                         <td>Roll No.</td>
                                         <td>Branch</td>
                                         <td>CGPA</td>
+                                        <td>Action</td>
                                     </tr>
                                     </thead>
                                     <tbody v-for="internship_applied in internship_applied_list">
                                     <tr>
-                                        <td>
-                                            <ul class="action_job">
-                                                <li v-if="internship_applied.status!=='Shortlisted'">
-                                                    <span>Shortlist</span><a
-                                                            @click="change_status_internship_applied(internship_applied.id,'Shortlisted')"
-                                                            title=""><i
-                                                                class="fas fa-clipboard-check"></i></a></li>
-                                                <li v-if="internship_applied.status==='Pending'"><span>Reject</span><a
-                                                            @click="change_status_internship_applied(internship_applied.id,'rejected')"
-                                                            title=""><i
-                                                                class="fas fa-times-circle"></i></a></li>
-                                            </ul>
-                                        </td>
+
                                         <td><span class="applied-field" style="color: #0b1b46"><a target="_blank"
                                                                                                   :href="internship_applied.resume_url">Resume <i
                                                             class="fas fa-external-link-alt"></i></a></span></td>
@@ -59,6 +47,19 @@
                                         <td><span class="status active">{{internship_applied.studentDetailsBystudentId.branch}}</span>
                                         </td>
                                         <td><span class="status active">{{internship_applied.studentDetailsBystudentId.cgpa}}</span>
+                                        </td>
+                                        <td>
+                                            <ul class="action_job">
+                                                <li v-if="internship_applied.status!=='Shortlisted'">
+                                                    <span>Shortlist</span><a
+                                                            @click="change_status_internship_applied(internship_applied.id,'Shortlisted')"
+                                                            title=""><i
+                                                                class="fas fa-clipboard-check"></i></a></li>
+                                                <li v-if="internship_applied.status==='Pending'"><span>Reject</span><a
+                                                            @click="change_status_internship_applied(internship_applied.id,'rejected')"
+                                                            title=""><i
+                                                                class="fas fa-times-circle"></i></a></li>
+                                            </ul>
                                         </td>
 
 
