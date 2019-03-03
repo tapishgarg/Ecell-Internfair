@@ -21,13 +21,13 @@
                                     <thead>
                                     <tr>
                                         <td>Resume</td>
-                                        <td>Status</td>
                                         <td>College</td>
                                         <td>Name</td>
                                         <td>Roll No.</td>
                                         <td>Branch</td>
                                         <td>CGPA</td>
                                         <td>Action</td>
+                                        <td>Status</td>
                                     </tr>
                                     </thead>
                                     <tbody v-for="internship_applied in internship_applied_list">
@@ -36,7 +36,6 @@
                                         <td><span class="applied-field" style="color: #0b1b46"><a target="_blank"
                                                                                                   :href="internship_applied.resume_url">Resume <i
                                                             class="fas fa-external-link-alt"></i></a></span></td>
-                                        <td><span class="status active">{{internship_applied.status}}</span></td>
 
                                         <td><span class="status active">{{internship_applied.studentDetailsBystudentId.college}}</span>
                                         </td>
@@ -61,6 +60,8 @@
                                                                 class="fas fa-times-circle"></i></a></li>
                                             </ul>
                                         </td>
+                                        <td><span class="status active">{{internship_applied.status}}</span></td>
+
 
 
                                     </tr>
