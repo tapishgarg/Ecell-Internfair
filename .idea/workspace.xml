@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8f5f8ba0-1585-465f-80a4-1271d2ddb1e9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/main/views/startup/internship_applied/applied_fragment.ejs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/views/startup/internship_applied/index.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/routes/startup.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/routes/startup.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/views/common/startup_register.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/main/views/common/startup_register.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/views/startup/internship_detail/detail_fragment.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/main/views/startup/internship_detail/detail_fragment.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/views/startup/manage/manage_fragment.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/main/views/startup/manage/manage_fragment.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/views/startup/internship_applied/applied_fragment.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/main/views/startup/internship_applied/applied_fragment.ejs" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -38,17 +33,30 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main/views/startup/internship_applied/applied_fragment.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="156">
-              <caret line="115" selection-start-line="115" selection-end-line="115" />
+            <state>
+              <caret column="46" selection-start-column="46" selection-end-column="46" />
+              <folding>
+                <element signature="n#style#0;n#span#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#section#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/default">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-116" />
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main/views/startup/manage/manage_fragment.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="311">
-              <caret line="38" column="189" selection-start-line="38" selection-start-column="189" selection-end-line="38" selection-end-column="189" />
+            <state relative-caret-position="200">
+              <caret line="38" column="73" selection-start-line="38" selection-start-column="73" selection-end-line="38" selection-end-column="73" />
+              <folding>
+                <element signature="n#style#0;n#span#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -95,6 +103,7 @@
       <find>check_is_registered</find>
       <find>detail</find>
       <find>console</find>
+      <find>overflow-x=auto</find>
     </findStrings>
     <replaceStrings>
       <replace>'</replace>
@@ -318,21 +327,7 @@
       <workItem from="1551259983061" duration="393000" />
       <workItem from="1551291412985" duration="1212000" />
       <workItem from="1551509422894" duration="391000" />
-      <workItem from="1551510943512" duration="9962000" />
-    </task>
-    <task id="LOCAL-00035" summary="example added">
-      <created>1549510701674</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1549510701674</updated>
-    </task>
-    <task id="LOCAL-00036" summary="example added">
-      <created>1549512866972</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1549512866972</updated>
+      <workItem from="1551510943512" duration="10695000" />
     </task>
     <task id="LOCAL-00037" summary="example added">
       <created>1549514582942</created>
@@ -663,11 +658,25 @@
       <option name="project" value="LOCAL" />
       <updated>1551512829608</updated>
     </task>
-    <option name="localTasksCounter" value="84" />
+    <task id="LOCAL-00084" summary="example added">
+      <created>1551585323541</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1551585323541</updated>
+    </task>
+    <task id="LOCAL-00085" summary="example added">
+      <created>1551586528424</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1551586528425</updated>
+    </task>
+    <option name="localTasksCounter" value="86" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="139857000" />
+    <option name="totallyTimeSpent" value="140590000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -742,13 +751,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="example added" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/main/views/home/contact_us.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="23" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main/views/home/employer_resume.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
@@ -1083,17 +1085,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/default">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-116" />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main/views/startup/manage/manage_fragment.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="38" column="189" selection-start-line="38" selection-start-column="189" selection-end-line="38" selection-end-column="189" />
+        <state relative-caret-position="200">
+          <caret line="38" column="73" selection-start-line="38" selection-start-column="73" selection-end-line="38" selection-end-column="73" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main/views/startup/internship_applied/applied_fragment.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="115" selection-start-line="115" selection-end-line="115" />
+        <state>
+          <caret column="46" selection-start-column="46" selection-end-column="46" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#section#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
