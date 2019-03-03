@@ -96,6 +96,7 @@
         },
         methods: {
             check_is_registered: () => {
+                console.log("joeydash");
                 let reqBody = {
                     query_string: '{\n' +
                         '  user_detail(where: {user_h_id: {_eq: "' + JSON.parse(Cookies.get('auth_details')).h_id + '"}}) {\n' +
@@ -107,10 +108,10 @@
                         '  }\n' +
                         '}\n'
                 };
-                axios.post('/db/user', reqBody)
+                axios.post('/db/startup', reqBody)
                     .then(function (response) {
                         if (response.data.data !== undefined) {
-                            console.log(JSON.stringify(response.data.data));
+                            console.log(JSON.stringify("joeydash: "+response.data.data));
                             if (response.data.data.user_detail[0].startupDetailsBystartupId !== null) {
                                 startup_register_fragment.is_registered = true;
                                 Cookies.set('startup_details', JSON.stringify(response.data.data.user_detail[0].startupDetailsBystartupId));
@@ -121,6 +122,7 @@
                                 Cookies.remove('startup_details');
                             }
                         } else {
+                            console.log(JSON.stringify(response.data));
 
                         }
                     })

@@ -18,5 +18,8 @@ router.get('/internship_detail/:id', function (req, res, next) {
     res.render('startup/internship_detail/index', {internship_id: req.params.id});
 });
 
+router.get('/internship_applied/:id', function (req, res, next) {
+    res.render('startup/internship_applied/index', {internship_id: req.params.id});
+});
 
 module.exports = router;

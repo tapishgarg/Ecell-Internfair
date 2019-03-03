@@ -58,7 +58,7 @@
                                         :href="startup_post.startupDetailsBystartupDetailsId.website">{{startup_post.startupDetailsBystartupDetailsId.website}}</a>
                             </p>
                         </div>
-                        <a title="" @click="edit_internship(startup_post.id)" class="apply-job-btn"><i
+                        <a v-if="startup_post.status!=='live'" title="" @click="edit_internship(startup_post.id)" class="apply-job-btn"><i
                                     class="la la-paper-plane"></i>Edit</a>
                         <a href="/startup/manage" title="" class="viewall-jobs">Manage</a>
                     </div><!-- Job Head -->
@@ -118,6 +118,7 @@
                         '    other_incentives\n' +
                         '    address\n' +
                         '    id\n' +
+                        '    status\n' +
                         '    startupDetailsBystartupDetailsId {\n' +
                         '      startup_name\n' +
                         '      about\n' +
@@ -127,7 +128,7 @@
                         '  }\n' +
                         '}\n'
                 };
-                axios.post('/db/user', reqBody)
+                axios.post('/db/startup', reqBody)
                     .then(function (response) {
 
                         if (response.data.data !== undefined) {

@@ -14,7 +14,7 @@
             </div> -->
             <div class="extra-job-info">
                 <span><i class="la la-users"></i><strong>{{offered_internship_list.length}}</strong> Internships Posted</span>
-                <span><i class="la la-users"></i><strong>0</strong> Application</span>
+                <!--<span><i class="la la-users"></i><strong>0</strong> Application</span>-->
             </div>
             <table>
                 <thead>
@@ -36,19 +36,19 @@
                         </div>
                     </td>
                     <td>
-                        <span class="applied-field">0 Applied</span>
+                        <span class="applied-field"><a :href="'/startup/internship_applied/'+offered_internship.id">{{offered_internship.internshipApplyTablesByinternshipId.length}} Applied</a></span>
                     </td>
 
 
                     <td>
                         <ul class="action_job">
-                            <li><span>View Job</span><a href="#" title=""
+                            <li><span>View Internship</span><a href="#" title=""
                                                         @click="view_internship(offered_internship.id)"><i
                                             class="la la-eye"></i></a></li>
-                            <li v-if="offered_internship.status!=='live'"><span>Edit</span><a title="edit"
+                            <li v-if="offered_internship.status!=='live'"><span>Edit Internship</span><a title="edit"
                                                                                               @click="edit_internship(offered_internship.id)"><i
                                             class="la la-pencil"></i></a></li>
-                            <li v-if="offered_internship.status!=='live'"><span>Delete</span><a href="#" title=""
+                            <li v-if="offered_internship.status!=='live'"><span>Delete Internship</span><a href="#" title=""
                                                                                                 @click="delete_internship(offered_internship.id)"><i
                                             class="la la-trash-o"></i></a></li>
                         </ul>
@@ -68,23 +68,26 @@
     let startup_manage_app = new Vue({
         el: "#startup_manage_app",
         data: {
-            offered_internship_list: []
+            offered_internship_list: [],
         },
         methods: {
             load_offered_internship_list: () => {
                 let reqBody = {
                     query_string: '{\n' +
-                        '  startup_post(where: {startup_details_id: {_eq: ' + JSON.parse(Cookies.get('startup_details')).id + '}}) {\n' +
+                        '  startup_post(where: {startup_details_id: {_eq: 201}}) {\n' +
                         '    internship_profile\n' +
                         '    location\n' +
                         '    status\n' +
                         '    id\n' +
+                        '    internshipApplyTablesByinternshipId{\n' +
+                        '      id\n' +
+                        '    }\n' +
                         '  }\n' +
-                        '}\n'
+                        '}'
                 };
-                axios.post('/db/user', reqBody)
+                axios.post('/db/startup', reqBody)
                     .then(function (response) {
-                        console.log(response.data);
+                        console.log(JSON.stringify(response.data));
                         if (response.data.data !== undefined) {
                             console.log("joeydash");
 
@@ -106,7 +109,7 @@
                         '  }\n' +
                         '}\n'
                 };
-                axios.post('/db/user', reqBody)
+                axios.post('/db/startup', reqBody)
                     .then(function (response) {
                         console.log(response.data);
                         if (response.data.data !== undefined) {

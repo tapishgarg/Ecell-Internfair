@@ -1,0 +1,138 @@
+<div class="" id="internship_applied_fragment">
+
+    <section>
+        <div class="block no-padding">
+            <div class="container">
+                <div class="row no-gape">
+
+                    <div class="col-lg-12 column">
+
+
+                        <div style="display: inline-flex; justify-content: left">
+                            <div class="manage-jobs-sec">
+                                <h3>Manage Applications</h3>
+
+                                <!--<div class="extra-job-info">-->
+                                <!--<span><i class="la la-users"></i><strong>18</strong> Accepted</span>-->
+                                <!--<span><i class="la la-users"></i><strong>18</strong> Rejected</span>-->
+                                <!--<span><i class="la la-users"></i><strong>18</strong> Pending </span>-->
+                                <!--</div>-->
+                                <table>
+                                    <thead>
+                                    <tr>
+                                        <td>Name</td>
+                                        <!--<td>Roll No.</td>-->
+                                        <td>College</td>
+                                        <!--<td>Branch</td>-->
+                                        <!--<td>CGPA</td>-->
+                                        <td>Resume</td>
+                                        <td>Status</td>
+                                        <td>Action</td>
+                                    </tr>
+                                    </thead>
+                                    <tbody v-for="internship_applied in internship_applied_list">
+                                    <tr>
+                                        <td>
+                                            <span class="status active">{{internship_applied.studentDetailsBystudentId.full_name}}</span>
+
+                                        </td>
+                                        <td>
+                                            <span class="status active">{{internship_applied.studentDetailsBystudentId.college}}</span>
+
+                                        </td>
+                                        <td>
+                                            <span class="applied-field"><a target="_blank"
+                                                                           :href="internship_applied.resume_url">{{internship_applied.resume_url}}</a></span>
+                                        </td>
+
+                                        <td>
+                                            <span class="status active">{{internship_applied.status}}</span>
+                                        </td>
+                                        <td>
+                                            <ul class="action_job">
+                                                <li v-if="internship_applied.status!=='Shortlisted'"><span>Shortlist</span><a @click="change_status_internship_applied(internship_applied.id,'Shortlisted')" title=""><i
+                                                                class="fas fa-clipboard-check"></i></a></li>
+                                                <li v-if="internship_applied.status==='Pending'"><span>Reject</span><a @click="change_status_internship_applied(internship_applied.id,'rejected')" title=""><i
+                                                                class="fas fa-times-circle"></i></a></li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script>
+    let internship_applied_fragment = new Vue({
+        el: "#internship_applied_fragment",
+        data: {
+            internship_applied_list: {}
+        },
+        methods: {
+            get_internship_applied: () => {
+                let reqBody = {
+                    query_string: '{internship_apply_table(where : {internship_id : {_eq : <% if (internship_id) { %><%= internship_id %><% } else { %>0<% } %>}}){\n' +
+                        '  id\n' +
+                        '  resume_url\n' +
+                        '  status\n' +
+                        'studentDetailsBystudentId{\n' +
+                        '    full_name\n' +
+                        '      college\n' +
+                        '  }' +
+                        '}}'
+                };
+                axios.post('/db/startup', reqBody)
+                    .then(function (response) {
+
+                        if (response.data.data !== undefined) {
+                            internship_applied_fragment.internship_applied_list = response.data.data.internship_apply_table;
+                        } else {
+                            alert("Some Error")
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+
+            },
+            change_status_internship_applied: (id, status) => {
+                let reqBody = {
+                    query_string: 'mutation{\n' +
+                        '  update_internship_apply_table (where : {id : {_eq : ' + id + '}},_set : {status : "' + status + '"}){\n' +
+                        '    affected_rows\n' +
+                        '  }\n' +
+                        '}'
+                };
+                axios.post('/db/startup', reqBody)
+                    .then(function (response) {
+                        if (response.data.data !== undefined) {
+                            if (response.data.data.update_internship_apply_table.affected_rows > 0) {
+                                internship_applied_fragment.get_internship_applied();
+                            }
+                        } else {
+
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+
+            },
+            edit_internship: (id) => {
+                location.href = "/startup/edit_internship/" + id;
+            }
+        }, mounted: function () {
+            this.$nextTick(function () {
+                this.get_internship_applied();
+            })
+        }
+    });
+</script>
