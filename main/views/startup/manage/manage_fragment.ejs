@@ -74,7 +74,7 @@
             load_offered_internship_list: () => {
                 let reqBody = {
                     query_string: '{\n' +
-                        '  startup_post(where: {startup_details_id: {_eq: 201}}) {\n' +
+                        '  startup_post(where: {startup_details_id: {_eq: '+JSON.parse(Cookies.get('startup_details')).id+'}}) {\n' +
                         '    internship_profile\n' +
                         '    location\n' +
                         '    status\n' +
