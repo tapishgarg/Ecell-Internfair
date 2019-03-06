@@ -160,6 +160,8 @@
                                 for (let i = 0; i < response.data.data.internship_apply_table.length; i++) {
                                     let item = {
                                         student_name : response.data.data.internship_apply_table[i].studentDetailsBystudentId.full_name,
+                                        roll_num : response.data.data.internship_apply_table[i].studentDetailsBystudentId.roll_num,
+                                        college : response.data.data.internship_apply_table[i].studentDetailsBystudentId.college,
                                         contact_number : response.data.data.internship_apply_table[i].studentDetailsBystudentId.contact_number,
                                         email : response.data.data.internship_apply_table[i].studentDetailsBystudentId.joeyUserByuserHid.userDetailsByuserHId[0].email,
                                         alternate_contact_number : response.data.data.internship_apply_table[i].studentDetailsBystudentId.alt_contact_number,
