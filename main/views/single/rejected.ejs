@@ -89,7 +89,7 @@
 <body>
 <div id="app">
     <div class="topnav" style="margin-bottom: 20px;">
-        <a class="active"><b>ShortListed Student List</b></a>
+        <a class="active"><b>Rejected Student List :(</b></a>
         <a> {{search_list.length}} Rows</a>
         <a style="cursor: pointer;" onclick="saveFile()"> Download below list as XLSX</a>
         <input type="text" @keyup="search_object" placeholder="Search..." v-model="search_str">
@@ -128,6 +128,8 @@
                         '    studentDetailsBystudentId {\n' +
                         '      full_name\n' +
                         '      contact_number\n' +
+                        '      college\n' +
+                        '      roll_num\n' +
                         '      alt_email\n' +
                         '      alt_contact_number\n' +
                         '      joeyUserByuserHid {\n' +
@@ -158,6 +160,8 @@
                                 for (let i = 0; i < response.data.data.internship_apply_table.length; i++) {
                                     let item = {
                                         student_name : response.data.data.internship_apply_table[i].studentDetailsBystudentId.full_name,
+                                        roll_num : response.data.data.internship_apply_table[i].studentDetailsBystudentId.roll_num,
+                                        college : response.data.data.internship_apply_table[i].studentDetailsBystudentId.college,
                                         contact_number : response.data.data.internship_apply_table[i].studentDetailsBystudentId.contact_number,
                                         email : response.data.data.internship_apply_table[i].studentDetailsBystudentId.joeyUserByuserHid.userDetailsByuserHId[0].email,
                                         alternate_contact_number : response.data.data.internship_apply_table[i].studentDetailsBystudentId.alt_contact_number,
