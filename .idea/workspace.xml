@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8f5f8ba0-1585-465f-80a4-1271d2ddb1e9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/main/views/single/shortlisted.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/main/views/single/shortlisted.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -28,17 +28,7 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/main/views/single/shortlisted.ejs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="229">
-              <caret line="163" column="129" selection-start-line="163" selection-start-column="129" selection-end-line="163" selection-end-column="129" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -145,11 +135,11 @@
         <option value="$PROJECT_DIR$/docker-compose.yml" />
         <option value="$PROJECT_DIR$/main/routes/db.js" />
         <option value="$PROJECT_DIR$/main/views/startup/internship_applied/applied_fragment.ejs" />
-        <option value="$PROJECT_DIR$/main/views/single/pending.ejs" />
-        <option value="$PROJECT_DIR$/main/views/single/rejected.ejs" />
         <option value="$PROJECT_DIR$/main/routes/admin.js" />
         <option value="$PROJECT_DIR$/main/views/startup/manage/manage_fragment.ejs" />
         <option value="$PROJECT_DIR$/main/views/single/shortlisted.ejs" />
+        <option value="$PROJECT_DIR$/main/views/single/rejected.ejs" />
+        <option value="$PROJECT_DIR$/main/views/single/pending.ejs" />
       </list>
     </option>
   </component>
@@ -298,21 +288,8 @@
       <workItem from="1551510943512" duration="16970000" />
       <workItem from="1551677771154" duration="509000" />
       <workItem from="1551683491449" duration="329000" />
-      <workItem from="1551838671324" duration="226000" />
-    </task>
-    <task id="LOCAL-00046" summary="example added">
-      <created>1550593723113</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1550593723113</updated>
-    </task>
-    <task id="LOCAL-00047" summary="example added">
-      <created>1550885287004</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1550885287005</updated>
+      <workItem from="1551838671324" duration="504000" />
+      <workItem from="1551973840555" duration="462000" />
     </task>
     <task id="LOCAL-00048" summary="example added">
       <created>1550885495839</created>
@@ -643,11 +620,25 @@
       <option name="project" value="LOCAL" />
       <updated>1551838811337</updated>
     </task>
-    <option name="localTasksCounter" value="95" />
+    <task id="LOCAL-00095" summary="example added">
+      <created>1551838916583</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1551838916584</updated>
+    </task>
+    <task id="LOCAL-00096" summary="example added">
+      <created>1551839147106</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1551839147106</updated>
+    </task>
+    <option name="localTasksCounter" value="97" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="147929000" />
+    <option name="totallyTimeSpent" value="148669000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -660,9 +651,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.35121602" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.35622317" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="DB Browser" order="2" weight="0.3297568" />
       <window_info id="Project Explorer" order="3" />
@@ -680,7 +670,7 @@
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32909784" />
       <window_info anchor="bottom" id="DB Execution Console" order="10" />
       <window_info anchor="bottom" id="Database Changes" order="11" />
-      <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.4985694" visible="true" weight="0.27149877" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="12" sideWeight="0.4985694" visible="true" weight="0.27149877" />
       <window_info anchor="bottom" id="Event Log" order="13" sideWeight="0.50143063" side_tool="true" weight="0.3181818" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -1039,20 +1029,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/views/single/pending.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1875">
-          <caret line="125" column="80" selection-start-line="125" selection-start-column="80" selection-end-line="125" selection-end-column="80" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/views/single/rejected.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1875">
-          <caret line="125" column="81" selection-start-line="125" selection-start-column="81" selection-end-line="125" selection-end-column="81" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docker-compose.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -1069,7 +1045,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main/views/single/shortlisted.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
+        <state relative-caret-position="192">
+          <caret line="164" column="41" selection-start-line="164" selection-start-column="41" selection-end-line="164" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/views/single/rejected.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="163" column="129" selection-start-line="163" selection-start-column="129" selection-end-line="163" selection-end-column="129" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/views/single/pending.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
           <caret line="163" column="129" selection-start-line="163" selection-start-column="129" selection-end-line="163" selection-end-column="129" />
         </state>
       </provider>
